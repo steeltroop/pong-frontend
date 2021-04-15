@@ -1,9 +1,18 @@
 import React from "react";
-import Login from "../login";
+import { Switch, Route } from "react-router-dom";
+import Home from "../home/Home";
+import Login from "../login/Login";
 
 const App = ({ setUser }) => {
   return (
-    <Login setUser={setUser} />
+    <Switch>
+      <Route path="/" exact>
+        <Home />
+      </Route>
+      <Route path="/auth/login">
+        <Login setUser={setUser} />
+      </Route>
+    </Switch>
   );
 };
 
