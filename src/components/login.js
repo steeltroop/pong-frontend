@@ -2,7 +2,7 @@ import React from "react";
 import googleLogin from "../api/firebase/googleLogin";
 import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const history = useHistory();
 
   const handleClick = () => {
