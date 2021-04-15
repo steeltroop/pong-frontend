@@ -3,11 +3,11 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../home/Home";
 import Login from "../login/Login";
 
-const App = ({ setUser }) => {
+const App = ({ user, setUser }) => {
   return (
     <Switch>
       <Route path="/" exact>
-        <Home />
+        <Home user={user} />
       </Route>
       <Route path="/auth/login">
         <Login setUser={setUser} />

@@ -15,6 +15,9 @@ const Login = ({ setUser }) => {
 
   return (
     <div>
+      <div className="title">
+        <span>Pong</span>
+      </div>
       <h1>Pong</h1>
       <button
         onClick={handleClick}

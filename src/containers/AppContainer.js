@@ -2,6 +2,10 @@ import { connect } from "react-redux";
 import App from "../components/app/App";
 import * as userActions from "../redux/actions/userActions";
 
+const mapStateToProps = (state) => ({
+  user: state.User,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setUser: (user) => {
     dispatch(userActions.setUser(user));
@@ -9,6 +13,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
