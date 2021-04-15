@@ -6,9 +6,11 @@ export const postGoogleLogin = async (email, name) => {
 
   try {
     await fetch(process.env.REACT_APP_PORT + "/auth/login", {
+      credentials: "include",
       method: "POST",
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        "Accept": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(payload)
     });

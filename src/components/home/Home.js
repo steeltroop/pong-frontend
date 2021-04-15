@@ -11,7 +11,7 @@ const Home = ({ user }) => {
       return;
     }
 
-    history.push("/");
+    history.push("/auth/login");
   };
 
   return (
