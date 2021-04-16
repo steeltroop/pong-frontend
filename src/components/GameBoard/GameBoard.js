@@ -20,6 +20,8 @@ const GameBoard = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
 
+      paddleProps.y = canvas.height - 30;
+
       if (reset) {
         ballObj.x = canvas.width / 2;
         ballObj.y = canvas.height / 2;
