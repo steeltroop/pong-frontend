@@ -14,4 +14,8 @@ export const subscribeSocket = (dispatch) => {
   socket.on("completeMatch", (data) => {
     dispatch(roomMatchActions.updateRoomMatch(data));
   });
+
+  socket.on("sendTextMessage", (data) => {
+    dispatch(roomMatchActions.updateTextSending(data));
+  });
 };

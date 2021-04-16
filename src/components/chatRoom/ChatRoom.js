@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const ChatRoom = () => {
+const ChatRoom = ({ socket }) => {
   const [text, setText] = useState("");
-  const chats = useSelector(state => state.roomMatch.chats);
+  const roomMatch = useSelector(state => state.roomMatch);
+  const userSocketId = useSelector(state => state.user.socketId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    socket.emit("sendTextMessage", { text, userSocketId });
 
     setText("");
   };
@@ -17,9 +20,19 @@ const ChatRoom = () => {
 
   return (
     <div>
-      <div>
-        Content Box
-      </div>
+      <ul>
+        {roomMatch.chats.length > 0 && (
+          roomMatch.chats.map((chat, index) => {
+            const isMyText = chat.socketId === userSocketId;
+
+            return (
+              <li key={index}>
+                {chat.text}
+              </li>
+            );
+          })
+        )}
+      </ul>
       <div>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>

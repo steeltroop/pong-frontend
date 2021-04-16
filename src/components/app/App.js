@@ -9,9 +9,10 @@ import Sidebar from "../sidebar/sidebar";
 
 const App = () => {
   const email = useSelector(state => state.user.email);
-  // {!email && <Redirect to="/auth/login" />}
+
   return (
     <>
+      {!email && <Redirect to="/auth/login" />}
       <Switch>
         <Route path="/" exact>
           <Home socket={socket} />
@@ -19,8 +20,8 @@ const App = () => {
         <Route path="/auth/login">
           <Login />
         </Route>
-        <Route path="/battle" socket={socket}>
-          <Battle />
+        <Route path="/battle">
+          <Battle socket={socket} />
         </Route>
         <Route path="/sidebar">
           <Sidebar />
