@@ -7,18 +7,10 @@ export default {
     radius: 10,
     speed: 10,
   },
-  paddleObj: {
-    x: 0.5,
-    y: 50,
-    width: 800 / 10 - 1,
+  paddleProps: {
     height: 20,
-    density: 2,
-    colors: ["blue", "lightblue"],
-  },
-  player: {
-    name: "Dhaval",
-    lives: 5,
-    score: 0,
-    level: 1,
-  },
+    width: 100,
+    x: 100,
+    color: "orange",
+  }
 };

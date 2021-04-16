@@ -16,6 +16,7 @@ const App = ({ user, setUser }) => {
       </Route>
       <Route path="/battle">
         <Battle />
+      </Route>
       <Route path="/sidebar">
         <Sidebar />
       </Route>
