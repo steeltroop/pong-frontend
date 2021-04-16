@@ -1,6 +1,7 @@
 import React from "react";
 import GameBoard from "../gameBoard/GameBoard";
 import Sidebar from "../sidebar/sidebar";
+import ChatRoom from "../chatRoom/ChatRoom";
 
 const Battle = () => {
 
@@ -27,7 +28,7 @@ const Battle = () => {
           </div>
         </div>
         <div>
-          ChattingRoom component here
+          <ChatRoom />
         </div>
       </div>
     </>
