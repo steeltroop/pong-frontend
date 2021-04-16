@@ -1,5 +1,5 @@
 import React from "react";
-import GameBoard from "../gameBoard/GameBoard";
+import GameBoard from "../GameBoard/GameBoard";
 import Sidebar from "../sidebar/sidebar";
 
 const Battle = () => {

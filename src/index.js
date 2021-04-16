@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
-import App from './containers/AppContainer';
+import App from './components/app/App';
 import reducer from "./redux/reducers";
 
 const store = createStore(reducer, applyMiddleware(logger));
