@@ -6,7 +6,7 @@ const initialState = {
   socketId: ""
 };
 
-const User = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
@@ -15,8 +15,8 @@ const User = (state = initialState, action) => {
         name: action.payload.name
       };
     default:
-      return state;
+      return Object.assign({}, state);
   }
 };
 
-export default User;
+export default user;

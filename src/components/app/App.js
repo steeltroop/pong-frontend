@@ -5,6 +5,8 @@ import Login from "../login/Login";
 import Battle from "../battle/Battle";
 import Sidebar from "../sidebar/sidebar";
 
+const SERVER_URL = process.env.REACT_APP_PORT;
+
 const App = ({ user, setUser }) => {
   return (
     <Switch>
