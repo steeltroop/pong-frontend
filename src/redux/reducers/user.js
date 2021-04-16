@@ -14,6 +14,11 @@ const user = (state = initialState, action) => {
         email: action.payload.email,
         name: action.payload.name
       };
+    case actionTypes.UPDATE_USERID:
+      return {
+        ...state,
+        socketId: action.payload.socketId
+      };
     default:
       return Object.assign({}, state);
   }

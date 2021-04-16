@@ -1,11 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const Home = ({ user }) => {
+const Home = ({ socket }) => {
   const history = useHistory();
+  const { name, email } = useSelector(state => state.user);
 
   const handleClick = () => {
-    if (user.email) {
+    if (email) {
+      socket.emit("initialConnection", name);
       history.push("/battle");
 
       return;

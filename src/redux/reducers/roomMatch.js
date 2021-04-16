@@ -11,12 +11,12 @@ const initialState = {
 
 const roomMatch = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_USERID:
+    case actionTypes.UPDATE_PARTNERID:
       return {
         ...state,
         partner: {
           ...state.partner,
-          socketId: action.payload
+          socketId: action.payload.socketId
         }
       };
     case actionTypes.UPDATE_ROOMMATCH:
