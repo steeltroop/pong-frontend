@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "../home/Home";
 import Login from "../login/Login";
+import Battle from "../battle/Battle";
 import Sidebar from "../sidebar/sidebar";
 
 const App = ({ user, setUser }) => {
@@ -13,6 +14,8 @@ const App = ({ user, setUser }) => {
       <Route path="/auth/login">
         <Login setUser={setUser} />
       </Route>
+      <Route path="/battle">
+        <Battle />
       <Route path="/sidebar">
         <Sidebar />
       </Route>
