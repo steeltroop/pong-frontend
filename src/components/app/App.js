@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <Home />
+        <Home socket={socket} />
       </Route>
       <Route path="/auth/login">
         <Login />
