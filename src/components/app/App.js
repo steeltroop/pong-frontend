@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
+import Sidebar from "../sidebar/sidebar";
 
 const App = ({ user, setUser }) => {
   return (
@@ -15,6 +16,9 @@ const App = ({ user, setUser }) => {
       </Route>
       <Route path="/battle">
         <Battle />
+      </Route>
+      <Route path="/sidebar">
+        <Sidebar />
       </Route>
     </Switch>
   );
