@@ -1,15 +1,10 @@
 import React from "react";
 import GameBoard from "../gameBoard/GameBoard";
-import Sidebar from "../sidebar/sidebar";
 
 const Battle = () => {
-
   return (
     <>
       <div>
-        <div>
-          <Sidebar />
-        </div>
         <div>
           <div>
             Scoreboard 3 : 0

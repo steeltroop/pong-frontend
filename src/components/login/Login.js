@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import googleLogin from "../../api/firebase/googleLogin";
+import { googleLogin } from "../../api/firebase/googleAuth";
 import * as userActions from "../../redux/actions/userActions";
 
 const Login = () => {

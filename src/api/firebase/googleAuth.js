@@ -1,9 +1,9 @@
 import firebase from "./index";
-import { postGoogleLogin } from "../authApi";
+import { postGoogleLogin, postGoogleLogout } from "../authApi";
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-const googleLogin = async (nextPage, setUser) => {
+export const googleLogin = async (nextPage, setUser) => {
   const { user } = await firebase.auth().signInWithPopup(provider);
 
   postGoogleLogin(user.email, user.displayName);
@@ -12,4 +12,7 @@ const googleLogin = async (nextPage, setUser) => {
   nextPage();
 };
 
-export default googleLogin;
+export const googleLogout = async () => {
+  await firebase.auth().signOut();
+  postGoogleLogout();
+};

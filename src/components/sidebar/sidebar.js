@@ -1,38 +1,34 @@
-import React, { useState } from "react";
-import MenuIcon from '@material-ui/icons/Menu';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import * as userActions from "../../redux/actions/userActions";
+import { deleteUserCookie } from "../../utils/deleteUserCookie";
+import { googleLogout } from "../../api/firebase/googleAuth";
 
 const Sidebar = () => {
-  const [isSidebarShow, setSidebarShow] = useState(false);
+  const user = useSelector(state => state.user.email);
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSidebarBtnClick = () => {
-    setSidebarShow(!isSidebarShow);
-  };
-
   const handleLogoutBtnClick = () => {
+    dispatch(userActions.deleteUser());
+    deleteUserCookie();
+    googleLogout();
     history.push("/auth/login");
   };
 
   return (
     <div>
-      <div onClick={handleSidebarBtnClick}>
-        <MenuIcon />
-      </div>
-      <Link to="/auth/login">
-        <div>
-          <span>Login</span>
-        </div>
+      <Link to="/">
+        <span>Home</span>
       </Link>
-      <div>
+      {user &&
         <button onClick={handleLogoutBtnClick}>
           Logout
         </button>
-      </div>
+      }
       <Link to="/ranking">
-        <div>
-          <span>Ranking</span>
-        </div>
+        <span>Ranking</span>
       </Link>
     </div>
   );
