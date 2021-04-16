@@ -19,8 +19,15 @@ const roomMatch = (state = initialState, action) => {
           socketId: action.payload
         }
       };
+    case actionTypes.UPDATE_ROOMMATCH:
+      return {
+        ...state,
+        ...action.payload
+      };
     default: {
       return Object.assign({}, state);
     }
   }
 };
+
+export default roomMatch;

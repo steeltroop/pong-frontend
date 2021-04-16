@@ -6,3 +6,10 @@ export const updateUserId = (socketId) => ({
     socketId
   }
 });
+
+export const updateRoomMatch = (data) => ({
+  type: actionType.UPDATE_ROOMMATCH,
+  payload: {
+    data
+  }
+});
