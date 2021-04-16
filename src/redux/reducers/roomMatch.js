@@ -24,6 +24,14 @@ const roomMatch = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+    case actionTypes.UPDATE_TEXTSENDING:
+      const newChats = state.chats.slice();
+      newChats.push(action.payload.data);
+
+      return {
+        ...state,
+        chats: newChats
+      };
     default: {
       return Object.assign({}, state);
     }

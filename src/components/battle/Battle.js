@@ -3,7 +3,7 @@ import GameBoard from "../gameBoard/GameBoard";
 import Sidebar from "../sidebar/sidebar";
 import ChatRoom from "../chatRoom/ChatRoom";
 
-const Battle = () => {
+const Battle = ({ socket }) => {
 
   return (
     <>
@@ -28,7 +28,7 @@ const Battle = () => {
           </div>
         </div>
         <div>
-          <ChatRoom />
+          <ChatRoom socket={socket} />
         </div>
       </div>
     </>
