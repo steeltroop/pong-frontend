@@ -1,5 +1,6 @@
 import socketIOClient from 'socket.io-client';
 import * as roomMatchActions from "../redux/actions/roomMatchActions";
+import * as userActions from "../redux/actions/userActions";
 
 const SERVER_URL = process.env.REACT_APP_PORT;
 
@@ -7,7 +8,7 @@ export const socket = socketIOClient(SERVER_URL);
 
 export const subscribeSocket = (dispatch) => {
   socket.on("connectSuccess", (socketId) => {
-    dispatch(roomMatchActions.updateUserId(socketId));
+    dispatch(userActions.updateUserId(socketId));
   });
 
   socket.on("completeMatch", (data) => {

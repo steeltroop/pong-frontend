@@ -1,3 +1,4 @@
 export const SET_USER = "SET_USER";
 export const UPDATE_USERID = "UPDATE_USERID";
 export const UPDATE_ROOMMATCH = "UPDATE_ROOMMATCH";
+export const UPDATE_PARTNERID = "UPDATE_PARTNERID";
