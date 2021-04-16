@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { drawBall } from "./drawBall";
+import paddleCollision from "./paddleCollision";
 import Paddle from "./paddle";
-import "./gameboard.css";
 import data from "./data";
+import "./gameboard.css";
 
 const { ballObj, paddleProps } = data;
 
@@ -43,6 +44,7 @@ const GameBoard = () => {
       }
 
       Paddle(ctx, canvas, paddleProps);
+      paddleCollision(ballObj, paddleProps);
 
       requestAnimationFrame(render);
     };
