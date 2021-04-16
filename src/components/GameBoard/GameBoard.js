@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { drawBall } from "./drawBall";
+import Paddle from "./paddle";
 import "./gameboard.css";
 import data from "./data";
+
+const { ballObj, paddleProps } = data;
 
 const GameBoard = () => {
   const canvasRef = useRef(null);
@@ -15,8 +18,6 @@ const GameBoard = () => {
     const render = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
-
-      const { ballObj } = data;
 
       if (reset) {
         ballObj.x = canvas.width / 2;
@@ -37,8 +38,11 @@ const GameBoard = () => {
       }
 
       if (ballObj.y - ballObj.radius < 0 || ballObj.y > canvas.height - ballObj.radius) {
+        Paddle(ctx, canvas, paddleProps);
         return;
       }
+
+      Paddle(ctx, canvas, paddleProps);
 
       requestAnimationFrame(render);
     };
@@ -48,7 +52,7 @@ const GameBoard = () => {
 
   return (
     <>
-      <canvas id="canvas" ref={canvasRef} height="700px" width="500px" />
+      <canvas onMouseMove={(event) => (paddleProps.x = event.clientX - paddleProps.width / 2)} id="canvas" ref={canvasRef} height="700px" width="500px" />
       <button onClick={handleClick}>RESET</button>
     </>
   );

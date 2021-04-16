@@ -1,6 +1,6 @@
 export function drawBall(ctx, ballObj, canvas) {
-  const data = new Ball(ballObj.x, ballObj.y, ballObj.radius);
-  data.draw(ctx);
+  const ball = new Ball(ballObj.x, ballObj.y, ballObj.radius);
+  ball.draw(ctx);
   ballObj.x += ballObj.dx;
   ballObj.y += ballObj.dy;
 }
