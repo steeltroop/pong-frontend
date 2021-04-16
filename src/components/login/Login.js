@@ -1,9 +1,16 @@
 import React from "react";
-import googleLogin from "../../api/firebase/googleLogin";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import googleLogin from "../../api/firebase/googleLogin";
+import * as userActions from "../../redux/actions/userActions";
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const setUser = (user) => {
+    dispatch(userActions.setUser(user));
+  };
 
   const handleClick = () => {
     googleLogin(goHomePage, setUser);
