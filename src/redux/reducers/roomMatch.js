@@ -34,9 +34,8 @@ const roomMatch = (state = initialState, action) => {
       };
     case actionTypes.RESET_STATE:
       return Object.assign({}, initialState);
-    default: {
+    default:
       return Object.assign({}, state);
-    }
   }
 };
 
