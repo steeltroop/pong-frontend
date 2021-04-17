@@ -5,13 +5,18 @@ import drawPaddle from "./paddle";
 import data from "./data";
 import "./gameboard.css";
 
-const { ballObj, myPaddleObj, partnerPaddleObj } = data;
+const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
 const GameBoard = () => {
   const canvasRef = useRef(null);
   const [reset, setReset] = useState(false);
+  const [ballPositionX, setBallPositionX] = useState();
+  const [ballPositionY, setBallPositionY] = useState();
   const [userPosition, setUserPosition] = useState(null);
   const [partnerPosition, setPartnerPosition] = useState(100);
+
+  let ballX = 0;
+  let ballY = 0;
 
   const handleClick = () => {
     setReset(true);
@@ -19,26 +24,39 @@ const GameBoard = () => {
 
   useEffect(() => {
     partnerPaddleObj.x = partnerPosition;
-  }, [userPosition, partnerPosition]);
+  }, [userPosition, partnerPosition, ballPositionX, ballPositionY]);
 
   useEffect(() => {
     const render = () => {
       const canvas = canvasRef.current;
+
+      if (!canvas) {
+        ballObj.x = ballX;
+        ballObj.y = ballY;
+
+        return;
+      } else {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+      }
+
       const ctx = canvas.getContext("2d");
 
-      myPaddleObj.y = canvas.height - 30;
+      userPaddleObj.y = canvas.height - 30;
       partnerPaddleObj.y = 30;
 
-      setUserPosition(myPaddleObj.x);
+      setUserPosition(userPaddleObj.x);
       setPartnerPosition(partnerPaddleObj.x);
+      setBallPositionX(ballObj.x);
+      setBallPositionY(ballObj.y);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       drawBall(ctx, ballObj, canvas);
-      drawPaddle(ctx, canvas, myPaddleObj, ballObj);
+      drawPaddle(ctx, canvas, userPaddleObj, ballObj);
       drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
 
-      userPaddleCollision(ballObj, myPaddleObj);
+      userPaddleCollision(ballObj, userPaddleObj);
       partnerPaddleCollision(ballObj, partnerPaddleObj);
 
       if (reset) {
@@ -58,7 +76,7 @@ const GameBoard = () => {
       }
 
       if (ballObj.y - ballObj.radius < 0 || ballObj.y > canvas.height - ballObj.radius) {
-        drawPaddle(ctx, canvas, myPaddleObj, ballObj);
+        drawPaddle(ctx, canvas, userPaddleObj, ballObj);
         drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
 
         return;
@@ -73,7 +91,7 @@ const GameBoard = () => {
   return (
     <>
       <canvas
-        onMouseMove={(event) => (myPaddleObj.x = event.clientX - myPaddleObj.width / 2)}
+        onMouseMove={(event) => (userPaddleObj.x = event.clientX - userPaddleObj.width / 2)}
         id="canvas"
         ref={canvasRef}
         height="700px"
