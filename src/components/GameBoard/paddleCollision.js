@@ -1,19 +1,35 @@
-const paddleCollision = (ballObj, paddleProps) => {
+export const userPaddleCollision = (ballObj, paddleObj) => {
   if (
-    ballObj.x < paddleProps.x + paddleProps.width &&
-    ballObj.x > paddleProps.x &&
-    paddleProps.y < paddleProps.y + paddleProps.height &&
-    ballObj.y + ballObj.radius > paddleProps.y - paddleProps.height / 2
+    ballObj.x < paddleObj.x + paddleObj.width &&
+    ballObj.x > paddleObj.x &&
+    paddleObj.y < paddleObj.y + paddleObj.height &&
+    ballObj.y + ballObj.radius > paddleObj.y - paddleObj.height / 2
   ) {
-    let collidePoint = ballObj.x - (paddleProps.x + paddleProps.width / 2);
+    let collidePoint = ballObj.x - (paddleObj.x + paddleObj.width / 2);
 
-    collidePoint = collidePoint / (paddleProps.width / 2);
+    collidePoint = collidePoint / (paddleObj.width / 2);
 
     const angle = (collidePoint * Math.PI) / 3;
 
     ballObj.dx = ballObj.speed * Math.sin(angle);
-    ballObj.dy = -ballObj.speed * Math.cos(angle);
+    ballObj.dy = ballObj.speed * Math.cos(angle) * -1;
   }
-}
+};
 
-export default paddleCollision;
+export const partnerPaddleCollision = (ballObj, paddleObj) => {
+  if (
+    ballObj.x < paddleObj.x + paddleObj.width &&
+    ballObj.x > paddleObj.x &&
+    paddleObj.y < paddleObj.y + paddleObj.height &&
+    ballObj.y + ballObj.radius < paddleObj.y - paddleObj.height / 2
+    ) {
+    let collidePoint = ballObj.x - (paddleObj.x + paddleObj.width / 2);
+
+    collidePoint = collidePoint / (paddleObj.width / 2);
+
+    const angle = (collidePoint * Math.PI) / 3;
+
+    ballObj.dx = ballObj.speed * Math.sin(angle);
+    ballObj.dy = ballObj.speed * Math.cos(angle) * -1;
+  }
+};
