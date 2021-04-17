@@ -15,6 +15,6 @@ export const updateUserId = (socketId) => ({
   }
 });
 
-export const deleteUser = () => ({
-  type: actionType.DELETE_USER
+export const resetState = () => ({
+  type: actionType.RESET_STATE
 });
