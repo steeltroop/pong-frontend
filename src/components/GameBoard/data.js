@@ -15,8 +15,8 @@ const canvasData = {
   },
   partnerPaddleObj: {
     height: 20,
-    width: 300,
-    x: 400,
+    width: 200,
+    x: 100,
     color: "#ef476f"
   }
 };

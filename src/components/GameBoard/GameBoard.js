@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { userPaddleCollision, partnerPaddleCollision } from "./paddleCollision";
-import drawBall from "./ball";
 import drawPaddle from "./paddle";
+import drawBall from "./ball";
 import data from "./data";
 import "./gameboard.css";
 
@@ -35,10 +35,10 @@ const GameBoard = () => {
         ballObj.y = ballY;
 
         return;
-      } else {
-        ballX = canvas.width / 2;
-        ballY = canvas.height / 2;
       }
+
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
 
       const ctx = canvas.getContext("2d");
 
@@ -57,7 +57,7 @@ const GameBoard = () => {
       drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
 
       userPaddleCollision(ballObj, userPaddleObj);
-      partnerPaddleCollision(ballObj, partnerPaddleObj);
+      partnerPaddleCollision(ballObj, partnerPaddleObj, canvas);
 
       if (reset) {
         ballObj.x = canvas.width / 2;
@@ -76,6 +76,9 @@ const GameBoard = () => {
       }
 
       if (ballObj.y - ballObj.radius < 0 || ballObj.y > canvas.height - ballObj.radius) {
+        ballObj.x = canvas.width / 2;
+        ballObj.y = canvas.height / 2;
+
         drawPaddle(ctx, canvas, userPaddleObj, ballObj);
         drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
 
