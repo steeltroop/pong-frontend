@@ -6,3 +6,10 @@ export const updateRoomMatch = (data) => ({
     data
   }
 });
+
+export const updateTextSending = (data) => ({
+  type: actionType.UPDATE_TEXTSENDING,
+  payload: {
+    data
+  }
+});

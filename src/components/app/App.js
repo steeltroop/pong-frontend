@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { socket, subscribeSocket } from "../../config/socket";
+import { socket } from "../../config/socket";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
@@ -32,8 +32,8 @@ const App = () => {
         <Route path="/auth/login">
           <Login />
         </Route>
-        <Route path="/battle" socket={socket}>
-          <Battle />
+        <Route path="/battle">
+          <Battle socket={socket} />
         </Route>
       </Switch>
     </>
