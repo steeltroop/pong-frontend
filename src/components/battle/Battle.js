@@ -9,9 +9,6 @@ const Battle = ({ socket }) => {
     <>
       <div>
         <div>
-          <Sidebar />
-        </div>
-        <div>
           <div>
             Scoreboard 3 : 0
           </div>

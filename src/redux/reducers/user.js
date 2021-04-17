@@ -19,6 +19,12 @@ const user = (state = initialState, action) => {
         ...state,
         socketId: action.payload.socketId
       };
+    case actionTypes.DELETE_USER:
+      return {
+        email: "",
+        name: "",
+        socketId: ""
+      };
     default:
       return Object.assign({}, state);
   }
