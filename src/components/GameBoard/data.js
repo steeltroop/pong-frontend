@@ -7,7 +7,7 @@ const canvasData = {
     radius: 10,
     speed: 10,
   },
-  myPaddleObj: {
+  userPaddleObj: {
     height: 20,
     width: 100,
     x: 100,
@@ -15,7 +15,7 @@ const canvasData = {
   },
   partnerPaddleObj: {
     height: 20,
-    width: 100,
+    width: 300,
     x: 400,
     color: "#ef476f"
   }
