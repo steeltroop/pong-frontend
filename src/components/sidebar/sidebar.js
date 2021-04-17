@@ -5,13 +5,16 @@ import * as userActions from "../../redux/actions/userActions";
 import { deleteUserCookie } from "../../utils/deleteUserCookie";
 import { googleLogout } from "../../api/firebase/googleAuth";
 
-const Sidebar = () => {
-  const user = useSelector(state => state.user.email);
+const Sidebar = ({ socket }) => {
+  const user = useSelector(state => state.user);
+  const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleLogoutBtnClick = () => {
-    dispatch(userActions.deleteUser());
+    console.log(partnerSocketId);
+    socket.emit("leaveRoom", { userSocketId: user.socketId, partnerSocketId });
+    dispatch(userActions.resetState());
     deleteUserCookie();
     googleLogout();
     history.push("/auth/login");
@@ -22,7 +25,7 @@ const Sidebar = () => {
       <Link to="/">
         <span>Home</span>
       </Link>
-      {user &&
+      {user.email &&
         <button onClick={handleLogoutBtnClick}>
           Logout
         </button>

@@ -22,7 +22,7 @@ const roomMatch = (state = initialState, action) => {
     case actionTypes.UPDATE_ROOMMATCH:
       return {
         ...state,
-        ...action.payload
+        ...action.payload.data
       };
     case actionTypes.UPDATE_TEXTSENDING:
       const newChats = state.chats.slice();
@@ -32,6 +32,8 @@ const roomMatch = (state = initialState, action) => {
         ...state,
         chats: newChats
       };
+    case actionTypes.RESET_STATE:
+      return Object.assign({}, initialState);
     default: {
       return Object.assign({}, state);
     }

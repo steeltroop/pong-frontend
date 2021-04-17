@@ -12,6 +12,7 @@ export const subscribeSocket = (dispatch) => {
   });
 
   socket.on("completeMatch", (data) => {
+    console.log(data);
     dispatch(roomMatchActions.updateRoomMatch(data));
   });
 
