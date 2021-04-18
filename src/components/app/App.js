@@ -5,8 +5,9 @@ import { socket } from "../../config/socket";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
-import Sidebar from "../sidebar/sidebar";
+import Sidebar from "../sidebar/Sidebar";
 import MenuIcon from '@material-ui/icons/Menu';
+import "./App.module.css";
 
 const App = () => {
   const [isSidebarShow, setSidebarShow] = useState(false);

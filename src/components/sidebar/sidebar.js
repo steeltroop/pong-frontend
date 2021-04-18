@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import * as userActions from "../../redux/actions/userActions";
 import { deleteUserCookie } from "../../utils/deleteUserCookie";
 import { googleLogout } from "../../api/firebase/googleAuth";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = ({ socket }) => {
   const user = useSelector(state => state.user);
@@ -16,11 +17,12 @@ const Sidebar = ({ socket }) => {
     dispatch(userActions.resetState());
     deleteUserCookie();
     googleLogout();
+
     history.push("/auth/login");
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Link to="/">
         <span>Home</span>
       </Link>
