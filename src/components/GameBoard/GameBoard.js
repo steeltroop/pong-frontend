@@ -3,7 +3,7 @@ import { userPaddleCollision, partnerPaddleCollision } from "./paddleCollision";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
 import data from "./data";
-import "./gameboard.css";
+import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
@@ -37,6 +37,7 @@ const GameBoard = () => {
         return;
       }
 
+      canvas.focus();
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
 
@@ -62,6 +63,10 @@ const GameBoard = () => {
       if (reset) {
         ballObj.x = canvas.width / 2;
         ballObj.y = canvas.height / 2;
+        ballObj.dx = 0;
+        ballObj.dy = 5;
+        userPaddleObj.x = canvas.width / 2 - userPaddleObj.width / 2;
+
         setReset(false);
 
         return;
@@ -91,17 +96,29 @@ const GameBoard = () => {
     render();
   }, [reset]);
 
+  const handleKeyDown = ({ keyCode }) => {
+    if (keyCode === 37 || keyCode === 65) {
+      userPaddleObj.x -= 30;
+    }
+
+    if (keyCode === 39 || keyCode === 68) {
+      userPaddleObj.x += 30;
+    }
+  };
+
   return (
-    <>
+    <div className={styles.wrapper}>
       <canvas
-        onMouseMove={(event) => (userPaddleObj.x = event.clientX - userPaddleObj.width / 2)}
+        onKeyDown={(event) => handleKeyDown(event)}
         id="canvas"
+        className={styles.canvas}
         ref={canvasRef}
         height="700px"
         width="500px"
+        tabIndex="0"
       />
       <button onClick={handleClick}>RESET</button>
-    </>
+    </div>
   );
 };
 
