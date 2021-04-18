@@ -1,32 +1,32 @@
-export default (ctx, canvas, paddleProps) => {
+const paddle = (ctx, canvas, paddleObj, ballObj, partner) => {
   class Paddle {
     constructor(x) {
       this.x = x;
-      this.y = canvas.height - 30;
-      this.height = 20;
-      this.width = paddleProps.width;
-      this.colors = ["red", "#FFA62B"];
+      this.y = partner ? ballObj.radius : canvas.height - ballObj.radius - paddleObj.height;
+      this.height = paddleObj.height;
+      this.width = paddleObj.width;
+      this.color = paddleObj.color;
     }
 
-    move() {
+    draw() {
       ctx.beginPath();
       ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.fillStyle = this.broke ? "white" : this.colors[1];
-      ctx.strokeStyle = this.broke ? "white" : "red";
+      ctx.fillStyle = this.color;
       ctx.lineWidth = 1;
-      ctx.fillStyle = this.broke ? "white" : this.colors[1];
-      ctx.shadowBlur = 0;
-      ctx.shadowColor = "blue";
       ctx.strokeRect(this.x, this.y, this.width, this.height);
       ctx.fill();
     }
   }
 
-  const paddle = new Paddle(paddleProps.x);
-  paddle.move();
-  if (paddleProps.x <= 0) {
-    paddleProps.x = 0;
-  } else if (paddleProps.x + paddleProps.width >= canvas.width) {
-    paddleProps.x = canvas.width - paddleProps.width;
+  const paddle = new Paddle(paddleObj.x);
+
+  paddle.draw();
+
+  if (paddleObj.x <= 0) {
+    paddleObj.x = 0;
+  } else if (paddleObj.x + paddleObj.width >= canvas.width) {
+    paddleObj.x = canvas.width - paddleObj.width;
   }
 };
+
+export default paddle;
