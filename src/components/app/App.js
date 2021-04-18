@@ -16,9 +16,9 @@ const App = () => {
     setSidebarShow(!isSidebarShow);
   };
 
+  // {!email && <Redirect to="/auth/login" />}
   return (
     <>
-      {!email && <Redirect to="/auth/login" />}
       <MenuIcon onClick={handleSidebarBtnClick} />
       {isSidebarShow && <Sidebar socket={socket} />}
       <Switch>

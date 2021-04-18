@@ -25,4 +25,8 @@ export const subscribeSocket = (dispatch) => {
 
     dispatch(modalActions.updatePartnerDisconnect());
   });
+
+  socket.on("callUser", (data) => {
+    dispatch(roomMatchActions.updateSignal(data));
+  });
 };
