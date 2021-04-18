@@ -39,12 +39,10 @@ const Webcam = ({ socket }) => {
         });
 
         peer.on("stream", stream => {
-          console.log("is stream working ?")
           partnerVideo.current.srcObject = stream;
         });
 
         socket.on("acceptCall", signal => {
-          console.log("is acceptCall working ?");
           console.log(signal);
           peer.signal(signal);
         });
@@ -65,10 +63,9 @@ const Webcam = ({ socket }) => {
         });
 
         peer.on("stream", stream => {
-          console.log("iscallAccepted stream workgin");
           partnerVideo.current.srcObject = stream;
         });
-        console.log(callerSignal);
+
         peer.signal(callerSignal);
       }
     })();
