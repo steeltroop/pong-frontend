@@ -13,3 +13,10 @@ export const updateTextSending = (data) => ({
     data
   }
 });
+
+export const updateSignal = (data) => ({
+  type: actionType.UPDATE_SIGNAL,
+  payload: {
+    data
+  }
+});

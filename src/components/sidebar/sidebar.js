@@ -12,7 +12,6 @@ const Sidebar = ({ socket }) => {
   const history = useHistory();
 
   const handleLogoutBtnClick = () => {
-    console.log(partnerSocketId);
     socket.emit("leaveRoom", { userSocketId: user.socketId, partnerSocketId });
     dispatch(userActions.resetState());
     deleteUserCookie();

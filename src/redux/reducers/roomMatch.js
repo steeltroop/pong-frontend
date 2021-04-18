@@ -6,7 +6,12 @@ const initialState = {
     name: ""
   },
   isMatched: false,
-  chats: []
+  chats: [],
+  webcam: {
+    isCalling: false,
+    isCallAccepted: false,
+    callerSignal: null
+  }
 };
 
 const roomMatch = (state = initialState, action) => {
@@ -31,6 +36,16 @@ const roomMatch = (state = initialState, action) => {
       return {
         ...state,
         chats: newChats
+      };
+    case actionTypes.UPDATE_SIGNAL:
+      return {
+        ...state,
+        webcam: {
+          ...state.webcam,
+          callerSignal: action.payload.data,
+          isCalling: false,
+          isCallAccepted: true
+        }
       };
     case actionTypes.RESET_STATE:
       return Object.assign({}, initialState);
