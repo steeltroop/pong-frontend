@@ -1,0 +1,67 @@
+.wrapper {
+  background-image: url("../../assets/images/background.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.buttonTitleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  bottom: 130px;
+  font-size: 80px;
+  color: yellow;
+}
+
+.button {
+  background-color: #4285f4;
+  width: 184px;
+  height: 42px;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 6px #4285f4;
+}
+
+.button:active {
+  background: #1669f2;
+  position: relative;
+}
+
+.iconWrapper {
+  background-color: #fff;
+  position: absolute;
+  width: 40px;
+  height: 42px;
+  border-radius: 2px;
+}
+
+.icon {
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+}
+
+.text {
+  float: right;
+  margin: 11px 11px 0 0;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
+}
+
+
