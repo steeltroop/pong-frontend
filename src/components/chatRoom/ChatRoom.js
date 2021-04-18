@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import styles from "./ChatRoom.module.css";
 
 const ChatRoom = ({ socket }) => {
   const [text, setText] = useState("");
@@ -19,7 +20,7 @@ const ChatRoom = ({ socket }) => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <ul>
         {roomMatch.chats.length > 0 && (
           roomMatch.chats.map((chat, index) => {

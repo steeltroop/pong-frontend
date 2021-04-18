@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Peer from "simple-peer";
+import styles from "./Webcam.module.css";
 
 const Webcam = ({ socket }) => {
   const partner = useSelector(state => state.roomMatch.partner);
@@ -74,14 +75,21 @@ const Webcam = ({ socket }) => {
   }, [isCalling, isCallAccepted]);
 
   return (
-    <>
-      <div>
-        <video playsInline ref={userVideo} autoPlay muted />
-      </div>
-      <div>
-        <video playsInline ref={partnerVideo} autoPlay muted />
-      </div>
-    </>
+    <div className={styles.wrapper}>
+      <video
+        className={styles.video}
+        ref={userVideo}
+        playsInline
+        autoPlay
+        muted
+      />
+      <video
+        ref={partnerVideo}
+        playsInline
+        autoPlay
+        muted
+      />
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ const canvasData = {
   ballObj: {
     x: 250,
     y: 250,
-    dx: 5,
+    dx: 0,
     dy: 5,
     radius: 10,
     speed: 10,
@@ -15,7 +15,7 @@ const canvasData = {
   },
   partnerPaddleObj: {
     height: 20,
-    width: 200,
+    width: 100,
     x: 100,
     color: "#ef476f"
   }
