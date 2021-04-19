@@ -19,6 +19,7 @@
   bottom: 130px;
   font-size: 80px;
   color: yellow;
+  text-shadow: 6px 6px grey;
 }
 
 .button {

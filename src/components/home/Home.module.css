@@ -1,0 +1,60 @@
+.wrapper {
+  background-image: url("../../assets/images/background.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.contentsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 80vw;
+  height: 80vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  color: yellow;
+  font-size: 120px;
+  text-shadow: 6px 6px grey;
+}
+
+.content {
+  background: wheat;
+  display: flex;
+  align-items: center;
+  padding: 0px 25px;
+  height: 380px;
+  border: 5px solid #2f3542;
+  border-radius: 4px;
+  color: #f8a5c2;
+  text-align: center;
+  font-size: 30px;
+}
+
+.pressText {
+  animation: blink 1.5s steps(4, start) infinite;
+}
+
+.startButton {
+  padding: 15px 20px;
+  border: 5px solid #2f3542;
+  border-radius: 20px;
+  font-size: 25px;
+  font-family: 'PRESS START 2P', cursive;
+  cursor: pointer;
+}
+
+@keyframes blink {
+  100% {
+    visibility: hidden;
+  }
+}
