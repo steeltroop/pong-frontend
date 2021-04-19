@@ -17,7 +17,7 @@ const Battle = ({ socket }) => {
         <ScoreBoard />
         <Webcam socket={socket} />
       </div>
-      <GameBoard />
+      <GameBoard socket={socket} />
       <ChatRoom socket={socket} />
     </div>
   );
