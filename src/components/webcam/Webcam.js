@@ -43,7 +43,7 @@ const Webcam = ({ socket }) => {
         });
 
         socket.on("acceptCall", signal => {
-          console.log(signal);
+
           peer.signal(signal);
         });
       }

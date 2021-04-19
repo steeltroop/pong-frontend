@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { googleLogin } from "../../api/firebase/googleAuth";
 import * as userActions from "../../redux/actions/userActions";
 import styles from "./Login.module.css";
+import { URL } from "../../constants/index";
 
 const Login = () => {
   const history = useHistory();
@@ -35,7 +36,7 @@ const Login = () => {
             <div class={styles.iconWrapper}>
               <img
                 class={styles.icon}
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                src={URL.GOOGLE_LOGO}
               />
             </div>
             <p class={styles.text}>

@@ -1,10 +1,10 @@
 import React from "react";
 import "./ScoreBoard.module.css";
 
-const ScoreBoard = () => {
+const ScoreBoard = ({ count }) => {
   return (
     <div>
-      Scoreboard 3 : 0
+      {count}
     </div>
   );
 };
