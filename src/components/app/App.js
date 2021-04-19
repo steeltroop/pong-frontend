@@ -11,9 +11,9 @@ import styles from "./App.module.css";
 const App = () => {
   const email = useSelector(state => state.user.email);
 
+  // {!email && <Redirect to="/auth/login" />}
   return (
     <div className={styles.wrapper} >
-      {!email && <Redirect to="/auth/login" />}
       <Sidebar socket={socket} />
       <Switch>
         <Route path="/" exact>
