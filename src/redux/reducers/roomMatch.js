@@ -1,16 +1,22 @@
 import * as actionTypes from "../actionTypes";
 
 const initialState = {
+  isMatched: false,
   partner: {
     socketId: "",
     name: ""
   },
-  isMatched: false,
   chats: [],
   webcam: {
     isCalling: false,
     isCallAccepted: false,
     callerSignal: null
+  },
+  gameBoard: {
+    sender: false,
+    partnerPosition: 0,
+    ballPositionX: 0,
+    ballPositionY: 0
   }
 };
 

@@ -1,4 +1,4 @@
-const ball = (ctx, ballObj) => {
+const ball = (ctx, ballObj, sender) => {
   class Ball {
     constructor(x, y, radius) {
       this.x = x;
@@ -19,10 +19,12 @@ const ball = (ctx, ballObj) => {
 
   const ball = new Ball(ballObj.x, ballObj.y, ballObj.radius);
 
-  ball.draw(ctx);
+  ball.draw();
 
-  ballObj.x += ballObj.dx;
-  ballObj.y += ballObj.dy;
+  if (sender) {
+    ballObj.x += ballObj.dx;
+    ballObj.y += ballObj.dy;
+  }
 };
 
 export default ball;
