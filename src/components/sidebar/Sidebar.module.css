@@ -1,4 +1,14 @@
 .wrapper {
+  position: absolute;
+}
+
+.container {
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
+  justify-content: top;
+  align-items: left;
+  width: 15vw;
+  height: 100vh;
+  opacity: 0.5;
 }
