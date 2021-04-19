@@ -81,6 +81,7 @@ const Webcam = ({ socket }) => {
         muted
       />
       <video
+        className={styles.video}
         ref={partnerVideo}
         playsInline
         autoPlay

@@ -6,22 +6,15 @@ import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
 import Sidebar from "../sidebar/Sidebar";
-import MenuIcon from '@material-ui/icons/Menu';
-import "./App.module.css";
+import styles from "./App.module.css";
 
 const App = () => {
-  const [isSidebarShow, setSidebarShow] = useState(false);
   const email = useSelector(state => state.user.email);
-
-  const handleSidebarBtnClick = () => {
-    setSidebarShow(!isSidebarShow);
-  };
 
   // {!email && <Redirect to="/auth/login" />}
   return (
-    <>
-      <MenuIcon onClick={handleSidebarBtnClick} />
-      {isSidebarShow && <Sidebar socket={socket} />}
+    <div className={styles.wrapper} >
+      <Sidebar socket={socket} />
       <Switch>
         <Route path="/" exact>
           <Home socket={socket} />
@@ -33,7 +26,7 @@ const App = () => {
           <Battle socket={socket} />
         </Route>
       </Switch>
-    </>
+    </div>
   );
 };
 
