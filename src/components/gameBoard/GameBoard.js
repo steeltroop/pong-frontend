@@ -10,10 +10,12 @@ const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 const GameBoard = () => {
   const canvasRef = useRef(null);
   const [reset, setReset] = useState(false);
-  const [ballPositionX, setBallPositionX] = useState();
-  const [ballPositionY, setBallPositionY] = useState();
+  const [isMove, setIsMove] = useState(false);
+  const [isMoveLeft, setIsMoveLeft] = useState(false);
+  const [ballPositionX, setBallPositionX] = useState(null);
+  const [ballPositionY, setBallPositionY] = useState(null);
   const [userPosition, setUserPosition] = useState(null);
-  const [partnerPosition, setPartnerPosition] = useState(100);
+  const [partnerPosition, setPartnerPosition] = useState(null);
 
   let ballX = 0;
   let ballY = 0;
@@ -24,7 +26,15 @@ const GameBoard = () => {
 
   useEffect(() => {
     partnerPaddleObj.x = partnerPosition;
-  }, [userPosition, partnerPosition, ballPositionX, ballPositionY]);
+
+    if (isMove && isMoveLeft) {
+      userPaddleObj.x -= 5;
+    }
+
+    if (isMove && !isMoveLeft) {
+      userPaddleObj.x += 5;
+    }
+  }, [userPosition, partnerPosition, ballPositionX, ballPositionY, isMove]);
 
   useEffect(() => {
     const render = () => {
@@ -98,18 +108,25 @@ const GameBoard = () => {
 
   const handleKeyDown = ({ keyCode }) => {
     if (keyCode === 37 || keyCode === 65) {
-      userPaddleObj.x -= 30;
+      setIsMove(true);
+      setIsMoveLeft(true);
     }
 
     if (keyCode === 39 || keyCode === 68) {
-      userPaddleObj.x += 30;
+      setIsMove(true);
+      setIsMoveLeft(false);
     }
+  };
+
+  const handleKeyUp = () => {
+    setIsMove(false);
   };
 
   return (
     <div className={styles.wrapper}>
       <canvas
         onKeyDown={(event) => handleKeyDown(event)}
+        onKeyUp={handleKeyUp}
         id="canvas"
         className={styles.canvas}
         ref={canvasRef}
