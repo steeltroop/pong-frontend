@@ -2,6 +2,7 @@ import React from "react";
 import { subscribeSocket } from "../../config/socket";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import styles from "./Home.module.css";
 
 const Home = ({ socket }) => {
   const history = useHistory();
@@ -21,16 +22,37 @@ const Home = ({ socket }) => {
   };
 
   return (
-    <div>
-      <div className="title">
-        <span>Pong</span>
+    <div className={styles.wrapper}>
+      <div className={styles.contentsWrapper}>
+        <div className={styles.title}>
+          <span>PONG</span>
+        </div>
+        <div className={styles.content}>
+          <span>
+            How to play? <br />
+            <br />
+            Press ➡️ to move left <br />
+            Press ⬅️ to move right <br />
+            <br />
+            Player who gets 3 points <br />
+            <br />
+            wins the game <br />
+            <br />
+            good luck!
+          </span>
+        </div>
+        <div className={styles.pressText}>
+          press start to play
+        </div>
+        <div>
+          <button
+            onClick={handleClick}
+            className={styles.startButton}
+          >
+            START
+          </button>
+        </div>
       </div>
-      <div className="content">
-        <span>멀티 핑퐁 게임으로 3점을 먼저 내면 승리합니다!</span>
-      </div>
-      <button onClick={handleClick}>
-        START
-      </button>
     </div>
   );
 };
