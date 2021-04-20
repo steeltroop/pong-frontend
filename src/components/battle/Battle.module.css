@@ -6,6 +6,233 @@
   height: 100%;
 }
 
-.container {
+.webcamWrapper {
   background-color: black;
+}
+
+.gameBoyWrapper {
+  background-color: #ffaa00;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60vw;
+  height: 90vh;
+  border-radius: 18px;
+}
+
+.gameBoyHead {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 130%;
+  background-color: #222;
+  margin: auto 15px;
+  margin-top: 25px;
+  border-radius: 14px;
+}
+
+.power {
+  position: absolute;
+  color: #5d5d5d;
+  font-size: 8px;
+  font-weight: 600;
+  font-family: arial;
+  top: 80px;
+  left: 20px;
+  padding-left: 6px;
+}
+
+.power p {
+  padding-left: 2px;
+}
+
+.ledButton {
+  color: #5d5d5d;
+  animation: led 1s infinite;
+}
+
+@keyframes led {
+  50% {
+    color: #cc2816;
+    text-shadow: 0px 0px 10px #960000;
+  }
+  100% {
+    color: #5d5d5d;
+    text-shadow: none;
+  }
+}
+
+.gameBoardWrapper {
+  background: #2c2f2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  top: 25px;
+}
+
+.gameBoyMark {
+  position: absolute;
+  bottom: 1px;
+  color: #5d5d5d;
+  font-style: italic;
+  font-weight:  900;
+  font-family: arial;
+  font-size: 30px;
+}
+
+.gameBoyMark span {
+  font-family: "Comic Neue", cursive;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 1px;
+  background: #b20a3f;
+  background: linear-gradient(90deg, #b20a3f 0%, #4c49a3 25%, #6bab21 50%, #d3a706 75%, #008e86 100%);
+  background-size: 200% auto;
+  font-size: 30px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.gameBoyBody {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40%;
+}
+
+.pad {
+  position: relative;
+  bottom: 40px;
+}
+
+.upDownWrapper {
+  position: absolute;
+  top: -20px;
+  left: 22px;
+  width: 36px;
+  height: 80px;
+  background: #222;
+  border-radius: 5px;
+}
+
+.upButton {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  z-index: 1;
+  font-size: 17px;
+}
+
+.downButton {
+  font-size: 17px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.leftRightWrapper {
+  position: absolute;
+  width: 80px;
+  height: 36px;
+  background: #222;
+  border-radius: 5px;
+}
+
+.leftButton {
+  position: absolute;
+  bottom: 10px;
+  left: 3px;
+}
+
+.rightButton {
+  position: absolute;
+  right: 5px;
+  bottom: 9px;
+}
+
+.selectStartWrapper {
+  display: flex;
+  position: relative;
+  left: 50px;
+}
+
+.selectWrapper {
+  display: flex;
+  position: relative;
+  top: 90px;
+  right: 25px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectButton {
+  background: black;
+  width: 45px;
+  height: 13px;
+  border-radius: 50px;
+  margin-bottom: 13px;
+}
+
+.selectText {
+  font-size: 1px;
+}
+
+.startWrapper {
+  display: flex;
+  position: relative;
+  top: 90px;
+  left: 25px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.startButton {
+  background: black;
+  width: 45px;
+  height: 13px;
+  border-radius: 50px;
+  margin-bottom: 13px;
+}
+
+.startText {
+  font-size: 1px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.buttonA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 30px;
+  border-radius: 50%;
+  background-color: #222;
+}
+
+.buttonB {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #222;
 }
