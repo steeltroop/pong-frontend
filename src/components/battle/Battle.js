@@ -11,13 +11,17 @@ import { NUMBERS } from "../../constants/index";
 const Battle = ({ socket }) => {
   const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const [count, setCount] = useState(3);
+  const [isPlaying, setPlaying] = useState(false);
   const [userScore, setUserScore] = useState(0);
   const [partnerScore, setPartnerScore] = useState(0);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
 
   useEffect(() => {
-    if (count === NUMBERS.END_COUNT) clearInterval(timerRef.current);
+    if (count === NUMBERS.END_COUNT) {
+      clearInterval(timerRef.current);
+      setPlaying(true);
+    }
 
     if (isMatched && count === NUMBERS.INITIAL_COUNT) {
       timerRef.current = setInterval(() => {
@@ -32,6 +36,7 @@ const Battle = ({ socket }) => {
       <div className={styles.container}>
         <ScoreBoard
           count={count}
+          isPlaying={isPlaying}
           userScore={userScore}
           partnerScore={partnerScore}
         />
