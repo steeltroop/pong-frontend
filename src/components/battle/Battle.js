@@ -6,20 +6,23 @@ import ChatRoom from "../chatRoom/ChatRoom";
 import Webcam from "../webcam/Webcam";
 import Modal from "../modal/Modal";
 import styles from "./Battle.module.css";
+import { NUMBERS } from "../../constants/index";
 
 const Battle = ({ socket }) => {
   const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const [count, setCount] = useState(3);
+  const [userScore, setUserScore] = useState(0);
+  const [partnerScore, setPartnerScore] = useState(0);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
 
   useEffect(() => {
-    if (count === 0) clearInterval(timerRef.current);
+    if (count === NUMBERS.END_COUNT) clearInterval(timerRef.current);
 
-    if (isMatched && count === 3) {
+    if (isMatched && count === NUMBERS.INITIAL_COUNT) {
       timerRef.current = setInterval(() => {
-        setCount((prev) => prev - 1);
-      }, 1000);
+        setCount((prev) => prev - NUMBERS.SUBTRACT_NUMBER);
+      }, NUMBERS.DELAY);
     }
   }, [isMatched, count]);
 
@@ -27,11 +30,19 @@ const Battle = ({ socket }) => {
     <div className={styles.wrapper}>
       {isPartnerDisconnected && <Modal />}
       <div className={styles.container}>
-        <ScoreBoard count={count} />
+        <ScoreBoard
+          count={count}
+          userScore={userScore}
+          partnerScore={partnerScore}
+        />
         <Webcam socket={socket} />
       </div>
-      {isMatched && count === 0
-        ? <GameBoard socket={socket} />
+      {isMatched && count === NUMBERS.END_COUNT
+        ? <GameBoard
+            socket={socket}
+            handleUserScore={setUserScore}
+            handlePartnerScore={setPartnerScore}
+          />
         : <div style={{color: "black"}}>Finding user...</div>}
       <ChatRoom socket={socket} />
     </div>
