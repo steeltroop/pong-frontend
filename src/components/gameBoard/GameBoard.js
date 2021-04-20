@@ -10,25 +10,37 @@ const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
 const GameBoard = ({ socket }) => {
   const [reset, setReset] = useState(false);
+  const [isRoundEnd, setIsRoundEnd] = useState(false);
   const [isMove, setIsMove] = useState(false);
   const [isMoveLeft, setIsMoveLeft] = useState(false);
   const [ballPositionX, setBallPositionX] = useState(null);
   const [ballPositionY, setBallPositionY] = useState(null);
   const [userPosition, setUserPosition] = useState(null);
   const [partnerPosition, setPartnerPosition] = useState(null);
-  const sender = useSelector(state => state.roomMatch.gameBoard.sender);
+  const isSender = useSelector(state => state.roomMatch.gameBoard.isSender);
   const partner = useSelector(state => state.roomMatch.partner);
   const canvasRef = useRef(null);
 
   let ballX = 0;
   let ballY = 0;
 
-  const handleClick = () => {
-    setReset(true);
-  };
+  useEffect(() => {
+    if (isRoundEnd) {
+      setTimeout(() => setIsRoundEnd(false), 2000);
+    } else {
+      canvasRef.current.focus();
+      setReset(true);
+    }
+
+    if (isSender) {
+      socket.emit("sendRoundEnd", {
+        partnerSocketId: partner.socketId,
+      });
+    }
+  }, [isRoundEnd, isSender]);
 
   useEffect(() => {
-    if (sender) {
+    if (isSender) {
       socket.emit("sendBallPosition", {
         positionX: ballPositionX,
         positionY: ballPositionY,
@@ -38,6 +50,10 @@ const GameBoard = ({ socket }) => {
       socket.on("sendBallPosition", ({ positionX, positionY }) => {
         setBallPositionX(positionX);
         setBallPositionY(positionY);
+      });
+
+      socket.on("sendRoundEnd", () => {
+        setIsRoundEnd(false);
       });
 
       ballObj.x = ballPositionX;
@@ -51,9 +67,8 @@ const GameBoard = ({ socket }) => {
 
     socket.on("sendPosition", ({ position }) => {
       setPartnerPosition(position);
+      partnerPaddleObj.x = partnerPosition;
     });
-
-    partnerPaddleObj.x = partnerPosition;
 
     if (isMove && isMoveLeft) {
       userPaddleObj.x -= 5;
@@ -69,7 +84,7 @@ const GameBoard = ({ socket }) => {
     ballPositionY,
     isMove,
     isMoveLeft,
-    sender
+    isSender,
   ]);
 
   useEffect(() => {
@@ -83,30 +98,24 @@ const GameBoard = ({ socket }) => {
         return;
       }
 
-      canvas.focus();
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
 
       const ctx = canvas.getContext("2d");
 
       userPaddleObj.y = canvas.height - 30;
+      partnerPaddleObj.x = partnerPaddleObj.x;
       partnerPaddleObj.y = 30;
 
       setUserPosition(userPaddleObj.x);
 
-      if (sender) {
+      if (isSender) {
         setBallPositionX(ballObj.x);
         setBallPositionY(ballObj.y);
       } else {
         ballObj.x = canvas.width - ballObj.x;
         ballObj.y = canvas.height - ballObj.y;
       }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      drawBall(ctx, ballObj, sender);
-      drawPaddle(ctx, canvas, userPaddleObj, ballObj);
-      drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
 
       userPaddleCollision(ballObj, userPaddleObj);
       partnerPaddleCollision(ballObj, partnerPaddleObj);
@@ -123,16 +132,28 @@ const GameBoard = ({ socket }) => {
         return;
       }
 
-      if (ballObj.x - ballObj.radius < 0 || ballObj.x + ballObj.radius > canvas.width) {
-        ballObj.dx *= -1;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drawBall(ctx, ballObj, isSender);
+      drawPaddle(ctx, canvas, userPaddleObj, ballObj);
+      drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
+
+      if (isSender) {
+        if (ballObj.x - ballObj.radius < 0 || ballObj.x + ballObj.radius > canvas.width) {
+          ballObj.dx *= -1;
+        }
       }
 
       if (ballObj.y - ballObj.radius < 0 || ballObj.y > canvas.height - ballObj.radius) {
+        drawPaddle(ctx, canvas, userPaddleObj, ballObj);
+        drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
+
+        ballObj.dx = 0;
+        ballObj.dy = 5;
         ballObj.x = canvas.width / 2;
         ballObj.y = canvas.height / 2;
 
-        drawPaddle(ctx, canvas, userPaddleObj, ballObj);
-        drawPaddle(ctx, canvas, partnerPaddleObj, ballObj, true);
+        setIsRoundEnd(true);
 
         return;
       }
@@ -141,9 +162,7 @@ const GameBoard = ({ socket }) => {
     };
 
     render();
-
-    return () => cancelAnimationFrame(render);
-  }, [reset, sender]);
+  }, [reset, isSender]);
 
   const handleKeyDown = ({ keyCode }) => {
     if (keyCode === 37 || keyCode === 65) {
@@ -173,7 +192,6 @@ const GameBoard = ({ socket }) => {
         width="500px"
         tabIndex="0"
       />
-      <button onClick={handleClick}>RESET</button>
     </div>
   );
 };

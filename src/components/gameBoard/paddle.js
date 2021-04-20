@@ -1,7 +1,7 @@
 const paddle = (ctx, canvas, paddleObj, ballObj, partner) => {
   class Paddle {
     constructor(x) {
-      this.x = x;
+      this.x = partner ? canvas.width - paddleObj.width - x : x;
       this.y = partner ? ballObj.radius : canvas.height - ballObj.radius - paddleObj.height;
       this.height = paddleObj.height;
       this.width = paddleObj.width;

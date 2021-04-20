@@ -10,13 +10,13 @@ const canvasData = {
   userPaddleObj: {
     height: 20,
     width: 100,
-    x: 100,
+    x: null,
     color: "#118ab2"
   },
   partnerPaddleObj: {
     height: 20,
     width: 100,
-    x: 100,
+    x: null,
     color: "#ef476f"
   }
 };
