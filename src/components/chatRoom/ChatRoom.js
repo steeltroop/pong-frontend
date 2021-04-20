@@ -24,10 +24,13 @@ const ChatRoom = ({ socket }) => {
       <ul>
         {roomMatch.chats.length > 0 && (
           roomMatch.chats.map((chat, index) => {
-            const isMyText = chat.socketId === userSocketId;
+            const isMyText = chat.userSocketId === userSocketId;
 
             return (
-              <li key={index}>
+              <li
+                key={index}
+                className={isMyText ? styles.userText : styles.partnerText}
+              >
                 {chat.text}
               </li>
             );

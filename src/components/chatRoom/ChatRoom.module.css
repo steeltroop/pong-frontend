@@ -2,3 +2,11 @@
   background-color: darkgray;
   width: 30vw;
 }
+
+.userText {
+  text-align: right;
+}
+
+.partnerText {
+  text-align: left;
+}
