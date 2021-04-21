@@ -13,10 +13,7 @@ const initialState = {
     callerSignal: null
   },
   gameBoard: {
-    isSender: false,
-    partnerPosition: 0,
-    ballPositionX: 0,
-    ballPositionY: 0
+    isModerator: false,
   }
 };
 
