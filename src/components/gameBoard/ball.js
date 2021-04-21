@@ -1,8 +1,8 @@
-const ball = (ctx, ballObj, isSender) => {
+const ball = (ctx, canvas, ballObj, moderator) => {
   class Ball {
     constructor(x, y, radius) {
-      this.x = x;
-      this.y = y;
+      this.x = moderator ? x : canvas.width - x;
+      this.y = moderator ? y : canvas.height - y;
       this.radius = radius;
     }
 
@@ -20,11 +20,6 @@ const ball = (ctx, ballObj, isSender) => {
   const ball = new Ball(ballObj.x, ballObj.y, ballObj.radius);
 
   ball.draw();
-
-  if (isSender) {
-    ballObj.x += ballObj.dx;
-    ballObj.y += ballObj.dy;
-  }
 };
 
 export default ball;

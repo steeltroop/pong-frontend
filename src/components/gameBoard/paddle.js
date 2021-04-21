@@ -1,8 +1,12 @@
-const paddle = (ctx, canvas, paddleObj, ballObj, partner) => {
+const paddle = (ctx, canvas, paddleObj, ballObj, user) => {
   class Paddle {
     constructor(x) {
-      this.x = partner ? canvas.width - paddleObj.width - x : x;
-      this.y = partner ? ballObj.radius : canvas.height - ballObj.radius - paddleObj.height;
+      this.x = user
+        ? x
+        : canvas.width - paddleObj.width - x;
+      this.y = user
+        ? canvas.height - ballObj.radius - paddleObj.height
+        : ballObj.radius;
       this.height = paddleObj.height;
       this.width = paddleObj.width;
       this.color = paddleObj.color;
