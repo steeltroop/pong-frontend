@@ -3,6 +3,7 @@ import { subscribeSocket } from "../../config/socket";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./Home.module.css";
+import Modal from "../modalPortal/ModalPortal";
 
 const Home = ({ socket }) => {
   const history = useHistory();
@@ -10,15 +11,9 @@ const Home = ({ socket }) => {
   const { name, email } = useSelector(state => state.user);
 
   const handleClick = () => {
-    if (email) {
-      subscribeSocket(dispatch);
-      socket.emit("initialConnection", name);
-      history.push("/battle");
-
-      return;
-    }
-
-    history.push("/auth/login");
+    subscribeSocket(dispatch);
+    socket.emit("initialConnection", name);
+    history.push("/battle");
   };
 
   return (
@@ -26,6 +21,9 @@ const Home = ({ socket }) => {
       <div className={styles.contentsWrapper}>
         <div className={styles.title}>
           <span>PONG</span>
+          <Modal>
+            <div>I am test</div>
+          </Modal>
         </div>
         <div className={styles.content}>
           <span>
@@ -56,5 +54,15 @@ const Home = ({ socket }) => {
     </div>
   );
 };
+
+// if (email) {
+//   subscribeSocket(dispatch);
+//   socket.emit("initialConnection", name);
+//   history.push("/battle");
+
+//   return;
+// }
+
+// history.push("/auth/login");
 
 export default Home;

@@ -7,9 +7,14 @@ import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
-const ROUND_RECESS_TIME = 2000;
+const ROUND_RECESS_TIME = 100000;
 
-const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
+const GameBoard = ({
+  socket,
+  plusUserScore,
+  plusPartnerScore,
+  modalCountDown,
+  setShowModal }) => {
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
@@ -66,6 +71,8 @@ const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
 
   useEffect(() => {
     if (!isRoundEnd) return;
+    setShowModal(true);
+    modalCountDown();
 
     reset.current = true;
 
@@ -74,6 +81,7 @@ const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
       canvasRef.current?.focus();
       setIsReset(prev => !prev);
       setIsRoundEnd(false);
+      setShowModal(false);
     }, ROUND_RECESS_TIME);
   }, [isRoundEnd]);
 
