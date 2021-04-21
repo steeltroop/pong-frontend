@@ -1,7 +1,8 @@
 const ROUTES = {
   HOME: "/",
   LOGIN: "/auth/login",
-  BATTLE: "/battle"
+  BATTLE: "/battle",
+  RANKING: "/ranking"
 };
 
 const NUMBERS = {
