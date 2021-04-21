@@ -12,6 +12,7 @@ const ROUND_RECESS_TIME = 2000;
 const GameBoard = ({ socket }) => {
   const [reset, setReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
+  const [isStarter, setIsStarter] = useState(true);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const canvasRef = useRef(null);
 
@@ -21,25 +22,11 @@ const GameBoard = ({ socket }) => {
       canvasHeight: canvasRef.current.height
     }));
 
-    socket.on("reset", ({
-      ballData,
-      userPaddleData,
-      partnerPaddleData
-    }) => {
-      ballObj.x = ballData.x;
-      ballObj.y = ballData.y;
-      ballObj.dx = ballData.dx;
-      ballObj.dy = ballData.dy;
-      userPaddleObj.x = userPaddleData.x;
-      partnerPaddleObj.x = partnerPaddleData.x;
-      setReset(true);
-    });
-
     socket.on("move", ({ ballData, end }) => {
       ballObj.x = ballData.x;
       ballObj.y = ballData.y;
 
-      if (end) setIsRoundEnd(end);
+      if (end) setIsRoundEnd(true);
     });
 
     socket.on("keyDown", ({ userPaddleX, partnerPaddleX }) => {
@@ -49,8 +36,6 @@ const GameBoard = ({ socket }) => {
 
     return () => {
       socket.emit("refresh");
-      userPaddleObj.x = 250;
-      partnerPaddleObj.x = 250;
     };
   }, []);
 
