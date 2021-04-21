@@ -74,14 +74,14 @@ const Webcam = ({ socket }) => {
   return (
     <div className={styles.wrapper}>
       <video
-        className={styles.video}
+        className={styles.userVideo}
         ref={userVideo}
         playsInline
         autoPlay
         muted
       />
       <video
-        className={styles.video}
+        className={styles.partnerVideo}
         ref={partnerVideo}
         playsInline
         autoPlay

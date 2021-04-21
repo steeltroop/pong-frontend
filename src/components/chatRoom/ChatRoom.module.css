@@ -1,12 +1,102 @@
 .wrapper {
-  background-color: darkgray;
+  background-color: black;
   width: 30vw;
+  margin: 20px;
+}
+
+.textList {
+  list-style: none;
+  padding: 0px;
 }
 
 .userText {
+  background: #fcfcfc;
+  color: #000;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+  padding: 5px;
+  text-align: center;
   text-align: right;
 }
 
 .partnerText {
-  text-align: left;
+  background: #fcfcfc;
+  color: #000;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+  padding: 5px;
+  text-align: center;
+  text-align: right;
+}
+
+.userBubble {
+  width: 150px;
+}
+
+.partnerBubble {
+  position: relative;
+  right: -100px;
+  width: 150px;
+}
+
+.bubbleA {
+  margin-left: 6px;
+  width: calc(100% - 12px);
+  height: 2px;
+  background: #222;
+}
+
+.bubbleB {
+  margin-left: 4px;
+  width: calc(100% - 12px);
+  height: 2px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.bubbleC {
+  margin-left: 2px;
+  width: calc(100% - 8px);
+  height: 2px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.speechArrow {
+  margin-top: -2px;
+  margin-left: 110px;
+}
+
+.arrowA {
+  width: 8px;
+  height: 8px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.arrowB {
+  width: 6px;
+  height: 2px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.arrowC {
+  margin-left: 2px;
+  width: 6px;
+  height: 2px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.arrowD {
+  margin-left: 2px;
+  width: 8px;
+  height: 2px;
+  background: #222;
 }

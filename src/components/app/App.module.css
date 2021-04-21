@@ -1,3 +1,5 @@
 .wrapper {
   font-family: 'Press Start 2P', cursive;
+  width: 100vw;
+  height: 100vh;
 }
