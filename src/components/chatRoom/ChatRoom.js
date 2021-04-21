@@ -41,11 +41,11 @@ const ChatRoom = ({ socket }) => {
                 <div className={styles.bubbleC}></div>
                 <div className={styles.bubbleB}></div>
                 <div className={styles.bubbleA}></div>
-                <div className={styles.speechArrow}>
+                <div className={isMyText ? styles.userArrow : styles.partnerArrow}>
                   <div className={styles.arrowA}></div>
                   <div className={styles.arrowB}></div>
-                  <div className={styles.arrowC}></div>
-                  <div className={styles.arrowD}></div>
+                  <div className={isMyText ? styles.userArrowC : styles.partnerArrowC}></div>
+                  <div className={isMyText ? styles.userArrowD : styles.partnerArrowD}></div>
                 </div>
               </div>
             );

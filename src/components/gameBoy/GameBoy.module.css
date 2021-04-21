@@ -59,14 +59,14 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 70%;
-  height: 80%;
+  width: 63%;
+  height: 92%;
   top: 25px;
 }
 
 .gameBoyMark {
   position: absolute;
-  bottom: 1px;
+  bottom: -90px;
   color: #5d5d5d;
   font-style: italic;
   font-weight:  900;
