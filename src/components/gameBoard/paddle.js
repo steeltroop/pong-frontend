@@ -25,12 +25,6 @@ const paddle = (ctx, canvas, paddleObj, ballObj, user) => {
   const paddle = new Paddle(paddleObj.x);
 
   paddle.draw();
-
-  if (paddleObj.x <= 0) {
-    paddleObj.x = 0;
-  } else if (paddleObj.x + paddleObj.width >= canvas.width) {
-    paddleObj.x = canvas.width - paddleObj.width;
-  }
 };
 
 export default paddle;

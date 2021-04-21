@@ -31,6 +31,14 @@ const Battle = ({ socket }) => {
     }
   }, [isMatched, count]);
 
+  const plusUserScore = () => {
+    setUserScore(prev => prev + 1);
+  };
+
+  const plusPartnerScore = () => {
+    setPartnerScore(prev => prev + 1);
+  };
+
   return (
     <div className={styles.wrapper}>
       {isPartnerDisconnected && <Modal />}
@@ -47,8 +55,8 @@ const Battle = ({ socket }) => {
         {isMatched && count === NUMBERS.END_COUNT
           ? <GameBoard
               socket={socket}
-              handleUserScore={setUserScore}
-              handlePartnerScore={setPartnerScore}
+              plusUserScore={plusUserScore}
+              plusPartnerScore={plusPartnerScore}
             />
           : <div style={{color: "black"}}>Finding user...</div>}
       </GameBoy>
