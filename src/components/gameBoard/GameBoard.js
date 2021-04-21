@@ -9,12 +9,12 @@ const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
 const ROUND_RECESS_TIME = 2000;
 
-const GameBoard = ({ socket }) => {
-  const [reset, setReset] = useState(false);
+const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
+  const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
-  const [isStarter, setIsStarter] = useState(true);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const canvasRef = useRef(null);
+  const reset = useRef(false);
 
   useEffect(() => {
     socket.emit("sendCanvas", ({
@@ -22,11 +22,35 @@ const GameBoard = ({ socket }) => {
       canvasHeight: canvasRef.current.height
     }));
 
-    socket.on("move", ({ ballData, end }) => {
+    socket.on("move", ({ ballData, end, isBallTop }) => {
       ballObj.x = ballData.x;
       ballObj.y = ballData.y;
 
-      if (end) setIsRoundEnd(true);
+      if (end) {
+        setIsRoundEnd(true);
+
+        if (isModerator && isBallTop) {
+          plusUserScore();
+
+          return;
+        }
+
+        if (isModerator && !isBallTop) {
+          plusPartnerScore();
+
+          return;
+        }
+
+        if (!isModerator && isBallTop) {
+          plusPartnerScore();
+
+          return;
+        }
+
+        if (!isModerator && !isBallTop) {
+          plusUserScore();
+        }
+      };
     });
 
     socket.on("keyDown", ({ userPaddleX, partnerPaddleX }) => {
@@ -36,23 +60,26 @@ const GameBoard = ({ socket }) => {
 
     return () => {
       socket.emit("refresh");
+      setIsRoundEnd(false);
     };
   }, []);
 
   useEffect(() => {
-    if (isRoundEnd) {
-      setTimeout(() => setIsRoundEnd(false), ROUND_RECESS_TIME);
+    if (!isRoundEnd) return;
 
-      return;
-    }
+    reset.current = true;
 
-    canvasRef.current.focus();
-    setReset(false);
+    setTimeout(() => {
+      reset.current = false;
+      canvasRef.current?.focus();
+      setIsReset(prev => !prev);
+      setIsRoundEnd(false);
+    }, ROUND_RECESS_TIME);
   }, [isRoundEnd]);
 
   useEffect(() => {
     const render = () => {
-      if (reset) return;
+      if (reset.current) return;
 
       const canvas = canvasRef.current;
 
@@ -78,7 +105,7 @@ const GameBoard = ({ socket }) => {
     };
 
     render();
-  }, [reset, isModerator]);
+  }, [isReset, isModerator]);
 
   const handleKeyDown = ({ keyCode }) => {
     socket.emit("keyDown", {
