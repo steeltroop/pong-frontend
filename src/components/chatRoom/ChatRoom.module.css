@@ -1,7 +1,8 @@
 .wrapper {
-  background-color: black;
+  background-color: gray;
   width: 30vw;
   margin: 20px;
+  border-radius: 4px;
 }
 
 .textList {
@@ -16,7 +17,6 @@
   border-right: 2px solid #222;
   padding: 5px;
   text-align: center;
-  text-align: right;
 }
 
 .partnerText {
@@ -26,17 +26,20 @@
   border-right: 2px solid #222;
   padding: 5px;
   text-align: center;
-  text-align: right;
 }
 
 .userBubble {
+  display: flex;
+  flex-direction: column;
   width: 150px;
+  margin-left: auto;
 }
 
 .partnerBubble {
-  position: relative;
-  right: -100px;
+  display: flex;
+  flex-direction: column;
   width: 150px;
+  margin-right: auto;
 }
 
 .bubbleA {
@@ -64,9 +67,14 @@
   border-right: 2px solid #222;
 }
 
-.speechArrow {
+.userArrow {
   margin-top: -2px;
   margin-left: 110px;
+}
+
+.partnerArrow {
+  margin-top: -2px;
+  margin-left: 30px;
 }
 
 .arrowA {
@@ -85,7 +93,7 @@
   border-right: 2px solid #222;
 }
 
-.arrowC {
+.userArrowC {
   margin-left: 2px;
   width: 6px;
   height: 2px;
@@ -94,9 +102,30 @@
   border-right: 2px solid #222;
 }
 
-.arrowD {
+.partnerArrowC {
+  margin-left: -2px;
+  width: 6px;
+  height: 2px;
+  background: #fcfcfc;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+}
+
+.userArrowD {
+  margin-left: 4px;
+  width: 8px;
+  height: 2px;
+  background: #222;
+}
+
+.partnerArrowD {
   margin-left: 2px;
   width: 8px;
   height: 2px;
   background: #222;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
 }
