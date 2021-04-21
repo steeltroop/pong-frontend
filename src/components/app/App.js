@@ -6,6 +6,7 @@ import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
 import Sidebar from "../sidebar/Sidebar";
+import Ranking from "../ranking/Ranking";
 import styles from "./App.module.css";
 import { ROUTES } from "../../constants/index";
 
@@ -25,6 +26,9 @@ const App = () => {
         </Route>
         <Route path={ROUTES.BATTLE}>
           <Battle socket={socket} />
+        </Route>
+        <Route path={ROUTES.RANKING}>
+          <Ranking />
         </Route>
       </Switch>
     </div>

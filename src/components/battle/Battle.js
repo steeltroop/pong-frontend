@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import ScoreBoard from "../scoreBoard/ScoreBoard";
+import GameBoy from "../gameBoy/GameBoy";
 import GameBoard from "../gameBoard/GameBoard";
 import ChatRoom from "../chatRoom/ChatRoom";
 import Webcam from "../webcam/Webcam";
@@ -33,7 +34,7 @@ const Battle = ({ socket }) => {
   return (
     <div className={styles.wrapper}>
       {isPartnerDisconnected && <Modal />}
-      <div className={styles.container}>
+      <div className={styles.webcamWrapper}>
         <ScoreBoard
           count={count}
           isPlaying={isPlaying}
@@ -42,13 +43,15 @@ const Battle = ({ socket }) => {
         />
         <Webcam socket={socket} />
       </div>
-      {isMatched && count === NUMBERS.END_COUNT
-        ? <GameBoard
-            socket={socket}
-            handleUserScore={setUserScore}
-            handlePartnerScore={setPartnerScore}
-          />
-        : <div style={{color: "black"}}>Finding user...</div>}
+      <GameBoy>
+        {isMatched && count === NUMBERS.END_COUNT
+          ? <GameBoard
+              socket={socket}
+              handleUserScore={setUserScore}
+              handlePartnerScore={setPartnerScore}
+            />
+          : <div style={{color: "black"}}>Finding user...</div>}
+      </GameBoy>
       <ChatRoom socket={socket} />
     </div>
   );

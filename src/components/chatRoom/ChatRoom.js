@@ -9,6 +9,7 @@ const ChatRoom = ({ socket }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (text === "") return;
 
     socket.emit("sendTextMessage", { text, userSocketId });
 
@@ -21,15 +22,32 @@ const ChatRoom = ({ socket }) => {
 
   return (
     <div className={styles.wrapper}>
-      <ul>
+      <ul className={styles.textList}>
         {roomMatch.chats.length > 0 && (
           roomMatch.chats.map((chat, index) => {
-            const isMyText = chat.socketId === userSocketId;
+            const isMyText = chat.userSocketId === userSocketId;
 
             return (
-              <li key={index}>
-                {chat.text}
-              </li>
+              <div className={isMyText ? styles.userBubble : styles.partnerBubble}>
+                <div className={styles.bubbleA}></div>
+                <div className={styles.bubbleB}></div>
+                <div className={styles.bubbleC}></div>
+                <li
+                  key={index}
+                  className={isMyText ? styles.userText : styles.partnerText}
+                >
+                  {chat.text}
+                </li>
+                <div className={styles.bubbleC}></div>
+                <div className={styles.bubbleB}></div>
+                <div className={styles.bubbleA}></div>
+                <div className={styles.speechArrow}>
+                  <div className={styles.arrowA}></div>
+                  <div className={styles.arrowB}></div>
+                  <div className={styles.arrowC}></div>
+                  <div className={styles.arrowD}></div>
+                </div>
+              </div>
             );
           })
         )}

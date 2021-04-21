@@ -6,6 +6,9 @@
   height: 100%;
 }
 
-.container {
+.webcamWrapper {
   background-color: black;
+  margin: 20px;
+  text-align: center;
+  font-size: 35px;
 }

@@ -33,13 +33,13 @@ const Login = () => {
             className={styles.button}
             onClick={handleClick}
           >
-            <div class={styles.iconWrapper}>
+            <div className={styles.iconWrapper}>
               <img
-                class={styles.icon}
+                className={styles.icon}
                 src={URL.GOOGLE_LOGO}
               />
             </div>
-            <p class={styles.text}>
+            <p className={styles.text}>
               <b>Sign in with google</b>
             </p>
           </div>
