@@ -5,6 +5,7 @@ import styles from "./ChatRoom.module.css";
 const ChatRoom = ({ socket }) => {
   const [text, setText] = useState("");
   const roomMatch = useSelector(state => state.roomMatch);
+  const chats = roomMatch.chats;
   const partnerSocketId = roomMatch.partner.socketId;
   const userSocketId = useSelector(state => state.user.socketId);
   const chatRef = useRef();
