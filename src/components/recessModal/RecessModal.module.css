@@ -9,14 +9,25 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .countWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   position: absolute;
-  border: 1px solid red;
+  border: 2px solid black;
   width: 500px;
-  height: 700px;
+  height: 500px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.contentWrapper {
+  border: 2px solid black;
+}
+
+.countDownWrapper {
+  border: 2px solid black;
 }
