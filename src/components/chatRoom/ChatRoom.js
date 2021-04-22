@@ -5,13 +5,14 @@ import styles from "./ChatRoom.module.css";
 const ChatRoom = ({ socket }) => {
   const [text, setText] = useState("");
   const roomMatch = useSelector(state => state.roomMatch);
+  const partnerSocketId = roomMatch.partner.socketId;
   const userSocketId = useSelector(state => state.user.socketId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text === "") return;
 
-    socket.emit("sendTextMessage", { text, userSocketId });
+    socket.emit("sendTextMessage", { text, userSocketId, partnerSocketId });
 
     setText("");
   };
