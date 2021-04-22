@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import * as userActions from "../../redux/actions/userActions";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
 import data from "./data";
@@ -7,14 +9,25 @@ import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
-const ROUND_RECESS_TIME = 2000;
+const ROUND_RECESS_TIME = 3000;
 
-const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
+const GameBoard = ({
+  socket,
+  userScore,
+  partnerScore,
+  plusUserScore,
+  plusPartnerScore,
+  modalCountDown,
+  setRecessModal,
+  setGameEndModal,
+  gameEndRef }) => {
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const canvasRef = useRef(null);
   const reset = useRef(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.emit("sendCanvas", ({
@@ -58,6 +71,12 @@ const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
       partnerPaddleObj.x = partnerPaddleX;
     });
 
+    socket.on("redirectHome", () => {
+      dispatch(userActions.resetState());
+
+      history.push("/");
+    });
+
     return () => {
       socket.emit("refresh");
       setIsRoundEnd(false);
@@ -66,6 +85,8 @@ const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
 
   useEffect(() => {
     if (!isRoundEnd) return;
+    setRecessModal(true);
+    modalCountDown();
 
     reset.current = true;
 
@@ -74,8 +95,16 @@ const GameBoard = ({ socket, plusUserScore, plusPartnerScore }) => {
       canvasRef.current?.focus();
       setIsReset(prev => !prev);
       setIsRoundEnd(false);
+      setRecessModal(false);
     }, ROUND_RECESS_TIME);
   }, [isRoundEnd]);
+
+  useEffect(() => {
+    if (userScore === 3 || partnerScore === 3) {
+      gameEndRef.current = true;
+      setGameEndModal(true);
+    }
+  }, [userScore, partnerScore])
 
   useEffect(() => {
     const render = () => {

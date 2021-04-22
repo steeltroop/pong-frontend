@@ -12,7 +12,7 @@ const ScoreBoard = (props) => {
   return (
     <>
       {isPlaying
-        ? <div>{userScore} : {partnerScore}</div>
+        ? <div>ME {userScore} : P {partnerScore}</div>
         : <div>{count}</div>}
     </>
   );

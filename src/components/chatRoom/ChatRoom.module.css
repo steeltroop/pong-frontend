@@ -1,21 +1,37 @@
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .wrapper {
-  background-color: gray;
-  width: 30vw;
-  margin: 20px;
-  border-radius: 4px;
+  background-color: #e5e5e5;
+  width: 30%;
+  min-width: 200px;
+  height: 80%;
+  border-radius: 2px;
+  z-index: 2;
 }
 
 .textList {
+  padding: 0;
+  height: 100%;
   list-style: none;
-  padding: 0px;
+  overflow-y: auto;
+  word-break: break-all;
+  border-radius: 2px;
+}
+
+.textList::-webkit-scrollbar {
+  display: none;
 }
 
 .userText {
   background: #fcfcfc;
-  color: #000;
+  padding: 5px;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
-  padding: 5px;
+  color: #000;
   text-align: center;
 }
 
@@ -31,38 +47,40 @@
 .userBubble {
   display: flex;
   flex-direction: column;
-  width: 150px;
   margin-left: auto;
+  margin-bottom: 10px;
+  width: 150px;
 }
 
 .partnerBubble {
   display: flex;
   flex-direction: column;
-  width: 150px;
   margin-right: auto;
+  margin-bottom: 10px;
+  width: 150px;
 }
 
 .bubbleA {
+  background: #222;
   margin-left: 6px;
   width: calc(100% - 12px);
   height: 2px;
-  background: #222;
 }
 
 .bubbleB {
+  background: #fcfcfc;
   margin-left: 4px;
   width: calc(100% - 12px);
   height: 2px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
 
 .bubbleC {
+  background: #fcfcfc;
   margin-left: 2px;
   width: calc(100% - 8px);
   height: 2px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
@@ -78,54 +96,67 @@
 }
 
 .arrowA {
+  background: #fcfcfc;
   width: 8px;
   height: 8px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
 
 .arrowB {
+  background: #fcfcfc;
   width: 6px;
   height: 2px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
 
 .userArrowC {
+  background: #fcfcfc;
   margin-left: 2px;
   width: 6px;
   height: 2px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
 
 .partnerArrowC {
+  background: #fcfcfc;
   margin-left: -2px;
   width: 6px;
   height: 2px;
-  background: #fcfcfc;
   border-left: 2px solid #222;
   border-right: 2px solid #222;
 }
 
 .userArrowD {
+  background: #222;
   margin-left: 4px;
   width: 8px;
   height: 2px;
-  background: #222;
 }
 
 .partnerArrowD {
+  background: #222;
   margin-left: 2px;
   width: 8px;
   height: 2px;
-  background: #222;
 }
 
-form {
-  display: flex;
-  justify-content: space-around;
+.messageInput {
+  background-color: #e5e5e5;
+  padding: 10px;
+  border-top: 1px solid black;
+  border-radius: 2px;
+}
+
+.messageInput input {
+  padding: 8px;
+  height: 100%;
+  font-size: 15px;
+}
+
+.messageBtn button {
+  padding: 5px;
+  font-size: 20px;
 }
