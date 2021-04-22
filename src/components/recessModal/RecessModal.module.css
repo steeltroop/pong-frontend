@@ -8,8 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .countWrapper {
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 1px solid red;
+  width: 500px;
+  height: 700px;
 }

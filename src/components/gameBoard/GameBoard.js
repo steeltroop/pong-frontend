@@ -7,7 +7,7 @@ import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
-const ROUND_RECESS_TIME = 100000;
+const ROUND_RECESS_TIME = 3000;
 
 const GameBoard = ({
   socket,
