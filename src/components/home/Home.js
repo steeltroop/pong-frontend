@@ -20,7 +20,14 @@ const Home = ({ socket }) => {
     <div className={styles.wrapper}>
       <div className={styles.contentsWrapper}>
         <div className={styles.title}>
+<<<<<<< HEAD
           <span>PONG!</span>
+=======
+          <span>PONG</span>
+          <Modal>
+            <div>I am test</div>
+          </Modal>
+>>>>>>> 6e9d149acf82b777c1811882efc917393a0e9970
         </div>
         <div className={styles.content}>
           <button

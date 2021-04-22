@@ -5,11 +5,18 @@ form {
 }
 
 .wrapper {
+<<<<<<< HEAD
   background-color: #e5e5e5;
   width: 30%;
   min-width: 200px;
   height: 80%;
   border-radius: 2px;
+=======
+  background-color: gray;
+  width: 30vw;
+  margin: 20px;
+  border-radius: 4px;
+>>>>>>> 6e9d149acf82b777c1811882efc917393a0e9970
   z-index: 2;
 }
 
