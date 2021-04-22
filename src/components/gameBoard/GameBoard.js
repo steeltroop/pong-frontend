@@ -104,7 +104,7 @@ const GameBoard = ({
       gameEndRef.current = true;
       setGameEndModal(true);
     }
-  }, [userScore, partnerScore])
+  }, [userScore, partnerScore]);
 
   useEffect(() => {
     const render = () => {

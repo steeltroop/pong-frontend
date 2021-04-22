@@ -6,6 +6,7 @@ const GameEndModal = ({ userScore, socket }) => {
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const userSocketId = useSelector(state => state.user.socketId);
+
   let moderatorStatus = null;
   let partnerStatus = null;
 
