@@ -5,18 +5,22 @@ import GameBoy from "../gameBoy/GameBoy";
 import GameBoard from "../gameBoard/GameBoard";
 import ChatRoom from "../chatRoom/ChatRoom";
 import Webcam from "../webcam/Webcam";
-import Modal from "../modal/Modal";
+import ModalPortal from "../modalPortal/ModalPortal";
+import RecessModal from "../recessModal/RecessModal";
 import styles from "./Battle.module.css";
 import { NUMBERS } from "../../constants/index";
 
 const Battle = ({ socket }) => {
   const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const [count, setCount] = useState(3);
+  const [modalCount, setModalCount] = useState(3);
   const [isPlaying, setPlaying] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [userScore, setUserScore] = useState(0);
   const [partnerScore, setPartnerScore] = useState(0);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
+  const modalTimerRef = useRef();
 
   useEffect(() => {
     if (count === NUMBERS.END_COUNT) {
@@ -31,6 +35,20 @@ const Battle = ({ socket }) => {
     }
   }, [isMatched, count]);
 
+  const modalCountDown = () => {
+    modalTimerRef.current = setInterval(() => {
+      setModalCount(prev => {
+        if (!prev) {
+          setModalCount(3);
+          clearInterval(modalTimerRef.current);
+          return;
+        }
+
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
   const plusUserScore = () => {
     setUserScore(prev => prev + 1);
   };
@@ -41,7 +59,11 @@ const Battle = ({ socket }) => {
 
   return (
     <div className={styles.wrapper}>
-      {isPartnerDisconnected && <Modal />}
+      {isPartnerDisconnected && <ModalPortal />}
+      {showModal &&
+        <ModalPortal>
+          <RecessModal count={modalCount} />
+        </ModalPortal>}
       <div className={styles.webcamWrapper}>
         <ScoreBoard
           count={count}
@@ -57,6 +79,8 @@ const Battle = ({ socket }) => {
               socket={socket}
               plusUserScore={plusUserScore}
               plusPartnerScore={plusPartnerScore}
+              modalCountDown={modalCountDown}
+              setShowModal={setShowModal}
             />
           : <div style={{color: "black"}}>Finding user...</div>}
       </GameBoy>
