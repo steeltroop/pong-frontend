@@ -22,15 +22,25 @@ const GameEndModal = ({ userScore, socket }) => {
   if (isModerator) {
     if (userScore === 3) {
       moderatorStatus = (
-        <div>
-          WINNER 🤩
-        </div>
+        <>
+          <div>
+            WINNER 🤩
+          </div>
+          <div>
+            잘 하고 있어요 ! 킵 고잉 !
+          </div>
+        </>
       );
     } else {
       moderatorStatus = (
-        <div>
-          LOSER 😭
-        </div>
+        <>
+          <div>
+            LOSER 😭
+          </div>
+          <div>
+            조금만 더 분발해주세요 !
+          </div>
+        </>
       );
     }
   }
@@ -38,28 +48,44 @@ const GameEndModal = ({ userScore, socket }) => {
   if (!isModerator) {
     if (userScore === 3) {
       partnerStatus = (
-        <div>
-          WINNER 🤩
-        </div>
+        <>
+          <div>
+            WINNER 🤩
+          </div>
+          <div>
+            잘 하고 있어요 ! 킵 고잉 !
+          </div>
+        </>
       );
     } else {
       partnerStatus = (
-        <div>
-          LOSER 😭
-        </div>
+        <>
+          <div>
+            LOSER 😭
+          </div>
+          <div>
+            조금만 더 분발해주세요 !
+          </div>
+        </>
       );
     }
   }
   return (
     <div className={styles.wrapper}>
-      <div className={styles.statusWrapper}>
-        {isModerator && moderatorStatus}
-        {!isModerator && partnerStatus}
-      </div>
-      <div className={styles.buttonWrapper}>
-        <div className={styles.buttons}>
-          <button onClick={handleHomeButtonClick}>Home</button>
-          <button onClick={handleRematchButtonClick}>Rematch</button>
+      <div className={styles.contentButtonWrapper}>
+        <div className={styles.contentWrapper}>
+          {isModerator && moderatorStatus}
+          {!isModerator && partnerStatus}
+        </div>
+        <div className={styles.buttonWrapper}>
+          <div>
+            <button
+              onClick={handleHomeButtonClick}
+              className={styles.button}
+            >
+              Home
+            </button>
+          </div>
         </div>
       </div>
     </div>
