@@ -15,10 +15,6 @@ const GameEndModal = ({ userScore, socket }) => {
     socket.emit("leaveRoom", { userSocketId, partnerSocketId });
   };
 
-  const handleRematchButtonClick = () => {
-    console.log("handle Rematch Button click!");
-  };
-
   if (isModerator) {
     if (userScore === 3) {
       moderatorStatus = (
@@ -72,20 +68,13 @@ const GameEndModal = ({ userScore, socket }) => {
   }
   return (
     <div className={styles.wrapper}>
-      <div className={styles.contentButtonWrapper}>
-        <div className={styles.contentWrapper}>
-          {isModerator && moderatorStatus}
-          {!isModerator && partnerStatus}
-        </div>
-        <div className={styles.buttonWrapper}>
-          <div>
-            <button
-              onClick={handleHomeButtonClick}
-              className={styles.button}
-            >
-              Home
-            </button>
-          </div>
+      <div className={styles.statusWrapper}>
+        {isModerator && moderatorStatus}
+        {!isModerator && partnerStatus}
+      </div>
+      <div className={styles.buttonWrapper}>
+        <div className={styles.buttons}>
+          <button onClick={handleHomeButtonClick}>Home</button>
         </div>
       </div>
     </div>

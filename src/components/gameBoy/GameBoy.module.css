@@ -1,5 +1,5 @@
 .gameBoyWrapper {
-  background-color: #f48c06;
+  background-color: #4361ee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,7 +72,7 @@
 .gameBoyMark {
   position: absolute;
   top: -68px;
-  color: #5d5d5d;
+  color: #bde0fe;
   font-style: italic;
   font-weight:  900;
   font-family: arial;
@@ -83,8 +83,7 @@
   font-weight: 900;
   font-size: 20px;
   letter-spacing: 1px;
-  background: #b20a3f;
-  background: linear-gradient(90deg, #b20a3f 0%, #4c49a3 25%, #6bab21 50%, #d3a706 75%, #008e86 100%);
+  background: linear-gradient(90deg, #d9ed92 0%, #1a759f 25%, #34a0a4 50%, #76c893 75%, #b5e48c 100%);
   background-size: 200% auto;
   font-size: 30px;
   -webkit-background-clip: text;

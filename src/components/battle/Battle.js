@@ -8,8 +8,8 @@ import Webcam from "../webcam/Webcam";
 import ModalPortal from "../modalPortal/ModalPortal";
 import RecessModal from "../recessModal/RecessModal";
 import GameEndModal from "../gameEndModal/GameEndModal";
-import styles from "./Battle.module.css";
 import { NUMBERS } from "../../constants/index";
+import styles from "./Battle.module.css";
 
 const Battle = ({ socket }) => {
   const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
@@ -103,13 +103,13 @@ const Battle = ({ socket }) => {
               socket={socket}
               userScore={userScore}
               partnerScore={partnerScore}
+              gameEndRef={gameEndRef}
+              showGameEndModal={showGameEndModal}
+              setGameEndModal={setGameEndModal}
               plusUserScore={plusUserScore}
+              setRecessModal={setRecessModal}
               plusPartnerScore={plusPartnerScore}
               modalCountDown={modalCountDown}
-              setRecessModal={setRecessModal}
-              setGameEndModal={setGameEndModal}
-              showGameEndModal={showGameEndModal}
-              gameEndRef={gameEndRef}
             />
           : <div style={{color: "black"}}>Finding user...</div>}
       </GameBoy>
