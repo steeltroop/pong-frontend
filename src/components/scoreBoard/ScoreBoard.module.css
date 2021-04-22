@@ -1,3 +1,18 @@
-div {
+.score {
+  background-color: #293241;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: right;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
+.userScore {
+  margin-bottom: 10px;
+}
+
+.count {
+  padding: 20px;
   color: #FFFFFF;
 }

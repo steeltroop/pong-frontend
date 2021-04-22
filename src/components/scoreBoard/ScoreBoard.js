@@ -1,5 +1,5 @@
 import React from "react";
-import "./ScoreBoard.module.css";
+import styles from "./ScoreBoard.module.css";
 
 const ScoreBoard = (props) => {
   const {
@@ -12,8 +12,15 @@ const ScoreBoard = (props) => {
   return (
     <>
       {isPlaying
-        ? <div>ME {userScore} : P {partnerScore}</div>
-        : <div>{count}</div>}
+        ? <div className={styles.score} >
+            <div className={styles.userScore}>
+              Hero {userScore} 🦸‍♂️
+            </div>
+            <div className={styles.partnerScore}>
+              Villain {partnerScore} 🦹🏽‍♂️
+            </div>
+          </div>
+        : <div className={styles.count} >READY! {count}</div>}
     </>
   );
 };
