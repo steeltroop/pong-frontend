@@ -6,7 +6,7 @@ import GameBoard from "../gameBoard/GameBoard";
 import ChatRoom from "../chatRoom/ChatRoom";
 import Webcam from "../webcam/Webcam";
 import ModalPortal from "../modalPortal/ModalPortal";
-import RecessModal from "../recessModal/RecessModal";
+import Modal from "../modal/Modal";
 import GameEndModal from "../gameEndModal/GameEndModal";
 import { NUMBERS } from "../../constants/index";
 import styles from "./Battle.module.css";
@@ -44,7 +44,7 @@ const Battle = ({ socket }) => {
     modalTimerRef.current = setInterval(() => {
       setModalCount(prev => {
         if (!prev) {
-          setModalCount(3);
+          setModalCount(5);
           clearInterval(modalTimerRef.current);
           return;
         }
@@ -57,7 +57,14 @@ const Battle = ({ socket }) => {
   if (showRecessModal && !showGameEndModal) {
     modal = (
       <ModalPortal>
-        <RecessModal count={modalCount} />
+        <Modal>
+          <div>
+            GET READY!
+          </div>
+          <div>
+            COUNTDOWN {modalCount}
+          </div>
+        </Modal>
       </ModalPortal>
     );
   }
@@ -65,10 +72,12 @@ const Battle = ({ socket }) => {
   if (showGameEndModal) {
     modal = (
       <ModalPortal>
-        <GameEndModal
-          userScore={userScore}
-          socket={socket}
-        />
+        <Modal>
+          <GameEndModal
+            userScore={userScore}
+            socket={socket}
+          />
+        </Modal>
       </ModalPortal>
     );
   }
