@@ -22,7 +22,9 @@ const Webcam = ({ socket }) => {
           audio: false
         });
 
-      userVideo.current.srcObject = stream;
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
 
       if (isCalling) {
         const peer = new Peer({
@@ -43,8 +45,12 @@ const Webcam = ({ socket }) => {
         });
 
         socket.on("acceptCall", signal => {
-
           peer.signal(signal);
+        });
+
+        socket.on("destroyPeer", () => {
+          stream && stream.getTracks().forEach(track => track.stop());
+          peer.removeAllListeners("signal");
         });
       }
 
@@ -67,6 +73,11 @@ const Webcam = ({ socket }) => {
         });
 
         peer.signal(callerSignal);
+
+        socket.on("destroyPeer", () => {
+          stream && stream.getTracks().forEach(track => track.stop());
+          peer.removeAllListeners("signal");
+        });
       }
     })();
   }, [isCalling, isCallAccepted]);

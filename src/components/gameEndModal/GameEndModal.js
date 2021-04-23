@@ -21,6 +21,7 @@ const GameEndModal = ({ userScore, socket }) => {
   }, []);
 
   const handleHomeButtonClick = () => {
+    socket.emit("destroyPeer", { userSocketId, partnerSocketId });
     socket.removeAllListeners("sendTextMessage");
     socket.emit("leaveRoom", { userSocketId, partnerSocketId });
   };
