@@ -1,35 +1,22 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./GameEndModal.module.css";
+import { updateWinnerScore } from "../../api/gameApi";
 
 const GameEndModal = ({ userScore, socket }) => {
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const userSocketId = useSelector(state => state.user.socketId);
-  const userEmail = useSelector(state => state.user.email);
+  const email = useSelector(state => state.user.email);
+  const isModeratorWinner = isModerator && userScore === 3;
+  const isPartnerWinner = !isModerator && userScore === 3;
 
   let moderatorStatus = null;
   let partnerStatus = null;
 
   useEffect(() => {
-    if (isModerator && userScore === 3 || !isModerator && userScore === 3) {
-      (async () => {
-        try {
-          const res = await fetch(process.env.REACT_APP_PORT + "/battle", {
-            credentials: "include",
-            method: "PATCH",
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              email: userEmail
-            })
-          });
-        } catch(err) {
-          console.log(err);
-          return err;
-        }
-      })();
+    if (isModeratorWinner || isPartnerWinner) {
+      updateWinnerScore(email);
     }
   }, []);
 
@@ -38,9 +25,7 @@ const GameEndModal = ({ userScore, socket }) => {
     socket.emit("leaveRoom", { userSocketId, partnerSocketId });
   };
 
-  if (isModerator && userScore === 3) {
-    console.log("방장 일때 점수 올라가는 로직");
-
+  if (isModeratorWinner) {
     moderatorStatus = (
       <>
         <div>
@@ -64,9 +49,7 @@ const GameEndModal = ({ userScore, socket }) => {
     );
   }
 
-  if (!isModerator && userScore === 3) {
-    console.log("모더레이터 아닐 때 점수 올라가는 로직");
-
+  if (isPartnerWinner) {
     partnerStatus = (
       <>
         <div>

@@ -14,6 +14,22 @@ export const getUserData = (data, setUsers) => {
   })();
 };
 
-export const updateScore = () => {
-
+export const updateWinnerScore = (email) => {
+  (async () => {
+    try {
+      await fetch(process.env.REACT_APP_PORT + "/battle", {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email
+        })
+      });
+    } catch(err) {
+      console.log(err);
+      return err;
+    }
+  })();
 };
