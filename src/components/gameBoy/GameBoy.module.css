@@ -28,37 +28,6 @@
   border-radius: 14px;
 }
 
-.power {
-  position: absolute;
-  color: #5d5d5d;
-  font-size: 8px;
-  font-weight: 600;
-  font-family: arial;
-  top: 80px;
-  left: 30px;
-  padding-left: 6px;
-}
-
-.power p {
-  padding-left: 2px;
-}
-
-.ledButton {
-  color: #5d5d5d;
-  animation: led 1s infinite;
-}
-
-@keyframes led {
-  50% {
-    color: #cc2816;
-    text-shadow: 0px 0px 10px #960000;
-  }
-  100% {
-    color: #5d5d5d;
-    text-shadow: none;
-  }
-}
-
 .gameBoardWrapper {
   background: #2c2f2a;
   display: flex;
@@ -71,21 +40,21 @@
 
 .gameBoyMark {
   position: absolute;
-  top: -68px;
+  top: -48px;
   color: #bde0fe;
   font-style: italic;
   font-weight:  900;
-  font-family: arial;
-  font-size: 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
 }
 
 .gameBoyMark span {
+  background: linear-gradient(90deg, #d9ed92 0%, #1a759f 25%, #34a0a4 50%, #76c893 75%, #b5e48c 100%);
+  background-size: 200% auto;
+  font-family: 'Press Start 2P', cursive;
   font-weight: 900;
   font-size: 20px;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, #d9ed92 0%, #1a759f 25%, #34a0a4 50%, #76c893 75%, #b5e48c 100%);
-  background-size: 200% auto;
-  font-size: 30px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine 3s linear infinite;
