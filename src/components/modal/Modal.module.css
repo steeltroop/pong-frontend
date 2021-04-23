@@ -14,7 +14,7 @@
   animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.countWrapper {
+.modalWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -86,7 +86,7 @@
   animation: rotate_anti 2s linear infinite;
 }
 
-.countDownWrapper {
+.contentWrapper {
   position: absolute;
   display: flex;
   flex-direction: column;

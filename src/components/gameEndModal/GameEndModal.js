@@ -28,13 +28,13 @@ const GameEndModal = ({ userScore, socket }) => {
   if (isModeratorWinner) {
     moderatorStatus = (
       <div>
-        WINNER 🤩
+        WINNER
       </div>
     );
   } else {
     moderatorStatus = (
       <div>
-        LOSER 😭
+        LOSER
       </div>
     );
   }
@@ -42,27 +42,25 @@ const GameEndModal = ({ userScore, socket }) => {
   if (isPartnerWinner) {
     partnerStatus = (
       <div>
-        WINNER 🤩
+        WINNER
       </div>
     );
   } else {
     partnerStatus = (
       <div>
-        LOSER 😭
+        LOSER
       </div>
     );
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.contentWrapper}>
       <div className={styles.statusWrapper}>
         {isModerator && moderatorStatus}
         {!isModerator && partnerStatus}
       </div>
       <div className={styles.buttonWrapper}>
-        <div className={styles.buttons}>
-          <button onClick={handleHomeButtonClick}>Home</button>
-        </div>
+        <p onClick={handleHomeButtonClick}>HOME</p>
       </div>
     </div>
   );
