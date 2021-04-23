@@ -19,8 +19,6 @@ const user = (state = initialState, action) => {
         ...state,
         socketId: action.payload.socketId
       };
-    case actionTypes.RESET_STATE:
-      return Object.assign({}, initialState);
     default:
       return Object.assign({}, state);
   }

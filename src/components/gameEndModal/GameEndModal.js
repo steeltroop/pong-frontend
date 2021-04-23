@@ -27,49 +27,29 @@ const GameEndModal = ({ userScore, socket }) => {
 
   if (isModeratorWinner) {
     moderatorStatus = (
-      <>
-        <div>
-          WINNER 🤩
-        </div>
-        <div>
-          잘 하고 있어요 ! 킵 고잉 !
-        </div>
-      </>
+      <div>
+        WINNER 🤩
+      </div>
     );
   } else {
     moderatorStatus = (
-      <>
-        <div>
-          LOSER 😭
-        </div>
-        <div>
-          조금만 더 분발해주세요 !
-        </div>
-      </>
+      <div>
+        LOSER 😭
+      </div>
     );
   }
 
   if (isPartnerWinner) {
     partnerStatus = (
-      <>
-        <div>
-          WINNER 🤩
-        </div>
-        <div>
-          잘 하고 있어요 ! 킵 고잉 !
-        </div>
-      </>
+      <div>
+        WINNER 🤩
+      </div>
     );
   } else {
     partnerStatus = (
-      <>
-        <div>
-          LOSER 😭
-        </div>
-        <div>
-          조금만 더 분발해주세요 !
-        </div>
-      </>
+      <div>
+        LOSER 😭
+      </div>
     );
   }
 

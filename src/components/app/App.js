@@ -13,8 +13,9 @@ import { ROUTES } from "../../constants/index";
 const App = () => {
   const email = useSelector(state => state.user.email);
 
-  // {!email && <Redirect to="/auth/login" />}
+
   return (
+    // {!email && <Redirect to="/auth/login" />}
     <div className={styles.wrapper} >
       <Sidebar socket={socket} />
       <Switch>
