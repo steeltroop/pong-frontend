@@ -41,6 +41,7 @@ const GameBoard = ({
 
       if (end) {
         setIsRoundEnd(true);
+        socket.emit("endRound");
 
         if (isModerator && isBallTop) {
           plusUserScore();
@@ -84,7 +85,21 @@ const GameBoard = ({
   }, []);
 
   useEffect(() => {
+    if (userScore === 3 || partnerScore === 3) {
+      gameEndRef.current = true;
+      setGameEndModal(true);
+    }
+  }, [userScore, partnerScore]);
+
+  useEffect(() => {
     if (!isRoundEnd) return;
+
+    if (gameEndRef.current) {
+      reset.current = true;
+
+      return;
+    }
+
     setRecessModal(true);
     modalCountDown();
 
@@ -100,15 +115,14 @@ const GameBoard = ({
   }, [isRoundEnd]);
 
   useEffect(() => {
-    if (userScore === 3 || partnerScore === 3) {
-      gameEndRef.current = true;
-      setGameEndModal(true);
-    }
-  }, [userScore, partnerScore]);
+    canvasRef.current.focus();
+    userPaddleObj.x = (canvasRef.current.width / 2) - (userPaddleObj.width / 2);
+    partnerPaddleObj.x = (canvasRef.current.width / 2) - (partnerPaddleObj.width / 2);
 
-  useEffect(() => {
     const render = () => {
-      if (reset.current) return;
+      if (reset.current) {
+        return;
+      }
 
       const canvas = canvasRef.current;
 
@@ -137,6 +151,8 @@ const GameBoard = ({
   }, [isReset, isModerator]);
 
   const handleKeyDown = ({ keyCode }) => {
+    if (gameEndRef.current || isRoundEnd) return;
+
     socket.emit("keyDown", {
       keyCode,
       isModerator

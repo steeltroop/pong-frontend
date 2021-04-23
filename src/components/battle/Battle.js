@@ -12,7 +12,6 @@ import { NUMBERS } from "../../constants/index";
 import styles from "./Battle.module.css";
 
 const Battle = ({ socket }) => {
-  const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const [count, setCount] = useState(3);
   const [modalCount, setModalCount] = useState(3);
   const [isPlaying, setPlaying] = useState(false);
@@ -20,6 +19,7 @@ const Battle = ({ socket }) => {
   const [showGameEndModal, setGameEndModal] = useState(false);
   const [userScore, setUserScore] = useState(0);
   const [partnerScore, setPartnerScore] = useState(0);
+  const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
   const modalTimerRef = useRef();
