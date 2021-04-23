@@ -8,7 +8,7 @@ import Webcam from "../webcam/Webcam";
 import ModalPortal from "../modalPortal/ModalPortal";
 import Modal from "../modal/Modal";
 import GameEndModal from "../gameEndModal/GameEndModal";
-import { NUMBERS } from "../../constants/index";
+import { NUMBERS, MESSAGE } from "../../constants";
 import styles from "./Battle.module.css";
 
 const Battle = ({ socket }) => {
@@ -44,7 +44,7 @@ const Battle = ({ socket }) => {
     modalTimerRef.current = setInterval(() => {
       setModalCount(prev => {
         if (!prev) {
-          setModalCount(5);
+          setModalCount(3);
           clearInterval(modalTimerRef.current);
           return;
         }
@@ -100,11 +100,15 @@ const Battle = ({ socket }) => {
       <div className={styles.webcamWrapper}>
         <ScoreBoard
           count={count}
+          isMatched={isMatched}
           isPlaying={isPlaying}
           userScore={userScore}
           partnerScore={partnerScore}
         />
-        <Webcam socket={socket} />
+        <Webcam
+          isMatched={isMatched}
+          socket={socket}
+        />
       </div>
       <GameBoy>
         {isMatched && count === NUMBERS.END_COUNT
@@ -121,7 +125,12 @@ const Battle = ({ socket }) => {
               modalCountDown={modalCountDown}
             />
           : <div className={styles.notice} >
-              <span>Finding user...</span>
+              <span>
+                {isMatched
+                  ? MESSAGE.MATCHING_USER
+                  : MESSAGE.FINDING_USER
+                }
+              </span>
             </div>}
       </GameBoy>
       <ChatRoom socket={socket} />

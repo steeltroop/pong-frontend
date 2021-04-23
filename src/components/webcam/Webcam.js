@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Peer from "simple-peer";
 import styles from "./Webcam.module.css";
 
-const Webcam = ({ socket }) => {
+const Webcam = ({ socket, isMatched }) => {
   const partner = useSelector(state => state.roomMatch.partner);
   const {
     isCalling,
@@ -84,20 +84,24 @@ const Webcam = ({ socket }) => {
 
   return (
     <div className={styles.wrapper}>
-      <video
-        className={styles.video}
-        ref={userVideo}
-        playsInline
-        autoPlay
-        muted
-      />
-      <video
-        className={styles.video}
-        ref={partnerVideo}
-        playsInline
-        autoPlay
-        muted
-      />
+      {isMatched &&
+      <div className={styles.videoContainer}>
+        <video
+          className={styles.videoTop}
+          ref={userVideo}
+          playsInline
+          autoPlay
+          muted
+        />
+        <video
+          className={styles.videoBot}
+          ref={partnerVideo}
+          playsInline
+          autoPlay
+          muted
+        />
+      </div>
+      }
     </div>
   );
 };

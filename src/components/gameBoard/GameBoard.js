@@ -11,16 +11,18 @@ const { ballObj, userPaddleObj, partnerPaddleObj } = data;
 
 const ROUND_RECESS_TIME = 3000;
 
-const GameBoard = ({
-  socket,
-  userScore,
-  partnerScore,
-  plusUserScore,
-  plusPartnerScore,
-  modalCountDown,
-  setRecessModal,
-  setGameEndModal,
-  gameEndRef }) => {
+const GameBoard = (props) => {
+  const {
+    socket,
+    userScore,
+    partnerScore,
+    plusUserScore,
+    plusPartnerScore,
+    modalCountDown,
+    setRecessModal,
+    setGameEndModal,
+    gameEndRef
+  } = props;
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
@@ -120,9 +122,7 @@ const GameBoard = ({
     partnerPaddleObj.x = (canvasRef.current.width / 2) - (partnerPaddleObj.width / 2);
 
     const render = () => {
-      if (reset.current) {
-        return;
-      }
+      if (reset.current) return;
 
       const canvas = canvasRef.current;
 
