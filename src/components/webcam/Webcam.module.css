@@ -5,8 +5,30 @@
   border-radius: 2px;
 }
 
-.video {
-  width: 100%;
-  height: 100%;
+.videoTop {
+  width: 70%;
+  padding: 20px 0px;
   border-radius: 2px;
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.videoBot {
+  width: 70%;
+  padding-bottom: 20px;
+  border-radius: 2px;
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
 }
