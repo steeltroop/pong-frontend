@@ -111,7 +111,9 @@ const Battle = ({ socket }) => {
               plusPartnerScore={plusPartnerScore}
               modalCountDown={modalCountDown}
             />
-          : <div style={{color: "black"}}>Finding user...</div>}
+          : <div className={styles.notice} >
+              <span>Finding user...</span>
+            </div>}
       </GameBoy>
       <ChatRoom socket={socket} />
     </div>

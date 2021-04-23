@@ -6,6 +6,9 @@
 }
 
 .canvas {
-  background-color: #3d405b;
-  outline: none;
+  background-image: url("../../assets/images/gameboardBackground.jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
 }
