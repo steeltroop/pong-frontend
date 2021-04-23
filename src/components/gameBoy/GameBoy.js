@@ -10,7 +10,7 @@ const GameBoy = (props) => {
           {props.children}
         </div>
         <div className={styles.gameBoyMark} >
-          <h4>GameBOY <span>PONG!</span></h4>
+          <h4>GAMEBOY <span>PONG!</span></h4>
         </div>
       </div>
     </div>
