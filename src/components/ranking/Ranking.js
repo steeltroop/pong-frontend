@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GameBoy from "../gameBoy/GameBoy";
 import styles from "./Ranking.module.css";
+import { getUserData } from "../../api/gameApi";
 
 const Ranking = () => {
   const [users, setUsers] = useState([]);
@@ -8,19 +9,7 @@ const Ranking = () => {
   let data;
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch(process.env.REACT_APP_PORT + "/users", {
-          credentials: "include",
-          method: "GET"
-        });
-
-        data = await res.json();
-        setUsers(data);
-      } catch(err) {
-        return err;
-      }
-    })();
+    getUserData(data, setUsers);
   }, []);
 
   if (users.length !== 0) {
@@ -36,7 +25,7 @@ const Ranking = () => {
       }
 
       return (
-        <div className={styles.user}>
+        <div className={styles.user} key={user._id}>
           <div className={styles.rank}>
             {rank}
           </div>
