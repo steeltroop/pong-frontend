@@ -6,10 +6,15 @@ const ROUTES = {
 };
 
 const NUMBERS = {
+  SUBTRACT_NUMBER: 1,
+  HALF: 2,
+  WIN_SCORE: 3,
+  MODAL_COUNT: 3,
   INITIAL_COUNT: 3,
   END_COUNT: 0,
+  MODAL_TIMEOUT: 1,
+  RESET_TIMEOUT: 3000,
   DELAY: 1000,
-  SUBTRACT_NUMBER: 1,
 };
 
 const URL = {
@@ -19,6 +24,13 @@ const URL = {
 const MESSAGE = {
   FINDING_USER: "Finding User...",
   MATCHING_USER: "Matching User!!",
+  RECESSMODAL_READY: "GET READY!",
+  RECESSMODAL_COUNTDOWN: "CONTDOWN",
 };
 
-export { URL, ROUTES, NUMBERS, MESSAGE };
+const COLORS = {
+  USER_PADDLE: "#118AB2",
+  PARTNER_PADDLE: "#EF476F",
+}
+
+export { URL, ROUTES, NUMBERS, MESSAGE, COLORS };

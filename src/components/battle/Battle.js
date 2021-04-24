@@ -12,8 +12,8 @@ import { NUMBERS, MESSAGE } from "../../constants";
 import styles from "./Battle.module.css";
 
 const Battle = ({ socket }) => {
-  const [count, setCount] = useState(3);
-  const [modalCount, setModalCount] = useState(3);
+  const [count, setCount] = useState(NUMBERS.MODAL_COUNT);
+  const [modalCount, setModalCount] = useState(NUMBERS.MODAL_COUNT);
   const [isPlaying, setPlaying] = useState(false);
   const [showRecessModal, setRecessModal] = useState(false);
   const [showGameEndModal, setGameEndModal] = useState(false);
@@ -44,14 +44,14 @@ const Battle = ({ socket }) => {
     modalTimerRef.current = setInterval(() => {
       setModalCount(prev => {
         if (!prev) {
-          setModalCount(3);
+          setModalCount(NUMBERS.MODAL_COUNT);
           clearInterval(modalTimerRef.current);
           return;
         }
 
         return prev - 1;
       });
-    }, 1000);
+    }, NUMBERS.MODAL_TIMEOUT);
   };
 
   if (showRecessModal && !showGameEndModal) {
@@ -59,10 +59,10 @@ const Battle = ({ socket }) => {
       <ModalPortal>
         <Modal>
           <div>
-            GET READY!
+            {MESSAGE.RECESSMODAL_READY}
           </div>
           <div>
-            COUNTDOWN {modalCount}
+          {`${MESSAGE.RECESSMODAL_COUNTDOWN} ${modalCount}`}
           </div>
         </Modal>
       </ModalPortal>
