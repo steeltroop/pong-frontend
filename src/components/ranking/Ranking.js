@@ -5,6 +5,7 @@ import { getUserData } from "../../api/gameApi";
 
 const Ranking = () => {
   const [users, setUsers] = useState([]);
+
   let userList = null;
   let data;
 

@@ -18,3 +18,7 @@ export const updateUserId = (socketId) => ({
 export const resetState = () => ({
   type: actionType.RESET_STATE
 });
+
+export const logoutUser = () => ({
+  type: actionType.LOGOUT_USER
+});

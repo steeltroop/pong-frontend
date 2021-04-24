@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "./GameEndModal.module.css";
 import { updateWinnerScore } from "../../api/gameApi";
 import { NUMBERS } from "../../constants";
+import { checkModeratorStats, checkPartnerStatus } from "../../utils/moderatorStatus";
 
 const GameEndModal = ({ userScore, socket }) => {
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
@@ -26,33 +27,8 @@ const GameEndModal = ({ userScore, socket }) => {
     socket.emit("leaveRoom", { userSocketId, partnerSocketId });
   };
 
-  if (isModeratorWinner) {
-    moderatorStatus = (
-      <div>
-        WINNER
-      </div>
-    );
-  } else {
-    moderatorStatus = (
-      <div>
-        LOSER
-      </div>
-    );
-  }
-
-  if (isPartnerWinner) {
-    partnerStatus = (
-      <div>
-        WINNER
-      </div>
-    );
-  } else {
-    partnerStatus = (
-      <div>
-        LOSER
-      </div>
-    );
-  }
+  moderatorStatus = checkModeratorStats(isModeratorWinner);
+  partnerStatus = checkPartnerStatus(isPartnerWinner);
 
   return (
     <div className={styles.contentWrapper}>

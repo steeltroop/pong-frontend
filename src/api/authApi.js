@@ -15,7 +15,7 @@ export const postGoogleLogin = async (email, name) => {
       body: JSON.stringify(payload)
     });
   } catch (err) {
-    return err;
+    alert("로그인 되지 않았습니다. 다시 시도해 주세요.")
   }
 };
 
@@ -30,6 +30,6 @@ export const postGoogleLogout = async () => {
       },
     });
   } catch (err) {
-    return err;
+    alert("로그아웃 되지 않았습니다. 다시 시도해 주세요.")
   }
 };

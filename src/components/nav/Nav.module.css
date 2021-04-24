@@ -1,14 +1,11 @@
 .wrapper {
   position: absolute;
-  top: 0;
-  right: 40px;
-  padding: 40px;
-}
-
-.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  top: 0;
+  right: 40px;
+  padding: 40px;
 }
 
 .headerBtn {
