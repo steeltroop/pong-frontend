@@ -19,6 +19,13 @@ const user = (state = initialState, action) => {
         ...state,
         socketId: action.payload.socketId
       };
+    case actionTypes.LOGOUT_USER:
+      return {
+        ...state,
+        email: "",
+        name: "",
+        socketId: ""
+      };
     default:
       return Object.assign({}, state);
   }

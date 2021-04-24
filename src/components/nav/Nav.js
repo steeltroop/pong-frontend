@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as userActions from "../../redux/actions/userActions";
 import { deleteUserCookie } from "../../utils/deleteUserCookie";
 import { googleLogout } from "../../api/firebase/googleAuth";
@@ -9,42 +9,58 @@ import styles from "./Nav.module.css";
 const Nav = ({ socket }) => {
   const user = useSelector(state => state.user);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
+  const isMatched = useSelector(state => state.roomMatch.isMatched);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleLogoutBtnClick = () => {
     socket.emit("leaveRoom", { userSocketId: user.socketId, partnerSocketId });
     dispatch(userActions.resetState());
+    dispatch(userActions.logoutUser());
     deleteUserCookie();
     googleLogout();
 
     history.push("/auth/login");
   };
 
+  const handleHomeBtnClick = () => {
+    socket.emit("subtractWaitingQue");
+
+    history.push("/");
+  };
+
+  const handleRankingBtnClick = () => {
+    socket.emit("subtractWaitingQue");
+
+    history.push("/ranking");
+  };
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <Link
-          to="/"
-          className={styles.headerBtn}
-        >
-          <span>Home</span>
-        </Link>
-        {user.email &&
+    <>
+      {!isMatched &&
+        <div className={styles.wrapper}>
           <button
             className={styles.headerBtn}
-            onClick={handleLogoutBtnClick}
+            onClick={handleHomeBtnClick}
           >
-            <span>Logout</span>
-          </button>}
-        <Link
-          to="/ranking"
-          className={styles.headerBtn}
-        >
-          <span>Ranking</span>
-        </Link>
-      </div>
-    </div>
+            <span>Home</span>
+          </button>
+          {user.email &&
+            <button
+              className={styles.headerBtn}
+              onClick={handleLogoutBtnClick}
+            >
+              <span>Logout</span>
+            </button>}
+          <button
+            className={styles.headerBtn}
+            onClick={handleRankingBtnClick}
+          >
+            <span>Ranking</span>
+          </button>
+        </div>
+      }
+    </>
   );
 };
 
