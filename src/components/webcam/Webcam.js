@@ -22,6 +22,7 @@ const Webcam = ({ socket, isMatched }) => {
           video: true,
           audio: false
         });
+
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
@@ -75,7 +76,6 @@ const Webcam = ({ socket, isMatched }) => {
 
             signalCallStatus.current = true;
           }
-
         });
 
         peer.on("stream", stream => {
@@ -91,28 +91,31 @@ const Webcam = ({ socket, isMatched }) => {
         });
       }
     })();
+
+    return () => {
+      socket.off("destroyPeer");
+    };
   }, [isCalling, isCallAccepted]);
 
   return (
     <div className={styles.wrapper}>
       {isMatched &&
-      <div className={styles.videoContainer}>
-        <video
-          className={styles.videoTop}
-          ref={userVideo}
-          playsInline
-          autoPlay
-          muted
-        />
-        <video
-          className={styles.videoBot}
-          ref={partnerVideo}
-          playsInline
-          autoPlay
-          muted
-        />
-      </div>
-      }
+        <div className={styles.videoContainer}>
+          <video
+            className={styles.videoTop}
+            ref={userVideo}
+            playsInline
+            autoPlay
+            muted
+          />
+          <video
+            className={styles.videoBot}
+            ref={partnerVideo}
+            playsInline
+            autoPlay
+            muted
+          />
+        </div>}
     </div>
   );
 };

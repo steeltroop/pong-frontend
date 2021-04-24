@@ -13,10 +13,9 @@ import { ROUTES } from "../../constants/index";
 const App = () => {
   const email = useSelector(state => state.user.email);
 
-
   return (
-    // {!email && <Redirect to="/auth/login" />}
     <div className={styles.wrapper} >
+      {!email && <Redirect to="/auth/login" />}
       <Sidebar socket={socket} />
       <Switch>
         <Route path={ROUTES.HOME} exact>

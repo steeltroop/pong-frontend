@@ -19,7 +19,6 @@ const Battle = ({ socket }) => {
   const [showGameEndModal, setGameEndModal] = useState(false);
   const [userScore, setUserScore] = useState(NUMBERS.INITIAL_SCORE);
   const [partnerScore, setPartnerScore] = useState(NUMBERS.INITIAL_SCORE);
-  const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
   const modalTimerRef = useRef();
