@@ -3,7 +3,6 @@ import { subscribeSocket } from "../../config/socket";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./Home.module.css";
-import Modal from "../modalPortal/ModalPortal";
 
 const Home = ({ socket }) => {
   const history = useHistory();

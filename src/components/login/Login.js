@@ -29,7 +29,7 @@ const Login = () => {
           <h1>PONG!</h1>
         </div>
         <div className={styles.loginContainer}>
-          <div className={styles.buttonWrapper}>
+          <div>
             <div
               className={styles.button}
               onClick={handleClick}
@@ -46,7 +46,7 @@ const Login = () => {
             </div>
           </div>
           <div className={styles.pressText}>
-              please google login
+            please google login
           </div>
         </div>
       </div>

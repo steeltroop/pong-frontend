@@ -13,12 +13,12 @@
   color: #4CD137;
 }
 
-.partnerScore {
-  color: #EF476F;
-}
-
 .userWrapper {
   margin-bottom: 20px;
+}
+
+.partnerScore {
+  color: #EF476F;
 }
 
 .count {
