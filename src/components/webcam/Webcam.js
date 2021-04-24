@@ -12,6 +12,7 @@ const Webcam = ({ socket, isMatched }) => {
   } = useSelector(state => state.roomMatch.webcam);
   const userVideo = useRef();
   const partnerVideo = useRef();
+  const signalCallStatus = useRef();
 
   useEffect(() => {
     (async () => {
@@ -21,7 +22,6 @@ const Webcam = ({ socket, isMatched }) => {
           video: true,
           audio: false
         });
-
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
@@ -34,10 +34,14 @@ const Webcam = ({ socket, isMatched }) => {
         });
 
         peer.on("signal", data => {
-          socket.emit("callUser", {
-            partnerSocketId: partner.socketId,
-            signalData: data
-          });
+          if (!signalCallStatus.current) {
+            socket.emit("callUser", {
+              partnerSocketId: partner.socketId,
+              signalData: data
+            });
+
+            signalCallStatus.current = true;
+          }
         });
 
         peer.on("stream", stream => {
@@ -50,6 +54,7 @@ const Webcam = ({ socket, isMatched }) => {
 
         socket.on("destroyPeer", () => {
           stream && stream.getTracks().forEach(track => track.stop());
+          peer.removeStream(stream);
           peer.removeAllListeners("signal");
         });
       }
@@ -62,10 +67,15 @@ const Webcam = ({ socket, isMatched }) => {
         });
 
         peer.on("signal", data => {
-          socket.emit("acceptCall", {
-            signalData: data,
-            partnerSocketId: partner.socketId
-          });
+          if (!signalCallStatus.current) {
+            socket.emit("acceptCall", {
+              signalData: data,
+              partnerSocketId: partner.socketId
+            });
+
+            signalCallStatus.current = true;
+          }
+
         });
 
         peer.on("stream", stream => {
@@ -76,6 +86,7 @@ const Webcam = ({ socket, isMatched }) => {
 
         socket.on("destroyPeer", () => {
           stream && stream.getTracks().forEach(track => track.stop());
+          peer.removeStream(stream);
           peer.removeAllListeners("signal");
         });
       }

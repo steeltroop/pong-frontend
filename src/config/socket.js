@@ -22,9 +22,7 @@ export const subscribeSocket = (dispatch) => {
 
   socket.on("partnerDisconnect", () => {
     socket.emit("partnerDisconnect");
-    socket.removeAllListeners("sendTextMessage");
     dispatch(modalActions.updatePartnerDisconnect());
-    dispatch(userActions.resetState());
   });
 
   socket.on("callUser", (data) => {

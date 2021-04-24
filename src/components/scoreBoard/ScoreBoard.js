@@ -15,10 +15,20 @@ const ScoreBoard = (props) => {
       {isPlaying
         ? <div className={styles.score} >
             <div className={styles.userScore}>
-              Hero {userScore}
+              <div className={styles.userWrapper}>
+                Hero
+              </div>
+              <div>
+                {userScore}
+              </div>
             </div>
             <div className={styles.partnerScore}>
-              Villain {partnerScore}
+              <div className={styles.userWrapper}>
+                Villain
+              </div>
+              <div>
+                {partnerScore}
+              </div>
             </div>
           </div>
         : <div className={styles.count} >READY! {isMatched && count}</div>}

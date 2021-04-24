@@ -1,16 +1,24 @@
 .score {
   background-color: #293241;
   display: flex;
-  flex-direction: column;
-  justify-content: right;
-  align-items: right;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   border-radius: 2px;
   color: #FFFFFF;
+  font-size: 27px;
 }
 
 .userScore {
-  margin-bottom: 10px;
+  color: #4CD137;
+}
+
+.partnerScore {
+  color: #EF476F;
+}
+
+.userWrapper {
+  margin-bottom: 20px;
 }
 
 .count {

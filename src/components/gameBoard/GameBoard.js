@@ -82,6 +82,9 @@ const GameBoard = (props) => {
     return () => {
       socket.emit("refresh");
       setIsRoundEnd(false);
+
+      socket.offAny();
+      socket.removeAllListeners();
     };
   }, []);
 
