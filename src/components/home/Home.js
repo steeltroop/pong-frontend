@@ -11,9 +11,15 @@ const Home = ({ socket }) => {
   const { name, email } = useSelector(state => state.user);
 
   const handleClick = () => {
-    subscribeSocket(dispatch);
-    socket.emit("initialConnection", name);
-    history.push("/battle");
+    if (email) {
+      subscribeSocket(dispatch);
+      socket.emit("initialConnection", name);
+      history.push("/battle");
+
+      return;
+    }
+
+    history.push("/auth/login");
   };
 
   return (
@@ -37,15 +43,5 @@ const Home = ({ socket }) => {
     </div>
   );
 };
-
-// if (email) {
-//   subscribeSocket(dispatch);
-//   socket.emit("initialConnection", name);
-//   history.push("/battle");
-
-//   return;
-// }
-
-// history.push("/auth/login");
 
 export default Home;

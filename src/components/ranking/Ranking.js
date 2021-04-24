@@ -33,7 +33,7 @@ const Ranking = () => {
             {user.name}
           </div>
           <div className={styles.score}>
-            score: {user.winningPoint}
+            {user.winningPoint}
           </div>
         </div>
       );
@@ -45,11 +45,14 @@ const Ranking = () => {
       <GameBoy>
         <div className={styles.rankingWrapper}>
           <div className={styles.rankingTitle}>
-            RANKING
+            <span>RANKING</span>
           </div>
           <div className={styles.usersWrapper}>
-            {userList}
+            <span>RANK</span>
+            <span>NAME</span>
+            <span>SCORE</span>
           </div>
+          {userList}
         </div>
       </GameBoy>
     </div>
