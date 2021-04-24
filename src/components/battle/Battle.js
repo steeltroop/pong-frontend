@@ -17,8 +17,8 @@ const Battle = ({ socket }) => {
   const [isPlaying, setPlaying] = useState(false);
   const [showRecessModal, setRecessModal] = useState(false);
   const [showGameEndModal, setGameEndModal] = useState(false);
-  const [userScore, setUserScore] = useState(0);
-  const [partnerScore, setPartnerScore] = useState(0);
+  const [userScore, setUserScore] = useState(NUMBERS.INITIAL_SCORE);
+  const [partnerScore, setPartnerScore] = useState(NUMBERS.INITIAL_SCORE);
   const isPartnerDisconnected = useSelector(state => state.modal.isPartnerDisconnected);
   const { isMatched } = useSelector(state => state.roomMatch);
   const timerRef = useRef();
@@ -49,7 +49,7 @@ const Battle = ({ socket }) => {
           return;
         }
 
-        return prev - 1;
+        return prev - NUMBERS.SUBTRACT_NUMBER;
       });
     }, NUMBERS.MODAL_TIMEOUT);
   };
