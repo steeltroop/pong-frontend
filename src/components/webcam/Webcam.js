@@ -22,7 +22,6 @@ const Webcam = ({ socket, isMatched }) => {
           video: true,
           audio: false
         });
-
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
