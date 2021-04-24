@@ -1,4 +1,4 @@
-import * as actionTypes from "../actionTypes";
+import * as actionType from "../actionTypes";
 
 const initialState = {
   isMatched: false,
@@ -19,7 +19,7 @@ const initialState = {
 
 const roomMatch = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_PARTNERID:
+    case actionType.UPDATE_PARTNERID:
       return {
         ...state,
         partner: {
@@ -27,12 +27,12 @@ const roomMatch = (state = initialState, action) => {
           socketId: action.payload.socketId
         }
       };
-    case actionTypes.UPDATE_ROOMMATCH:
+    case actionType.UPDATE_ROOMMATCH:
       return {
         ...state,
         ...action.payload.data
       };
-    case actionTypes.UPDATE_TEXTSENDING:
+    case actionType.UPDATE_TEXTSENDING:
       const newChats = state.chats.slice();
       newChats.push(action.payload.data);
 
@@ -40,7 +40,7 @@ const roomMatch = (state = initialState, action) => {
         ...state,
         chats: newChats
       };
-    case actionTypes.UPDATE_SIGNAL:
+    case actionType.UPDATE_SIGNAL:
       return {
         ...state,
         webcam: {
@@ -50,7 +50,7 @@ const roomMatch = (state = initialState, action) => {
           isCallAccepted: true
         }
       };
-    case actionTypes.RESET_STATE:
+    case actionType.RESET_STATE:
       return Object.assign({}, initialState);
     default:
       return Object.assign({}, state);

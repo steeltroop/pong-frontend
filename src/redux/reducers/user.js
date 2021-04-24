@@ -1,4 +1,4 @@
-import * as actionTypes from "../actionTypes";
+import * as actionType from "../actionTypes";
 
 const initialState = {
   email: "",
@@ -8,18 +8,18 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_USER:
+    case actionType.SET_USER:
       return {
         ...state,
         email: action.payload.email,
         name: action.payload.name
       };
-    case actionTypes.UPDATE_USERID:
+    case actionType.UPDATE_USERID:
       return {
         ...state,
         socketId: action.payload.socketId
       };
-    case actionTypes.LOGOUT_USER:
+    case actionType.LOGOUT_USER:
       return {
         ...state,
         email: "",
