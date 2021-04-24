@@ -5,7 +5,7 @@ import { socket } from "../../config/socket";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import Battle from "../battle/Battle";
-import Sidebar from "../sidebar/Sidebar";
+import Nav from "../nav/Nav";
 import Ranking from "../ranking/Ranking";
 import styles from "./App.module.css";
 import { ROUTES } from "../../constants/index";
@@ -13,11 +13,10 @@ import { ROUTES } from "../../constants/index";
 const App = () => {
   const email = useSelector(state => state.user.email);
 
-
   return (
-    // {!email && <Redirect to="/auth/login" />}
     <div className={styles.wrapper} >
-      <Sidebar socket={socket} />
+      {!email && <Redirect to="/auth/login" />}
+      <Nav socket={socket} />
       <Switch>
         <Route path={ROUTES.HOME} exact>
           <Home socket={socket} />
