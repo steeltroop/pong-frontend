@@ -31,6 +31,11 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - Ping pong game을 위한 로직 작성
 - Socket.io, Web RTC, game 동기적 연결
 
+### `3nd week - testing and deploying`
+- Nest/enjyme 프론트, 백엔드 테스트 케이스 작성
+- AWS 백엔드 배포
+- Netilify 프론트엔드 배포
+
 <br>
 
 ## Tech Stack
@@ -62,6 +67,14 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - **Backend**
   - AWS Elastic Beanstalk (EB)
   - AWS Code Pipeline for Deplyment automation
+
+<br>
+
+## Install
+
+Local환경 실행시 아래와 같이 준비가 필요합니다.
+
+client
 
 <br>
 

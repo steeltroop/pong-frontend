@@ -5,11 +5,10 @@ import * as userActions from "../../redux/actions/userActions";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
 import data from "./data";
+import { NUMBERS } from "../../constants";
 import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
-
-const ROUND_RECESS_TIME = 3000;
 
 const GameBoard = (props) => {
   const {
@@ -26,10 +25,10 @@ const GameBoard = (props) => {
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
-  const canvasRef = useRef(null);
-  const reset = useRef(false);
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const canvasRef = useRef(null);
+  const resetRef = useRef(false);
 
   useEffect(() => {
     socket.emit("sendCanvas", ({
@@ -87,7 +86,7 @@ const GameBoard = (props) => {
   }, []);
 
   useEffect(() => {
-    if (userScore === 3 || partnerScore === 3) {
+    if (userScore === NUMBERS.WIN_SCORE || partnerScore === NUMBERS.WIN_SCORE) {
       gameEndRef.current = true;
       setGameEndModal(true);
     }
@@ -97,7 +96,7 @@ const GameBoard = (props) => {
     if (!isRoundEnd) return;
 
     if (gameEndRef.current) {
-      reset.current = true;
+      resetRef.current = true;
 
       return;
     }
@@ -105,24 +104,24 @@ const GameBoard = (props) => {
     setRecessModal(true);
     modalCountDown();
 
-    reset.current = true;
+    resetRef.current = true;
 
     setTimeout(() => {
-      reset.current = false;
+      resetRef.current = false;
       canvasRef.current?.focus();
       setIsReset(prev => !prev);
       setIsRoundEnd(false);
       setRecessModal(false);
-    }, ROUND_RECESS_TIME);
+    }, NUMBERS.RESET_TIMEOUT);
   }, [isRoundEnd]);
 
   useEffect(() => {
     canvasRef.current.focus();
-    userPaddleObj.x = (canvasRef.current.width / 2) - (userPaddleObj.width / 2);
-    partnerPaddleObj.x = (canvasRef.current.width / 2) - (partnerPaddleObj.width / 2);
+    userPaddleObj.x = (canvasRef.current.width / NUMBERS.HALF) - (userPaddleObj.width / NUMBERS.HALF);
+    partnerPaddleObj.x = (canvasRef.current.width / NUMBERS.HALF) - (partnerPaddleObj.width / NUMBERS.HALF);
 
     const render = () => {
-      if (reset.current) return;
+      if (resetRef.current) return;
 
       const canvas = canvasRef.current;
 

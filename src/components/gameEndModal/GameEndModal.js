@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./GameEndModal.module.css";
 import { updateWinnerScore } from "../../api/gameApi";
+import { NUMBERS } from "../../constants";
 
 const GameEndModal = ({ userScore, socket }) => {
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const userSocketId = useSelector(state => state.user.socketId);
   const email = useSelector(state => state.user.email);
-  const isModeratorWinner = isModerator && userScore === 3;
-  const isPartnerWinner = !isModerator && userScore === 3;
+  const isModeratorWinner = isModerator && userScore === NUMBERS.WIN_SCORE;
+  const isPartnerWinner = !isModerator && userScore === NUMBERS.WIN_SCORE;
 
   let moderatorStatus = null;
   let partnerStatus = null;

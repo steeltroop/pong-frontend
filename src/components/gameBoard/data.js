@@ -1,3 +1,5 @@
+import { COLORS } from "../../constants";
+
 const canvasData = {
   ballObj: {
     x: 250,
@@ -11,13 +13,13 @@ const canvasData = {
     height: 20,
     width: 100,
     x: 250,
-    color: "#118ab2"
+    color: COLORS.USER_PADDLE
   },
   partnerPaddleObj: {
     height: 20,
     width: 100,
     x: 250,
-    color: "#ef476f"
+    color: COLORS.PARTNER_PADDLE
   }
 };
 
