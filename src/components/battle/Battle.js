@@ -27,6 +27,13 @@ const Battle = ({ socket }) => {
   let modal = null;
 
   useEffect(() => {
+    return () => {
+      socket.offAny();
+      socket.removeAllListeners();
+    };
+  }, []);
+
+  useEffect(() => {
     if (count === NUMBERS.END_COUNT) {
       clearInterval(timerRef.current);
       setPlaying(true);
