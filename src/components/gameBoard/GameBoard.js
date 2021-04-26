@@ -9,6 +9,8 @@ import { NUMBERS } from "../../constants";
 import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
+const LEFT = 37;
+const RIGHT = 39;
 
 const GameBoard = (props) => {
   const {
@@ -25,10 +27,13 @@ const GameBoard = (props) => {
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
+  const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const dispatch = useDispatch();
   const history = useHistory();
   const canvasRef = useRef(null);
   const resetRef = useRef(false);
+  const keyDownRef = useRef(false);
+  const keyCodeRef = useRef(null);
 
   useEffect(() => {
     socket.emit("sendCanvas", ({
@@ -36,7 +41,7 @@ const GameBoard = (props) => {
       canvasHeight: canvasRef.current.height
     }));
 
-    socket.on("move", ({ ballData, end, isBallTop }) => {
+    socket.on("moveBall", ({ ballData, end, isBallTop }) => {
       ballObj.x = ballData.x;
       ballObj.y = ballData.y;
 
@@ -67,9 +72,24 @@ const GameBoard = (props) => {
       };
     });
 
-    socket.on("keyDown", ({ userPaddleX, partnerPaddleX }) => {
-      userPaddleObj.x = userPaddleX;
-      partnerPaddleObj.x = partnerPaddleX;
+    socket.on("userKeyDown", ({ keyCode, distance }) => {
+      if (keyCode === LEFT) {
+        userPaddleObj.x -= distance;
+      }
+
+      if (keyCode === RIGHT) {
+        userPaddleObj.x += distance;
+      }
+    });
+
+    socket.on("partnerKeyDown", ({ keyCode, distance }) => {
+      if (keyCode === LEFT) {
+        partnerPaddleObj.x -= distance;
+      }
+
+      if (keyCode === RIGHT) {
+        partnerPaddleObj.x += distance;
+      }
     });
 
     socket.on("redirectHome", () => {
@@ -129,7 +149,37 @@ const GameBoard = (props) => {
 
       const ctx = canvas.getContext("2d");
 
-      socket.emit("move", isModerator);
+      socket.emit("moveBall", isModerator);
+
+      if (keyDownRef.current && isModerator) {
+        socket.emit("userKeyDown", {
+          keyCode: keyCodeRef.current,
+          partnerSocketId
+        });
+
+        if (keyCodeRef.current === LEFT) {
+          userPaddleObj.x -= 5;
+        }
+
+        if (keyCodeRef.current === RIGHT) {
+          userPaddleObj.x += 5;
+        }
+      }
+
+      if (keyDownRef.current && !isModerator) {
+        socket.emit("partnerKeyDown", {
+          keyCode: keyCodeRef.current,
+          partnerSocketId
+        });
+
+        if (keyCodeRef.current === LEFT) {
+          partnerPaddleObj.x -= 5;
+        }
+
+        if (keyCodeRef.current === RIGHT) {
+          partnerPaddleObj.x += 5;
+        }
+      }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -152,14 +202,13 @@ const GameBoard = (props) => {
   const handleKeyDown = ({ keyCode }) => {
     if (gameEndRef.current || isRoundEnd) return;
 
-    socket.emit("keyDown", {
-      keyCode,
-      isModerator
-    });
+    keyDownRef.current = true;
+    keyCodeRef.current = keyCode;
   };
 
   const handleKeyUp = () => {
-    socket.emit("keyUp", isModerator);
+    keyDownRef.current = false;
+    keyCodeRef.current = null;
   };
 
   return (
