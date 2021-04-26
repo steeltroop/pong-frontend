@@ -119,4 +119,4 @@ const Webcam = ({ socket, isMatched }) => {
   );
 };
 
-export default Webcam;
+export default React.memo(Webcam);

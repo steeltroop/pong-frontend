@@ -36,4 +36,4 @@ const ScoreBoard = (props) => {
   );
 };
 
-export default ScoreBoard;
+export default React.memo(ScoreBoard);
