@@ -30,8 +30,6 @@ const GameBoard = (props) => {
   const canvasRef = useRef(null);
   const resetRef = useRef(false);
 
-  let keyDown = false;
-
   useEffect(() => {
     socket.emit("sendCanvas", ({
       canvasWidth: canvasRef.current.width,
@@ -152,21 +150,16 @@ const GameBoard = (props) => {
   }, [isReset, isModerator]);
 
   const handleKeyDown = ({ keyCode }) => {
-    if (keyDown) return;
-
     if (gameEndRef.current || isRoundEnd) return;
 
     socket.emit("keyDown", {
       keyCode,
       isModerator
     });
-
-    keyDown = true;
   };
 
   const handleKeyUp = () => {
     socket.emit("keyUp", isModerator);
-    keyDown = false;
   };
 
   return (
