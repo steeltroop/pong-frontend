@@ -30,6 +30,8 @@ const GameBoard = (props) => {
   const canvasRef = useRef(null);
   const resetRef = useRef(false);
 
+  let keyDown = false;
+
   useEffect(() => {
     socket.emit("sendCanvas", ({
       canvasWidth: canvasRef.current.width,
@@ -42,7 +44,6 @@ const GameBoard = (props) => {
 
       if (end) {
         setIsRoundEnd(true);
-        socket.emit("endRound");
 
         if (isModerator && isBallTop) {
           plusUserScore();
@@ -82,9 +83,6 @@ const GameBoard = (props) => {
     return () => {
       socket.emit("refresh");
       setIsRoundEnd(false);
-
-      socket.offAny();
-      socket.removeAllListeners();
     };
   }, []);
 
@@ -119,6 +117,7 @@ const GameBoard = (props) => {
   }, [isRoundEnd]);
 
   useEffect(() => {
+    socket.emit("startRound");
     canvasRef.current.focus();
     userPaddleObj.x = (canvasRef.current.width / NUMBERS.HALF) - (userPaddleObj.width / NUMBERS.HALF);
     partnerPaddleObj.x = (canvasRef.current.width / NUMBERS.HALF) - (partnerPaddleObj.width / NUMBERS.HALF);
@@ -153,16 +152,21 @@ const GameBoard = (props) => {
   }, [isReset, isModerator]);
 
   const handleKeyDown = ({ keyCode }) => {
+    if (keyDown) return;
+
     if (gameEndRef.current || isRoundEnd) return;
 
     socket.emit("keyDown", {
       keyCode,
       isModerator
     });
+
+    keyDown = true;
   };
 
   const handleKeyUp = () => {
     socket.emit("keyUp", isModerator);
+    keyDown = false;
   };
 
   return (
