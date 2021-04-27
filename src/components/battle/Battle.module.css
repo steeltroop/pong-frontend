@@ -33,6 +33,10 @@
   animation: blink 1.5s steps(4, start) infinite;
 }
 
+.matchText {
+  color: #e84118;
+}
+
 @keyframes blink {
   100% {
     visibility: hidden;
