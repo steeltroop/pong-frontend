@@ -18,6 +18,11 @@ const NUMBERS = {
   INITIAL_SCORE: 0,
 };
 
+const DIRECTION = {
+  LEFT: 37,
+  RIGHT: 39,
+};
+
 const URL = {
   GOOGLE_LOGO: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
 };
@@ -34,4 +39,4 @@ const COLORS = {
   PARTNER_PADDLE: "#EF476F",
 }
 
-export { URL, ROUTES, NUMBERS, MESSAGE, COLORS };
+export { ROUTES, NUMBERS, DIRECTION, URL, MESSAGE, COLORS };

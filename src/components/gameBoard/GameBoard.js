@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as userActions from "../../redux/actions/userActions";
+import movePaddle from "./movePaddle";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
 import data from "./data";
@@ -9,20 +10,18 @@ import { NUMBERS } from "../../constants";
 import styles from "./GameBoard.module.css";
 
 const { ballObj, userPaddleObj, partnerPaddleObj } = data;
-const LEFT = 37;
-const RIGHT = 39;
 
 const GameBoard = (props) => {
   const {
     socket,
     userScore,
     partnerScore,
+    gameEndRef,
     plusUserScore,
     plusPartnerScore,
     modalCountDown,
     setRecessModal,
     setGameEndModal,
-    gameEndRef
   } = props;
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
@@ -34,12 +33,17 @@ const GameBoard = (props) => {
   const resetRef = useRef(false);
   const keyDownRef = useRef(false);
   const keyCodeRef = useRef(null);
+  const distanceRef = useRef(null);
 
   useEffect(() => {
     socket.emit("sendCanvas", ({
       canvasWidth: canvasRef.current.width,
       canvasHeight: canvasRef.current.height
     }));
+
+    socket.on("setDistance", ({ distance }) => {
+      distanceRef.current = distance;
+    });
 
     socket.on("moveBall", ({ ballData, end, isBallTop }) => {
       ballObj.x = ballData.x;
@@ -72,24 +76,12 @@ const GameBoard = (props) => {
       };
     });
 
-    socket.on("userKeyDown", ({ keyCode, distance }) => {
-      if (keyCode === LEFT) {
-        userPaddleObj.x -= distance;
-      }
-
-      if (keyCode === RIGHT) {
-        userPaddleObj.x += distance;
-      }
+    socket.on("userKeyDown", ({ userPaddleX }) => {
+      userPaddleObj.x = userPaddleX;
     });
 
-    socket.on("partnerKeyDown", ({ keyCode, distance }) => {
-      if (keyCode === LEFT) {
-        partnerPaddleObj.x -= distance;
-      }
-
-      if (keyCode === RIGHT) {
-        partnerPaddleObj.x += distance;
-      }
+    socket.on("partnerKeyDown", ({ partnerPaddleX }) => {
+      partnerPaddleObj.x = partnerPaddleX;
     });
 
     socket.on("redirectHome", () => {
@@ -152,33 +144,21 @@ const GameBoard = (props) => {
       socket.emit("moveBall", isModerator);
 
       if (keyDownRef.current && isModerator) {
+        movePaddle(canvas, keyCodeRef.current, userPaddleObj, distanceRef.current);
+
         socket.emit("userKeyDown", {
           keyCode: keyCodeRef.current,
           partnerSocketId
         });
-
-        if (keyCodeRef.current === LEFT) {
-          userPaddleObj.x -= 5;
-        }
-
-        if (keyCodeRef.current === RIGHT) {
-          userPaddleObj.x += 5;
-        }
       }
 
       if (keyDownRef.current && !isModerator) {
+        movePaddle(canvas, keyCodeRef.current, partnerPaddleObj, distanceRef.current);
+
         socket.emit("partnerKeyDown", {
           keyCode: keyCodeRef.current,
           partnerSocketId
         });
-
-        if (keyCodeRef.current === LEFT) {
-          partnerPaddleObj.x -= 5;
-        }
-
-        if (keyCodeRef.current === RIGHT) {
-          partnerPaddleObj.x += 5;
-        }
       }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);

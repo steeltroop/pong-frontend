@@ -1,4 +1,5 @@
 import React from "react";
+import Score from "../score/Score";
 import styles from "./ScoreBoard.module.css";
 
 const ScoreBoard = (props) => {
@@ -6,6 +7,7 @@ const ScoreBoard = (props) => {
     count,
     isMatched,
     isPlaying,
+    isModerator,
     userScore,
     partnerScore
   } = props;
@@ -13,25 +15,12 @@ const ScoreBoard = (props) => {
   return (
     <>
       {isPlaying
-        ? <div className={styles.score} >
-            <div className={styles.userScore}>
-              <div className={styles.userWrapper}>
-                Hero
-              </div>
-              <div>
-                {userScore}
-              </div>
-            </div>
-            <div className={styles.partnerScore}>
-              <div className={styles.userWrapper}>
-                Villain
-              </div>
-              <div>
-                {partnerScore}
-              </div>
-            </div>
-          </div>
-        : <div className={styles.count} >READY! {isMatched && count}</div>}
+        ? <Score
+            isModerator={isModerator}
+            userScore={userScore}
+            partnerScore={partnerScore}
+          />
+        : <div className={styles.count}>READY! {isMatched && count}</div>}
     </>
   );
 };
