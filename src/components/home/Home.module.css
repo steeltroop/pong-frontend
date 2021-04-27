@@ -40,20 +40,39 @@
   text-align: center;
 }
 
-.pressText {
-  margin-top: 30px;
-  font-size: 20px;
-  color: #f2f2f2;
-  animation: blink 1.5s steps(4, start) infinite;
-}
-
 .startButton {
+  background-color: #EDF2F4;
   padding: 15px 20px;
   border: 5px solid #2f3542;
   border-radius: 20px;
-  font-size: 25px;
+  font-size: 30px;
   font-family: 'PRESS START 2P', cursive;
   cursor: pointer;
+}
+
+.googleButton {
+  background-color: #3F80EC;
+  padding: 15px 20px;
+  border: 5px solid #2f3542;
+  border-radius: 20px;
+  color: #F7F7F7;
+  font-size: 30px;
+  font-family: 'PRESS START 2P', cursive;
+  letter-spacing: -1px;
+  word-spacing: -16px;
+  cursor: pointer;
+}
+
+.googleButton img {
+  margin-right: 25px;
+  width: 35px;
+}
+
+.pressText {
+  margin-top: 30px;
+  font-size: 25px;
+  color: #f2f2f2;
+  animation: blink 1.5s steps(4, start) infinite;
 }
 
 @keyframes blink {

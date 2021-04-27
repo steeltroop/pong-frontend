@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { googleLogin } from "../../api/firebase/googleAuth";
 import * as userActions from "../../redux/actions/userActions";
-import { URL } from "../../constants";
-import styles from "./Login.module.css";
+import googleLogo from "../../assets/images/googleLogo.png";
+import styles from "../home/Home.module.css";
 
 const Login = () => {
   const history = useHistory();
@@ -24,25 +24,17 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.innerWrapper}>
+      <div className={styles.contentsWrapper}>
         <div className={styles.title}>
-          <h1>PONG!</h1>
+          <span>PONG!</span>
         </div>
-        <div className={styles.loginContainer}>
-          <div>
+        <div className={styles.content}>
+          <div className={styles.googleButton}>
             <div
-              className={styles.button}
               onClick={handleClick}
             >
-              <div className={styles.iconWrapper}>
-                <img
-                  className={styles.icon}
-                  src={URL.GOOGLE_LOGO}
-                />
-              </div>
-              <p className={styles.text}>
-                <b>Sign in with google</b>
-              </p>
+              <img src={googleLogo} />
+              Sign in with Google
             </div>
           </div>
           <div className={styles.pressText}>

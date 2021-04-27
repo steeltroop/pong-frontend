@@ -8,7 +8,7 @@ const ball = (ctx, canvas, ballObj, moderator) => {
 
     draw() {
       ctx.beginPath();
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = "#f9ca24";
       ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
       ctx.strokeStyle = "black";
       ctx.strokeWidth = 4;

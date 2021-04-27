@@ -133,12 +133,12 @@ const Battle = ({ socket }) => {
               modalCountDown={modalCountDown}
             />
           : <div className={styles.notice} >
-              <span>
+              <div>
                 {isMatched
-                  ? MESSAGE.MATCHING_USER
-                  : MESSAGE.FINDING_USER
+                  ? <span className={styles.matchText}>{MESSAGE.MATCHING_USER}</span>
+                  : <span>{MESSAGE.FINDING_USER}</span>
                 }
-              </span>
+              </div>
             </div>}
       </GameBoy>
       <ChatRoom socket={socket} />

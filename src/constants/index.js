@@ -23,20 +23,16 @@ const DIRECTION = {
   RIGHT: 39,
 };
 
-const URL = {
-  GOOGLE_LOGO: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
-};
-
 const MESSAGE = {
   FINDING_USER: "Finding User...",
-  MATCHING_USER: "User matched!!",
+  MATCHING_USER: "User matched!",
   RECESSMODAL_READY: "GET READY!",
   RECESSMODAL_COUNTDOWN: "CONTDOWN",
 };
 
 const COLORS = {
-  USER_PADDLE: "#4CD137",
-  PARTNER_PADDLE: "#EF476F",
+  USER_PADDLE: "#48dbfb",
+  PARTNER_PADDLE: "#ff7979",
 };
 
 export { ROUTES, NUMBERS, DIRECTION, URL, MESSAGE, COLORS };
