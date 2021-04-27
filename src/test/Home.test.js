@@ -17,7 +17,7 @@ const store = mockStore({
 });
 
 describe("<Home />", () => {
-  it("should render 5 div node", () => {
+  it("should render div node", () => {
     const wrapper = mount(
       <Provider store={store}>
         <Home />
