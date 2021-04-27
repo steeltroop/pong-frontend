@@ -141,7 +141,11 @@ const GameBoard = (props) => {
 
       const ctx = canvas.getContext("2d");
 
-      socket.emit("moveBall", isModerator);
+      if (isModerator) {
+        socket.emit("moveBall", {
+          partnerSocketId
+        });
+      }
 
       if (keyDownRef.current && isModerator) {
         movePaddle(canvas, keyCodeRef.current, userPaddleObj, distanceRef.current);

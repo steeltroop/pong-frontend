@@ -29,7 +29,7 @@ const URL = {
 
 const MESSAGE = {
   FINDING_USER: "Finding User...",
-  MATCHING_USER: "Matching User!!",
+  MATCHING_USER: "User matched!!",
   RECESSMODAL_READY: "GET READY!",
   RECESSMODAL_COUNTDOWN: "CONTDOWN",
 };
@@ -37,6 +37,6 @@ const MESSAGE = {
 const COLORS = {
   USER_PADDLE: "#4CD137",
   PARTNER_PADDLE: "#EF476F",
-}
+};
 
 export { ROUTES, NUMBERS, DIRECTION, URL, MESSAGE, COLORS };
