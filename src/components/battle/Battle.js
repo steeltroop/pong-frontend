@@ -69,7 +69,7 @@ const Battle = ({ socket }) => {
             {MESSAGE.RECESSMODAL_READY}
           </div>
           <div>
-          {`${MESSAGE.RECESSMODAL_COUNTDOWN} ${modalCount}`}
+            {`${MESSAGE.RECESSMODAL_COUNTDOWN} ${modalCount}`}
           </div>
         </Modal>
       </ModalPortal>
