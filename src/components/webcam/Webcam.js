@@ -56,6 +56,7 @@ const Webcam = ({ socket, isMatched }) => {
           stream && stream.getTracks().forEach(track => track.stop());
           peer.removeStream(stream);
           peer.removeAllListeners("signal");
+          peer.destroy();
         });
       }
 
@@ -87,6 +88,7 @@ const Webcam = ({ socket, isMatched }) => {
           stream && stream.getTracks().forEach(track => track.stop());
           peer.removeStream(stream);
           peer.removeAllListeners("signal");
+          peer.destroy();
         });
       }
     })();
