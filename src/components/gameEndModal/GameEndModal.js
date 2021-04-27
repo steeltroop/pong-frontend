@@ -36,8 +36,11 @@ const GameEndModal = ({ userScore, socket }) => {
         {isModerator && moderatorStatus}
         {!isModerator && partnerStatus}
       </div>
-      <div className={styles.buttonWrapper}>
-        <p onClick={handleHomeButtonClick}>HOME</p>
+      <div
+        className={styles.buttonWrapper}
+        onClick={handleHomeButtonClick}
+      >
+        <p>HOME</p>
       </div>
     </div>
   );
