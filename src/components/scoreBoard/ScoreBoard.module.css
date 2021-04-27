@@ -1,26 +1,3 @@
-.score {
-  background-color: #293241;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-radius: 2px;
-  color: #FFFFFF;
-  font-size: 27px;
-}
-
-.userScore {
-  color: #4CD137;
-}
-
-.userWrapper {
-  margin-bottom: 20px;
-}
-
-.partnerScore {
-  color: #EF476F;
-}
-
 .count {
   background-color: #293241;
   display: flex;
