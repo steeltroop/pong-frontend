@@ -1,6 +1,6 @@
 export const getUserData = async (data, setUsers) => {
   try {
-    const res = await fetch(process.env.REACT_APP_PORT + "/users", {
+    const res = await fetch(process.env.REACT_APP_SERVER_URL + "/users", {
       credentials: "include",
       method: "GET"
     });
@@ -14,7 +14,7 @@ export const getUserData = async (data, setUsers) => {
 
 export const updateWinnerScore = async (email) => {
   try {
-    await fetch(process.env.REACT_APP_PORT + "/battle", {
+    await fetch(process.env.REACT_APP_SERVER_URL + "/battle", {
       credentials: "include",
       method: "PATCH",
       headers: {
