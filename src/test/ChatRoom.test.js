@@ -1,11 +1,9 @@
 import React from "react";
-import { configure, mount } from "enzyme";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import ChatRoom from "../components/chatRoom/ChatRoom";
-
-configure({ adapter: new Adapter() });
 
 const mockStore = configureMockStore();
 const store = mockStore({
@@ -32,12 +30,30 @@ const store = mockStore({
   }
 });
 
-describe("<ChatRoom />", () => {
-  it("should render div node", () => {
-    const wrapper = mount(
+describe("<Chatroom />", () => {
+  test("should render button with text", () => {
+    window.HTMLElement.prototype.scrollIntoView = () => {};
+
+    render(
       <Provider store={store}>
         <ChatRoom />
       </Provider>
     );
+
+    expect(screen.getByText("send")).toBeInTheDocument();
+  });
+
+  test("should have 1 button, 1 input, 1 ul", () => {
+    window.HTMLElement.prototype.scrollIntoView = () => {};
+
+    render(
+      <Provider store={store}>
+        <ChatRoom />
+      </Provider>
+    );
+
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+    expect(screen.getByRole("list")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
   });
 });

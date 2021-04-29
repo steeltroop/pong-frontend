@@ -15,7 +15,7 @@ const Score = (props) => {
         <>
           <div style={{ color: COLORS.USER_PADDLE }}>
             <div className={styles.userNick}>
-              PANDA<span className={styles.panda}>🐼</span>
+              PANDA <span className={styles.panda}>🐼</span>
             </div>
             <div>
               {userScore}
@@ -23,7 +23,7 @@ const Score = (props) => {
           </div>
           <div style={{ color: COLORS.PARTNER_PADDLE }}>
             <div className={styles.userNick}>
-              BEAR<span className={styles.bear}>🐻</span>
+              BEAR <span className={styles.bear}>🐻</span>
             </div>
             <div>
               {partnerScore}
@@ -34,7 +34,7 @@ const Score = (props) => {
         <>
         <div style={{ color: COLORS.USER_PADDLE }}>
           <div className={styles.userNick}>
-            Villain
+            PANDA <span className={styles.panda}>🐼</span>
           </div>
           <div>
             {partnerScore}
@@ -42,7 +42,7 @@ const Score = (props) => {
         </div>
         <div style={{ color: COLORS.PARTNER_PADDLE }}>
           <div className={styles.userNick}>
-            Hero
+            BEAR <span className={styles.bear}>🐻</span>
           </div>
           <div>
             {userScore}

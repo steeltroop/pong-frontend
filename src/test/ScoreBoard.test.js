@@ -19,9 +19,7 @@ describe("<ScoreBoard />", () => {
 
     expect(wrapper.find("div")).toHaveLength(7);
     expect(wrapper.find("div").first().hasClass("score")).toBe(true);
-    expect(wrapper.find("div").at(2).text()).toBe("Villain");
-    expect(wrapper.find("div").at(3).text()).toBe("");
-    expect(wrapper.find("div").at(5).text()).toBe("Hero");
-    expect(wrapper.find("div").at(6).text()).toBe("");
+    expect(wrapper.find("div").at(2).text()).toBe("PANDA 🐼");
+    expect(wrapper.find("div").at(5).text()).toBe("BEAR 🐻");
   });
 });
