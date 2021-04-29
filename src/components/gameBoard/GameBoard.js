@@ -106,15 +106,8 @@ const GameBoard = (props) => {
   useEffect(() => {
     if (!isRoundEnd) return;
 
-    if (gameEndRef.current) {
-      resetRef.current = true;
-
-      return;
-    }
-
     setRecessModal(true);
     modalCountDown();
-
     resetRef.current = true;
 
     setTimeout(() => {
@@ -134,6 +127,7 @@ const GameBoard = (props) => {
 
     const render = () => {
       if (resetRef.current) return;
+      if (gameEndRef.current) return;
 
       const canvas = canvasRef.current;
 
