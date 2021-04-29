@@ -2,7 +2,7 @@ import socketIOClient from "socket.io-client";
 import * as roomMatchActions from "../redux/actions/roomMatchActions";
 import * as userActions from "../redux/actions/userActions";
 
-const SERVER_URL = process.env.REACT_APP_PORT;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export const socket = socketIOClient(SERVER_URL);
 
