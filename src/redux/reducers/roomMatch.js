@@ -1,14 +1,14 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
+const RESET_STATE = "RESET_STATE";
+const UPDATE_SIGNAL = "UPDATE_SIGNAL";
 const UPDATE_ROOMMATCH = "UPDATE_ROOMMATCH";
 const UPDATE_TEXTSENDING = "UPDATE_TEXTSENDING";
-const UPDATE_SIGNAL = "UPDATE_SIGNAL";
-const RESET_STATE = "RESET_STATE";
 
+export const resetState = createAction(RESET_STATE);
+export const updateSignal = createAction(UPDATE_SIGNAL);
 export const updateRoomMatch = createAction(UPDATE_ROOMMATCH);
 export const updateTextSending = createAction(UPDATE_TEXTSENDING);
-export const updateSignal = createAction(UPDATE_SIGNAL);
-export const resetState = createAction(RESET_STATE);
 
 const initialState = {
   isMatched: false,
@@ -31,7 +31,7 @@ export default createReducer(initialState, {
   [UPDATE_ROOMMATCH]: (state, { payload }) => {
     return {
       ...state,
-      ...payload
+      ...payload,
     };
   },
   [UPDATE_TEXTSENDING]: (state, { payload }) => {
@@ -40,7 +40,7 @@ export default createReducer(initialState, {
 
     return {
       ...state,
-      chats: newChats
+      chats: newChats,
     };
   },
   [UPDATE_SIGNAL]: (state, { payload }) => {

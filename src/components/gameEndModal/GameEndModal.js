@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import styles from "./GameEndModal.module.css";
 import { updateWinnerScore } from "../../api/gameApi";
-import { NUMBERS } from "../../constants";
 import { checkModeratorStats, checkPartnerStatus } from "../../utils/moderatorStatus";
+import { NUMBERS } from "../../constants";
+import styles from "./GameEndModal.module.css";
 
 const GameEndModal = ({ userScore, socket }) => {
-  const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
-  const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
-  const userSocketId = useSelector(state => state.user.socketId);
   const email = useSelector(state => state.user.email);
+  const userSocketId = useSelector(state => state.user.socketId);
+  const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
+  const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
 
-  const isModeratorWinner = isModerator && userScore === NUMBERS.WIN_SCORE;
   const isPartnerWinner = !isModerator && userScore === NUMBERS.WIN_SCORE;
+  const isModeratorWinner = isModerator && userScore === NUMBERS.WIN_SCORE;
 
-  let moderatorStatus = null;
   let partnerStatus = null;
+  let moderatorStatus = null;
 
   useEffect(() => {
     if (isModeratorWinner || isPartnerWinner) {
@@ -24,12 +24,12 @@ const GameEndModal = ({ userScore, socket }) => {
   }, []);
 
   const handleHomeButtonClick = () => {
-    socket.emit("destroyPeer", { userSocketId, partnerSocketId });
     socket.emit("leaveRoom", { userSocketId, partnerSocketId });
+    socket.emit("destroyPeer", { userSocketId, partnerSocketId });
   };
 
-  moderatorStatus = checkModeratorStats(isModeratorWinner);
   partnerStatus = checkPartnerStatus(isPartnerWinner);
+  moderatorStatus = checkModeratorStats(isModeratorWinner);
 
   return (
     <div className={styles.contentWrapper}>

@@ -31,8 +31,8 @@ const MESSAGE = {
 };
 
 const COLORS = {
-  USER_PADDLE: "#e9ecef",
-  PARTNER_PADDLE: "#9c6644",
+  USER_PADDLE: "#E9ECEF",
+  PARTNER_PADDLE: "#9C6644",
 };
 
 export { ROUTES, NUMBERS, DIRECTION, MESSAGE, COLORS };

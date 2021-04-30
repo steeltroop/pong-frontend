@@ -1,6 +1,6 @@
 import React from "react";
-import { configure, mount } from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { configure, mount } from "enzyme";
 import Modal from "../components/modal/Modal";
 
 configure({ adapter: new Adapter() });

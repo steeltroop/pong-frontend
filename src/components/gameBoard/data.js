@@ -20,7 +20,7 @@ const canvasData = {
     width: 100,
     x: 250,
     color: COLORS.PARTNER_PADDLE
-  }
+  },
 };
 
 export default canvasData;

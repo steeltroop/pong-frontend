@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
+import { Provider } from "react-redux";
 import ChatRoom from "../components/chatRoom/ChatRoom";
+import "@testing-library/jest-dom";
 
 const mockStore = configureMockStore();
 const store = mockStore({
@@ -11,7 +11,7 @@ const store = mockStore({
     isMatched: false,
     partner: {
       socketId: "",
-      name: ""
+      name: "",
     },
     chats: [],
     webcam: {
@@ -26,7 +26,7 @@ const store = mockStore({
   user: {
     email: "",
     name: "",
-    socketId: ""
+    socketId: "",
   }
 });
 

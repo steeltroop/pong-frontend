@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as roomMatchActions from "../../redux/reducers/roomMatch";
+import { useHistory } from "react-router-dom";
 import movePaddle from "./movePaddle";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
 import data from "./data";
+import * as roomMatchActions from "../../redux/reducers/roomMatch";
 import { NUMBERS } from "../../constants";
 import styles from "./GameBoard.module.css";
 
@@ -26,8 +26,8 @@ const GameBoard = (props) => {
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
 
-  const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
+  const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -41,7 +41,7 @@ const GameBoard = (props) => {
   useEffect(() => {
     socket.emit("sendCanvas", ({
       canvasWidth: canvasRef.current.width,
-      canvasHeight: canvasRef.current.height
+      canvasHeight: canvasRef.current.height,
     }));
 
     socket.on("setDistance", ({ distance }) => {
@@ -147,7 +147,7 @@ const GameBoard = (props) => {
 
         socket.emit("userKeyDown", {
           keyCode: keyCodeRef.current,
-          partnerSocketId
+          partnerSocketId,
         });
       }
 
@@ -156,7 +156,7 @@ const GameBoard = (props) => {
 
         socket.emit("partnerKeyDown", {
           keyCode: keyCodeRef.current,
-          partnerSocketId
+          partnerSocketId,
         });
       }
 

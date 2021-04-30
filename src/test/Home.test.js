@@ -1,8 +1,8 @@
 import React from "react";
-import { configure, mount } from "enzyme";
-import { Provider } from "react-redux";
-import configureMockStore from "redux-mock-store";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import configureMockStore from "redux-mock-store";
+import { Provider } from "react-redux";
+import { configure, mount } from "enzyme";
 import Home from "../components/home/Home";
 
 configure({ adapter: new Adapter() });

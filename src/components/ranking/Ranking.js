@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { getUserData } from "../../api/gameApi";
 import GameBoy from "../gameBoy/GameBoy";
 import styles from "./Ranking.module.css";
-import { getUserData } from "../../api/gameApi";
 
 const Ranking = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ const Ranking = () => {
       if (index + 1 === 1) {
         rank = "1st";
       } else if (index + 1 === 2) {
-        rank = "2st"
+        rank = "2st";
       } else {
         rank = `${index + 1}th`;
       }

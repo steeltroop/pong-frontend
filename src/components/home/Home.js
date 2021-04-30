@@ -1,13 +1,13 @@
 import React from "react";
-import { subscribeSocket } from "../../config/socket";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { subscribeSocket } from "../../config/socket";
 import styles from "./Home.module.css";
 
 const Home = ({ socket }) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
   const { name, email } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClick = () => {
     if (email) {

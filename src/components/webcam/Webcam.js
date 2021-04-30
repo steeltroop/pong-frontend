@@ -21,7 +21,7 @@ const Webcam = ({ socket, isMatched }) => {
         .mediaDevices
         .getUserMedia({
           video: true,
-          audio: false
+          audio: false,
         });
 
       if (userVideo.current) {
@@ -32,14 +32,14 @@ const Webcam = ({ socket, isMatched }) => {
         const peer = new Peer({
           initiator: true,
           trickels: false,
-          stream: stream
+          stream: stream,
         });
 
         peer.on("signal", data => {
           if (!signalCallStatus.current) {
             socket.emit("callUser", {
               partnerSocketId: partner.socketId,
-              signalData: data
+              signalData: data,
             });
 
             signalCallStatus.current = true;
@@ -66,14 +66,14 @@ const Webcam = ({ socket, isMatched }) => {
         const peer = new Peer({
           initiator: false,
           trickle: false,
-          stream: stream
+          stream: stream,
         });
 
         peer.on("signal", data => {
           if (!signalCallStatus.current) {
             socket.emit("acceptCall", {
               signalData: data,
-              partnerSocketId: partner.socketId
+              partnerSocketId: partner.socketId,
             });
 
             signalCallStatus.current = true;
