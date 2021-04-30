@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as userActions from "../../redux/actions/userActions";
+import * as roomMatchActions from "../../redux/reducers/roomMatch";
 import movePaddle from "./movePaddle";
 import drawPaddle from "./paddle";
 import drawBall from "./ball";
@@ -25,10 +25,13 @@ const GameBoard = (props) => {
   } = props;
   const [isReset, setIsReset] = useState(false);
   const [isRoundEnd, setIsRoundEnd] = useState(false);
+
   const isModerator = useSelector(state => state.roomMatch.gameBoard.isModerator);
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
+
   const dispatch = useDispatch();
   const history = useHistory();
+
   const canvasRef = useRef(null);
   const resetRef = useRef(false);
   const keyDownRef = useRef(false);
@@ -73,7 +76,7 @@ const GameBoard = (props) => {
         if (!isModerator && !isBallTop) {
           plusUserScore();
         }
-      };
+      }
     });
 
     socket.on("userKeyDown", ({ userPaddleX }) => {
@@ -85,7 +88,7 @@ const GameBoard = (props) => {
     });
 
     socket.on("redirectHome", () => {
-      dispatch(userActions.resetState());
+      dispatch(roomMatchActions.resetState());
 
       history.push("/");
     });
@@ -142,9 +145,7 @@ const GameBoard = (props) => {
       const ctx = canvas.getContext("2d");
 
       if (isModerator) {
-        socket.emit("moveBall", {
-          partnerSocketId
-        });
+        socket.emit("moveBall", { partnerSocketId });
       }
 
       if (keyDownRef.current && isModerator) {

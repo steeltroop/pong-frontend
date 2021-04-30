@@ -4,5 +4,5 @@ import roomMatch from "./roomMatch";
 
 export default combineReducers({
   roomMatch,
-  user
+  user,
 });

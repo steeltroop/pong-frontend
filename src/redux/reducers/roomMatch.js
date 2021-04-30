@@ -1,60 +1,60 @@
-import * as actionType from "../actionTypes";
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+const UPDATE_ROOMMATCH = "UPDATE_ROOMMATCH";
+const UPDATE_TEXTSENDING = "UPDATE_TEXTSENDING";
+const UPDATE_SIGNAL = "UPDATE_SIGNAL";
+const RESET_STATE = "RESET_STATE";
+
+export const updateRoomMatch = createAction(UPDATE_ROOMMATCH);
+export const updateTextSending = createAction(UPDATE_TEXTSENDING);
+export const updateSignal = createAction(UPDATE_SIGNAL);
+export const resetState = createAction(RESET_STATE);
 
 const initialState = {
   isMatched: false,
   partner: {
     socketId: "",
-    name: ""
+    name: "",
   },
   chats: [],
   webcam: {
     isCalling: false,
     isCallAccepted: false,
-    callerSignal: null
+    callerSignal: null,
   },
   gameBoard: {
     isModerator: false,
   }
 };
 
-const roomMatch = (state = initialState, action) => {
-  switch (action.type) {
-    case actionType.UPDATE_PARTNERID:
-      return {
-        ...state,
-        partner: {
-          ...state.partner,
-          socketId: action.payload.socketId
-        }
-      };
-    case actionType.UPDATE_ROOMMATCH:
-      return {
-        ...state,
-        ...action.payload.data
-      };
-    case actionType.UPDATE_TEXTSENDING:
-      const newChats = state.chats.slice();
-      newChats.push(action.payload.data);
+export default createReducer(initialState, {
+  [UPDATE_ROOMMATCH]: (state, { payload }) => {
+    return {
+      ...state,
+      ...payload
+    };
+  },
+  [UPDATE_TEXTSENDING]: (state, { payload }) => {
+    const newChats = state.chats.slice();
+    newChats.push(payload);
 
-      return {
-        ...state,
-        chats: newChats
-      };
-    case actionType.UPDATE_SIGNAL:
-      return {
-        ...state,
-        webcam: {
-          ...state.webcam,
-          callerSignal: action.payload.data,
-          isCalling: false,
-          isCallAccepted: true
-        }
-      };
-    case actionType.RESET_STATE:
-      return Object.assign({}, initialState);
-    default:
-      return Object.assign({}, state);
-  }
-};
-
-export default roomMatch;
+    return {
+      ...state,
+      chats: newChats
+    };
+  },
+  [UPDATE_SIGNAL]: (state, { payload }) => {
+    return {
+      ...state,
+      webcam: {
+        ...state.webcam,
+        callerSignal: payload,
+        isCalling: false,
+        isCallAccepted: true,
+      }
+    }
+  },
+  [RESET_STATE]: () => {
+    return Object.assign({}, initialState);
+  },
+});

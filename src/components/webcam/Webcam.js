@@ -10,6 +10,7 @@ const Webcam = ({ socket, isMatched }) => {
     isCallAccepted,
     callerSignal,
   } = useSelector(state => state.roomMatch.webcam);
+
   const userVideo = useRef();
   const partnerVideo = useRef();
   const signalCallStatus = useRef();
@@ -22,6 +23,7 @@ const Webcam = ({ socket, isMatched }) => {
           video: true,
           audio: false
         });
+
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }

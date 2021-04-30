@@ -5,7 +5,7 @@ export const postGoogleLogin = async (email, name) => {
   };
 
   try {
-    await fetch(process.env.REACT_APP_PORT + "/auth/login", {
+    await fetch(process.env.REACT_APP_SERVER_URL + "/auth/login", {
       credentials: "include",
       method: "POST",
       headers: {
@@ -21,7 +21,7 @@ export const postGoogleLogin = async (email, name) => {
 
 export const postGoogleLogout = async () => {
   try {
-    await fetch(process.env.REACT_APP_PORT + "/auth/logout", {
+    await fetch(process.env.REACT_APP_SERVER_URL + "/auth/logout", {
       credentials: "include",
       method: "POST",
       headers: {

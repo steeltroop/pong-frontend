@@ -1,6 +1,6 @@
 export const getUserData = async (data, setUsers) => {
   try {
-    const res = await fetch(process.env.REACT_APP_PORT + "/users", {
+    const res = await fetch(process.env.REACT_APP_SERVER_URL + "/users", {
       credentials: "include",
       method: "GET"
     });
@@ -14,15 +14,11 @@ export const getUserData = async (data, setUsers) => {
 
 export const updateWinnerScore = async (email) => {
   try {
-    await fetch(process.env.REACT_APP_PORT + "/battle", {
+    await fetch(process.env.REACT_APP_SERVER_URL + "/battle", {
       credentials: "include",
       method: "PATCH",
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email
-      })
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ email: email }),
     });
   } catch(err) {
     alert("승점 업데이트가 되지 않았습니다.");

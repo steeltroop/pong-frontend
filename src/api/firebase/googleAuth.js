@@ -7,7 +7,10 @@ export const googleLogin = async (nextPage, setUser) => {
   const { user } = await firebase.auth().signInWithPopup(provider);
 
   postGoogleLogin(user.email, user.displayName);
-  setUser({ email: user.email, name: user.displayName });
+  setUser({
+    email: user.email,
+    name: user.displayName,
+  });
 
   nextPage();
 };
