@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import Score from "../components/score/Score";
+import "@testing-library/jest-dom";
 
 describe("<Score />", () => {
   test("should render with user and partnerScore", () => {

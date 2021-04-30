@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { googleLogin } from "../../api/firebase/googleAuth";
 import * as userActions from "../../redux/reducers/user";
+import { googleLogin } from "../../api/firebase/googleAuth";
 import googleLogo from "../../assets/images/googleLogo.png";
 import styles from "../home/Home.module.css";
 

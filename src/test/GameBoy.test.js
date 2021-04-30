@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import GameBoy from "../components/gameBoy/GameBoy";
+import "@testing-library/jest-dom";
 
 describe("<GameBoy />", () => {
   test("should render default values without props", () => {

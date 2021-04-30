@@ -6,7 +6,7 @@ const Score = (props) => {
   const {
     isModerator,
     userScore,
-    partnerScore
+    partnerScore,
   } = props;
 
   return (

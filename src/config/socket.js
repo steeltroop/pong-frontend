@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
-import * as roomMatchActions from "../redux/reducers/roomMatch";
 import * as userActions from "../redux/reducers/user";
+import * as roomMatchActions from "../redux/reducers/roomMatch";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 

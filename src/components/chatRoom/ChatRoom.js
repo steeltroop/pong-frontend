@@ -7,8 +7,8 @@ const ChatRoom = ({ socket }) => {
 
   const userSocketId = useSelector(state => state.user.socketId);
   const roomMatch = useSelector(state => state.roomMatch);
-  const chats = roomMatch.chats;
   const partnerSocketId = roomMatch.partner.socketId;
+  const chats = roomMatch.chats;
 
   const chatRef = useRef();
 

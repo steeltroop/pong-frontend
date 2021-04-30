@@ -10,7 +10,7 @@ export const postGoogleLogin = async (email, name) => {
       method: "POST",
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(payload)
     });
@@ -26,7 +26,7 @@ export const postGoogleLogout = async () => {
       method: "POST",
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
   } catch (err) {

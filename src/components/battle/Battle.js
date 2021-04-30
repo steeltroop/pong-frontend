@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import GameBoy from "../gameBoy/GameBoy";
+import ScoreBoard from "../scoreBoard/ScoreBoard";
 import GameBoard from "../gameBoard/GameBoard";
 import ChatRoom from "../chatRoom/ChatRoom";
-import ScoreBoard from "../scoreBoard/ScoreBoard";
+import GameBoy from "../gameBoy/GameBoy";
 import Webcam from "../webcam/Webcam";
 import GameEndModal from "../gameEndModal/GameEndModal";
 import ModalPortal from "../modalPortal/ModalPortal";
@@ -12,11 +12,11 @@ import { NUMBERS, MESSAGE } from "../../constants";
 import styles from "./Battle.module.css";
 
 const Battle = ({ socket }) => {
-  const [count, setCount] = useState(NUMBERS.MODAL_COUNT);
-  const [modalCount, setModalCount] = useState(NUMBERS.MODAL_COUNT);
   const [isPlaying, setPlaying] = useState(false);
   const [showRecessModal, setRecessModal] = useState(false);
   const [showGameEndModal, setGameEndModal] = useState(false);
+  const [count, setCount] = useState(NUMBERS.MODAL_COUNT);
+  const [modalCount, setModalCount] = useState(NUMBERS.MODAL_COUNT);
   const [userScore, setUserScore] = useState(NUMBERS.INITIAL_SCORE);
   const [partnerScore, setPartnerScore] = useState(NUMBERS.INITIAL_SCORE);
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { configure, mount } from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { configure, mount } from "enzyme";
 import ScoreBoard from "../components/scoreBoard/ScoreBoard";
 
 configure({ adapter: new Adapter() });

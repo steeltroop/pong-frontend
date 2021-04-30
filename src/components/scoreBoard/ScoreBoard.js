@@ -9,7 +9,7 @@ const ScoreBoard = (props) => {
     isPlaying,
     isModerator,
     userScore,
-    partnerScore
+    partnerScore,
   } = props;
 
   return (
