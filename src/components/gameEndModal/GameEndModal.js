@@ -10,6 +10,7 @@ const GameEndModal = ({ userScore, socket }) => {
   const partnerSocketId = useSelector(state => state.roomMatch.partner.socketId);
   const userSocketId = useSelector(state => state.user.socketId);
   const email = useSelector(state => state.user.email);
+
   const isModeratorWinner = isModerator && userScore === NUMBERS.WIN_SCORE;
   const isPartnerWinner = !isModerator && userScore === NUMBERS.WIN_SCORE;
 

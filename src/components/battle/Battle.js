@@ -19,11 +19,13 @@ const Battle = ({ socket }) => {
   const [showGameEndModal, setGameEndModal] = useState(false);
   const [userScore, setUserScore] = useState(NUMBERS.INITIAL_SCORE);
   const [partnerScore, setPartnerScore] = useState(NUMBERS.INITIAL_SCORE);
+
   const { isMatched } = useSelector(state => state.roomMatch);
   const { isModerator } = useSelector(state => state.roomMatch.gameBoard);
+
   const timerRef = useRef();
-  const modalTimerRef = useRef();
   const gameEndRef = useRef();
+  const modalTimerRef = useRef();
 
   let modal = null;
 
@@ -37,6 +39,7 @@ const Battle = ({ socket }) => {
   useEffect(() => {
     if (count === NUMBERS.END_COUNT) {
       clearInterval(timerRef.current);
+
       setPlaying(true);
     }
 
@@ -51,8 +54,9 @@ const Battle = ({ socket }) => {
     modalTimerRef.current = setInterval(() => {
       setModalCount(prev => {
         if (!prev) {
-          setModalCount(NUMBERS.MODAL_COUNT);
           clearInterval(modalTimerRef.current);
+
+          setModalCount(NUMBERS.MODAL_COUNT);
           return;
         }
 
@@ -90,15 +94,11 @@ const Battle = ({ socket }) => {
   }
 
   const plusUserScore = () => {
-    if (!gameEndRef.current) {
-      setUserScore(prev => prev + 1);
-    }
+    if (!gameEndRef.current) setUserScore(prev => prev + 1);
   };
 
   const plusPartnerScore = () => {
-    if (!gameEndRef.current) {
-      setPartnerScore(prev => prev + 1);
-    }
+    if (!gameEndRef.current) setPartnerScore(prev => prev + 1);
   };
 
   return (

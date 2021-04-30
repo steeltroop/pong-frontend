@@ -4,10 +4,12 @@ import styles from "./ChatRoom.module.css";
 
 const ChatRoom = ({ socket }) => {
   const [text, setText] = useState("");
+
+  const userSocketId = useSelector(state => state.user.socketId);
   const roomMatch = useSelector(state => state.roomMatch);
   const chats = roomMatch.chats;
   const partnerSocketId = roomMatch.partner.socketId;
-  const userSocketId = useSelector(state => state.user.socketId);
+
   const chatRef = useRef();
 
   useEffect(() => {
@@ -37,7 +39,10 @@ const ChatRoom = ({ socket }) => {
             const isMyText = chat.userSocketId === userSocketId;
 
             return (
-              <div className={isMyText ? styles.userBubble : styles.partnerBubble}>
+              <div
+                className={isMyText ? styles.userBubble : styles.partnerBubble}
+                key={index}
+              >
                 <div className={styles.bubbleA} ></div>
                 <div className={styles.bubbleB} ></div>
                 <div className={styles.bubbleC} ></div>

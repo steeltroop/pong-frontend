@@ -17,12 +17,8 @@ export const updateWinnerScore = async (email) => {
     await fetch(process.env.REACT_APP_SERVER_URL + "/battle", {
       credentials: "include",
       method: "PATCH",
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email
-      })
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ email: email }),
     });
   } catch(err) {
     alert("승점 업데이트가 되지 않았습니다.");
