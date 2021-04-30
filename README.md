@@ -1,6 +1,6 @@
 # 🎮 PONG
 
-**Pong**은 과거 2D Pixel 게임을 재현한 웹 게임입니다.
+**Pong**은 WebRTC, Socket을 기반으로 한 스낵게임입니다.
 
 Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니다. 카메라 접근을 허용하면 화상연결이 가능합니다.
 3점을 먼저 흭득학 유저가 승리하게 됩니다.
@@ -15,13 +15,13 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 # Table Contents
 
-- 🛠 [Tech Stack](#🛠-Tech-Stack)
-- 📆 [Project Timeline](#📆-Project-Timeline)
-- 🍀 [Deploy](#🍀-Deploy)
-- 💿 [Install](#💿-Install)
-- 🕺 [Team work && Work division](#🕺-Team-work-&&-Work-division)
-- 🔥 [Issues to overcome](#🔥-Issues-to-overcome)
-- 🌎 [Improvements](#🌎-Improvements)
+- 🛠 [Tech Stack](#-Tech-Stack)
+- 📆 [Project Timeline](#-Project-Timeline)
+- 🍀 [Deploy](#-Deploy)
+- 💿 [Install](#-Install)
+- 🕺 [Team work && Work division](#-Team-work-&&-Work-division)
+- 🔥 [Issues to overcome](#-Issues-to-overcome)
+- 🌎 [Improvements](#-Improvements)
 
 <br>
 
@@ -81,9 +81,37 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 # 💿 Install
 
-Local환경 실행시 아래와 같이 준비가 필요합니다.
+Local환경에서 실행시 아래와 같이 준비가 필요합니다.
 
-client
+## Client
+
+Firebase 계정이 필요하며 Root 디렉토리에 .env파일을 만들고 다음과 같이 설정해 주세요.
+
+- [Firebase](https://firebase.google.com/)
+
+```
+REACT_APP_API_KEY=<YOUR_FIREBASE_API_KEY>
+REACT_APP_AUTH_DOMAIN=<YOUR_FIREBASE_AUTH_DOMAIN>
+REACT_APP_DATABASE_URL=<YOUR_FIREBASE_DATABASE_URL>
+REACT_APP_PROJECT_ID=<YOUR_FIREBASE_PROJECT_ID>
+REACT_APP_STORAGE_BUCKET=<YOUR_FIREBASE_STORAGE_BUCKET>
+REACT_APP_MESSAGEING_SENDER_ID=<YOUR_FIREBASE_MESSAGEING_SENDER_ID>
+REACT_APP_APP_ID=<YOUT_FIREBASE_APP_ID>
+REACT_APP_SERVER_URL=http://localhost: + <YOUR_PORT_NUMBER>
+```
+
+## Server
+
+MongDB 계정이 필요하며 Root 디렉토리에 .env파일을 만들고 다음과 같이 설정해 주세요.
+
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+```
+PORT=<YOUR_PORT_NUMBER>
+JWT_SECRET=<YOUR_JWT_SECRET>
+DATABASE=<YOUR_MONGODB_DATABASE_URL>
+DATABASE_PASSWORD=<YOUR_MONGODB_PASSWORD>
+```
 
 <br>
 
