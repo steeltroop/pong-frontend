@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Score from "../score/Score";
 import styles from "./ScoreBoard.module.css";
 
@@ -26,3 +27,12 @@ const ScoreBoard = (props) => {
 };
 
 export default React.memo(ScoreBoard);
+
+ScoreBoard.propTypes = {
+  count: PropTypes.number.isRequired,
+  isMatched: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  isModerator: PropTypes.bool.isRequired,
+  userScore: PropTypes.number.isRequired,
+  partnerScore: PropTypes.number.isRequired,
+};

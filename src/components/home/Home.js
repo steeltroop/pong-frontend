@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { subscribeSocket } from "../../config/socket";
 import styles from "./Home.module.css";
@@ -44,3 +45,7 @@ const Home = ({ socket }) => {
 };
 
 export default Home;
+
+Home.propTypes = {
+  socket: PropTypes.object.isRequired,
+};

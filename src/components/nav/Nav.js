@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import * as userActions from "../../redux/reducers/user";
 import { googleLogout } from "../../api/firebase/googleAuth";
@@ -66,3 +67,7 @@ const Nav = ({ socket }) => {
 };
 
 export default Nav;
+
+Nav.propTypes = {
+  socket: PropTypes.object.isRequired,
+};

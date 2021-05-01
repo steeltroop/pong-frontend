@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { COLORS } from "../../constants/index"
 import styles from "./Score.module.css";
 
@@ -54,3 +55,9 @@ const Score = (props) => {
 };
 
 export default React.memo(Score);
+
+Score.propTypes = {
+  isModerator: PropTypes.bool.isRequired,
+  userScore: PropTypes.number.isRequired,
+  partnerScore: PropTypes.number.isRequired,
+};
