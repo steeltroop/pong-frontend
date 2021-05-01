@@ -13,6 +13,15 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 <br>
 
+# Preview
+
+[Youtube Rresentation](https://youtube.com)
+### 00:00~00:00
+
+<img src="https://drive.google.com/file/d/1uv3qNaTz7npP3qhQ-UG48YqptqKSYCru/view?usp=sharing" alt="gif">
+
+<br>
+
 # Table Contents
 
 - 🛠 [Tech Stack](#-Tech-Stack)
@@ -41,7 +50,7 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - Socket.io, Web RTC, game 동기적 연결
 
 ## `3nd week - testing and deploying`
-- Nest/enjyme 프론트, 백엔드 테스트 케이스 작성
+- 프론트, 백엔드 테스트 케이스 작성
 - AWS 백엔드 배포
 - Netilify 프론트엔드 배포
 
@@ -55,6 +64,7 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - Redux
 - Socket.io
 - Web RTC
+- Simple Peer
 - Firebase AUTH
 
 ## Backend
@@ -65,6 +75,13 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - Mongoose
 - JSON Web Tokne Authentication
 - Socket.io
+
+## Test
+
+- chai
+- enzyme
+- testing-library-react
+- testing-library-jestDom
 
 <br>
 
