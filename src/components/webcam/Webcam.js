@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import Peer from "simple-peer";
 import styles from "./Webcam.module.css";
@@ -124,3 +125,8 @@ const Webcam = ({ socket, isMatched }) => {
 };
 
 export default React.memo(Webcam);
+
+Webcam.propTypes = {
+  socket: PropTypes.object.isRequired,
+  isMatched: PropTypes.bool.isRequired,
+};

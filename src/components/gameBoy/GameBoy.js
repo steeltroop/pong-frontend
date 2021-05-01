@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./GameBoy.module.css";
 
 const GameBoy = (props) => {
@@ -17,3 +18,7 @@ const GameBoy = (props) => {
 };
 
 export default GameBoy;
+
+GameBoy.propTypes = {
+  children: PropTypes.node.isRequired,
+};

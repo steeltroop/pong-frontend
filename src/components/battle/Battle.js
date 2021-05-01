@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import ScoreBoard from "../scoreBoard/ScoreBoard";
 import GameBoard from "../gameBoard/GameBoard";
 import ChatRoom from "../chatRoom/ChatRoom";
@@ -147,3 +148,7 @@ const Battle = ({ socket }) => {
 };
 
 export default Battle;
+
+Battle.propTypes = {
+  socket: PropTypes.object.isRequired,
+};

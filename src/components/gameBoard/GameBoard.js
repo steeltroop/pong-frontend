@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import movePaddle from "./movePaddle";
 import drawPaddle from "./paddle";
@@ -207,3 +208,15 @@ const GameBoard = (props) => {
 };
 
 export default GameBoard;
+
+GameBoard.propTypes = {
+  socket: PropTypes.object.isRequired,
+  userScore: PropTypes.number.isRequired,
+  partnerScore: PropTypes.number.isRequired,
+  gameEndRef: PropTypes.bool.isRequired,
+  plusUserScore: PropTypes.func.isRequired,
+  plusPartnerScore: PropTypes.func.isRequired,
+  modalCountDown: PropTypes.func.isRequired,
+  setRecessModal: PropTypes.func.isRequired,
+  setGameEndModal: PropTypes.func.isRequired,
+};

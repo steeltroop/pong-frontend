@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import styles from "./ChatRoom.module.css";
 
 const ChatRoom = ({ socket }) => {
@@ -84,3 +85,7 @@ const ChatRoom = ({ socket }) => {
 };
 
 export default ChatRoom;
+
+ChatRoom.propTypes = {
+  socket: PropTypes.object.isRequired,
+};

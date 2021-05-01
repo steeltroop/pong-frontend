@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { updateWinnerScore } from "../../api/gameApi";
 import { checkModeratorStats, checkPartnerStatus } from "../../utils/moderatorStatus";
 import { NUMBERS } from "../../constants";
@@ -48,3 +49,8 @@ const GameEndModal = ({ userScore, socket }) => {
 };
 
 export default GameEndModal;
+
+GameEndModal.propTypes = {
+  userScore: PropTypes.number.isRequired,
+  socket: PropTypes.object.isRequired,
+};
