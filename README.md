@@ -16,9 +16,8 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 # Preview
 
 [Youtube Rresentation](https://youtube.com)
-### 00:00~00:00
 
-<img src="https://drive.google.com/file/d/1uv3qNaTz7npP3qhQ-UG48YqptqKSYCru/view?usp=sharing" alt="gif">
+<img src="https://drive.google.com/uc?export=view&id=1uv3qNaTz7npP3qhQ-UG48YqptqKSYCru" alt="gif">
 
 <br>
 
@@ -58,7 +57,7 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 # 🛠 Tech Stack
 
-## Frontend
+### Frontend
 
 - React
 - Redux
@@ -67,16 +66,16 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - Simple Peer
 - Firebase AUTH
 
-## Backend
+### Backend
 
 - Node.js
 - Express
-- MongoDB / MongoDB Atlas for data persistence
-- Mongoose
-- JSON Web Tokne Authentication
 - Socket.io
+- Mongoose
+- MongoDB (Atlas)
+- JSON Web Tokne Authentication
 
-## Test
+### Test
 
 - chai
 - enzyme
@@ -100,7 +99,7 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 Local환경에서 실행시 아래와 같이 준비가 필요합니다.
 
-## Client
+### Client
 
 Firebase 계정이 필요하며 Root 디렉토리에 .env파일을 만들고 다음과 같이 설정해 주세요.
 
@@ -117,7 +116,7 @@ REACT_APP_APP_ID=<YOUT_FIREBASE_APP_ID>
 REACT_APP_SERVER_URL=http://localhost: + <YOUR_PORT_NUMBER>
 ```
 
-## Server
+### Server
 
 MongDB 계정이 필요하며 Root 디렉토리에 .env파일을 만들고 다음과 같이 설정해 주세요.
 
@@ -134,9 +133,11 @@ DATABASE_PASSWORD=<YOUR_MONGODB_PASSWORD>
 
 # 🕺 Team work && Work division
 
-## How we worked ?
+### How we worked ?
 
 처음 협업을 진행할 때 git 공동 작업, 업무 분담, 진행해야 하는 방식 모든 것들이 처음이다 보니 우선 task card로 일별로 해야할 목록들을 정해둔 후 일을 시작하였습니다. webRTC, socket, canvas 이 3가지가 가장 저희 프로젝트에 뼈대가 되는 작업이였고 크게 이 세가지를 기준으로 업무를 나눈 후 일을 진행해갔습니다. 각자 업무를 진행하면서도 최종적으로는 이 세가지 기술들이 유기적으로 연결이 되야 하고, 서로 한 작업만 하는게 아니기 때문에 모든 코드의 흐름을 이해해야 딜레이 없이 작업을 진행할수 있다고 판단하여 매일 하루를 마감하기 전 서로의 코드를 리뷰해주고 알려주는 시간을 가졌었습니다. 그리고 특정 기술에서 막힐때 마다 우선순위가 급한 일부터 같이 해결해가고, 해결이 끝나면 각자가 맡은 업무를 계속 진행하는 방식으로 프로젝트 기간동안 협업했었습니다.
+
+<br>
 
 ### 김원모 팀원
 
@@ -151,10 +152,11 @@ DATABASE_PASSWORD=<YOUR_MONGODB_PASSWORD>
 - 팀 프로젝트를 진행하며 개발에서 의사소통이 정말 중요하다는 경험을 했습니다.
 - 각자의 코드스타일, 취향, 작성 순서, 작업 방식이 다르기 때문에 얘기하며 맞춰가는점이 생각보다 힘든 과정 이었습니다. 기존에는 태스크가 주어지면 혼자 결정하고 바로 적용하며 개발했지만, 협업 하면서는 한가지 기능 구현에서도 각자의 구현 방법 중 좋은 솔루션을 결정하기 위해 대화를 해야 했기 때문에 그 과정에서 혼자 작업하는것보다 에너지가 더 소모 되었습니다. 이렇게 계속 소통할때 내가 생각하는 구현 방법을 상대방에게 설명하면서 로직이 더 정리되고 부족한 부분은 피드백 받을 수 있고, 생각지 못한 다른 방법을 찾을 수 있다는 점에서 장점이 더 많았습니다.
 
+<br>
 
 # 🔥 Issues to overcome
 
-**canvas**
+### **canvas**
 
 프로젝트의 게임은 canvas의 이해와 실시간 멀티게임의 이해를 위해 기본적인 핑퐁게임으로 선택하였습니다.
 
@@ -167,22 +169,31 @@ DATABASE_PASSWORD=<YOUR_MONGODB_PASSWORD>
 로컬에서는 요청을 아무리 많이 주고 받아도 잘 처리할 수 있지만, 서버를 다른곳에 두는 배포 환경에서는 통신 속도에 따라 데이터 처리능력이 확연히 다른다는 점과
 지금껏 최적화의 필요성, 효율적인 데이터 전송방법에 대해 생각하지 않고 작성했었는데 이번 기회로 기능 구현시에 최적화가 중요하다는것을 몸소 느낄 수 있는 계기가 되었습니다.
 
-**webRTC**
+<br>
+
+### **webRTC**
 
 P2P절차, 방화벽과 NAT트래버셜, STURN / TURN 서버 등 처음 접하는 여러 개념들을 유기적으로 어떻게 연결하고 작동시켜야 하는지, peer들이 연결되기 위해 주고 받는 정보들의 흐름을 내가 원하는 시점에 어떻게 컨트롤 하는지 파악하는게 어려웠습니다. WebRTC 구현 중 simple-peer라는 라이브러리를 알게 되었고 ICE candidates , negotiation 과정을 설정해주기 때문에 훨씬 더 직관적이고 가독성이 강하다고 판단하여 simple-peer를 통해 P2P 통신을 구현하였습니다.
 
-**socket.io**
+<br>
+
+### **socket.io**
 
 게임, 채팅, webRTC를 이용하다보니 양방향 통신이 불가피했습니다. 그래서 socket을 사용하게 되었고 server와의 연동을 통해 이벤트를 주고 받을 수 있게 만들었습니다. on과 emit만 이용하면 socket을 자유자재로 이융하는데 문제가 없다고 생각했지만, 상대방과의 게임이 끝나고 매칭이 다시 일어나게 됬을 때 텍스트 메시지가 2번, 3번 중첩되어 발송되서 원인을 찾지 못했었는데 socket으로 구독한 이벤트를 컴포넌트가 언마운트 될 때 이벤트 구독을 취소 해줘야 한다는 사실을 알게 됬었습니다. 기술을 단순히 구현한다고만 해서 내가 이 기능을 제대로 이해하고 사용한다는 말은 아니구나 라고 생각이 들었었습니다. socket의 공식 문서에 나와있던 내용이고 똑같은 내용의 문서도 내가 겪은 경험에 따라 이해도나 보여지는게 확 달라지는구나, 단순히 한 두번 읽고 이해했다고 끝나는게 아니라 중첩되고 반복되서 이해하고 코드로 작성해보는 담글질의 과정이 필요하겠다고 생각했습니다.
 
-**making sync in both user**
+<br>
+
+### **making sync in both user**
 
 socket, webRTC, game 이 3가지가 한 컴포넌트 내에 동시에 진행하다 보니 정확히 동기적인 흐름을 잡아주고 가지 않으면 모든 로직들이 뒤섞여 엉망이 되었었습니다. 각자 하는 작업은 다르지만 서로가 서로의 로직에 영향을 미치기 때문에 게임 로직을 작성하면서도 채팅, webRTC를 고려하고 채팅, webRTC를 작성하면서도 게임 로직을 고려하면서 작업을 진행하였고 마지막에 세 작업물을 합쳤을 때 유기적으로 세 로직이 작동하게 수정해주는 부분이 가장 어려웠던 것 같습니다.
 
-**useRef**
+<br>
+
+### **useRef**
 
 카운트 다운 로직을 작성하던 중 setInterval을 통해 state의 값을 바꿔줘야하는 로직이 있었습니다. 값은 원하는 대로 줄어들지만 timerId가 컴포넌트가 리렌더링이 진행되면서 새로 생성 되서 clearInterval을 해주지 못하여 계속해서 숫자가 줄어드는 상황이 발생했었습니다. useState를 통해서 값을 저장하고 다시 설정을 해주어도 새로운 클로저가 형성되기 때문에 계속 초기화된 값을 기억하면서 어떻게 최초에 할당한 timerID를 유지시킬수 있을지 고민했었습니다. 리액트 공식 문서를 읽던 중 useRef.current를 통해 리렌더링을 일으키지 않고 할당한 값을 기억하게 할 수 있는 기능이 있다는걸 알게 되었습니다. useRef를 통해 timerID를 할당한 후 원하는 시점에 ref.current에 할당된 timerID로 clearInterval을 실행시켜주니 원하는 대로 작동되었습니다. 이 상황 외에도 리렌더링을 일으키지 않고 원하는 시점의 값을 state처럼 기억해주고 싶을 때 ref를 사용하였고 단순히 태그를 조작할때가 아닌 이런 방식을 위해서 ref가 존재한다는 걸 더 명확하게 이해할 수 있었습니다.
 
+<br>
 
 # 🌎 Improvements
 
