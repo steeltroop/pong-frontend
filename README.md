@@ -82,6 +82,13 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - testing-library-react
 - testing-library-jestDom
 
+## Test
+
+- chai
+- enzyme
+- testing-library-react
+- testing-library-jestDom
+
 <br>
 
 # 🍀 Deploy
