@@ -17,7 +17,7 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 
 [Youtube Rresentation](https://youtube.com)
 
-<img src="https://drive.google.com/uc?export=view&id=1uv3qNaTz7npP3qhQ-UG48YqptqKSYCru" alt="gif">
+<img src="https://drive.google.com/uc?id=1uv3qNaTz7npP3qhQ-UG48YqptqKSYCru" alt="gif">
 
 <br>
 
@@ -76,13 +76,6 @@ Player가 matcing이 이루어지면 game화면과 채팅 화면이 실행됩니
 - JSON Web Tokne Authentication
 
 ### Test
-
-- chai
-- enzyme
-- testing-library-react
-- testing-library-jestDom
-
-## Test
 
 - chai
 - enzyme
